@@ -1,10 +1,13 @@
 {
   "name": "@pipeDr3am/simplifa11y",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "simple a11y-ready react component library",
   "author": "dr-mimic",
   "license": "GNU General Public License v3.0",
   "repository": "pipeDr3am/simplifa11y",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
@@ -46,6 +49,14 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   },
   "files": [
     "dist"
