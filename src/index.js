@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { format } from 'date-fns'
+import { format as fnsFormat } from 'date-fns'
 
 import * as S from './components/styles'
-import Datepicker from './components/DatePicker'
+import { formatDate } from './helpers/formatDate'
+import SelectDate from './components/SelectDate'
 import Calendar from './components/Calendar'
 
 if (process.env.NODE_ENV !== 'production') {
@@ -11,32 +12,50 @@ if (process.env.NODE_ENV !== 'production') {
   axe(React, ReactDOM, 1000)
 }
 
-export const DatePicker = () => {
-  const [showDatepicker, setShowDatePicker] = useState(true)
+export const DatePicker = ({
+  format,
+  placeholder
+}) => {
+  const [showSelectDate, setShowSelectDate] = useState(true)
   const [showCalendar, setShowCalendar] = useState(false)
-  const [date, setDate] = useState(format(new Date(), 'yyyy-MM-dd'))
+  const [date, setDate] = useState(fnsFormat(new Date(), format))
+  const [hasSelected, setHasSelected] = useState(false)
 
   const toggleCalendar = (e) => {
-    setShowDatePicker(false)
+    setShowSelectDate(false)
     setShowCalendar(true)
   }
   const handleSelectDate = (date) => {
-    setDate(date)
-    setShowDatePicker(true)
+    const dateFormatted = formatDate({date, format})
+    setDate(dateFormatted)
+    setShowSelectDate(true)
     setShowCalendar(false)
+    if (!hasSelected) {
+      setHasSelected(true)
+    }
   }
   const closeCalendar = () => {
-    setShowDatePicker(true)
+    setShowSelectDate(true)
     setShowCalendar(false)
   }
 
   return (
     <S.App>
-      {showDatepicker && (
-        <Datepicker date={date} handleSelect={toggleCalendar} />
+      {showSelectDate && (
+        <SelectDate 
+          date={date} 
+          handleSelect={toggleCalendar}
+          placeholder={placeholder}
+          hasSelected={hasSelected} 
+        />
       )}
       {showCalendar && (
-        <Calendar date={date} handleSelectDate={handleSelectDate} closeCalendar={closeCalendar} />
+        <Calendar 
+          format={format}
+          date={date} 
+          handleSelectDate={handleSelectDate} 
+          closeCalendar={closeCalendar} 
+        />
       )}
     </S.App>
   )

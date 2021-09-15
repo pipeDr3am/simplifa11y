@@ -2,7 +2,12 @@ import React from 'react'
 
 import * as S from './styles'
 
-const Datepicker = ({ date, handleSelect }) => {
+const SelectDate = ({ 
+  date, 
+  placeholder,
+  handleSelect,
+  hasSelected
+}) => {
   const handleKeyPress = (e) => {
     const charCode = e.charCode
     if (charCode === 13 || charCode === 32) {
@@ -11,20 +16,24 @@ const Datepicker = ({ date, handleSelect }) => {
   }
   return (
     <S.DatePicker
-      className='datepicker'
       tabIndex='0'
       onClick={handleSelect}
       onKeyPress={handleKeyPress}
       role='button'
       aria-label='Datepicker'
     >
-      <S.Select>
-        Select a date
-      </S.Select>
-      <S.Date aria-label='Selected date'>
-        {date}
-      </S.Date>
+      {!hasSelected && (
+        <S.Select>
+          {placeholder}
+        </S.Select>
+      )}
+      
+      {hasSelected && (
+        <S.Date aria-label='Selected date'>
+          {date}
+        </S.Date>
+      )}
     </S.DatePicker>
   )
 }
-export default Datepicker
+export default SelectDate

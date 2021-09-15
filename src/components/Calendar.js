@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  format,
+  format as fnsFormat,
   startOfMonth,
   subMonths,
   addMonths,
@@ -21,10 +21,17 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 
-import * as S from './styles'
+import * as S from './Calendar.styles'
+import { dateFromString } from '../helpers/formatDate'
 
-const Calendar = ({ date, handleSelectDate, closeCalendar }) => {
-  const [selectedDate, setSelectedDate] = useState(new Date(date))
+const Calendar = ({ 
+  date,
+  format, 
+  handleSelectDate, 
+  closeCalendar 
+}) => {
+  
+  const [selectedDate, setSelectedDate] = useState(dateFromString({date}))
   const setPreviousMonth = () => {
     const previousMonth = subMonths(selectedDate, 1)
     setSelectedDate(startOfMonth(previousMonth))
@@ -83,19 +90,20 @@ const Calendar = ({ date, handleSelectDate, closeCalendar }) => {
   }
   const handleTableKeyPress = (e) => {
     const keyCode = e.keyCode
+    console.log('keycode pressed:', keyCode)
     // Check if control key was pressed
     // const control = e.ctrlKey;
     // Use shift key to prevent browser shortcut conflicts
     const control = e.shiftKey
     switch (keyCode) {
       case 13: // Enter
-        handleSelectDate(format(selectedDate, 'yyyy-MM-dd'))
+        handleSelectDate(fnsFormat(selectedDate, format))
         return
       case 27: // Esc
         closeCalendar()
         return
       case 32: // Space
-        handleSelectDate(format(selectedDate, 'yyyy-MM-dd'))
+        handleSelectDate(fnsFormat(selectedDate, format))
         return
       case 33: // Page Up
         control ? setDatePreviousYear() : setDatePreviousMonth()
@@ -125,7 +133,7 @@ const Calendar = ({ date, handleSelectDate, closeCalendar }) => {
     }
   }
   const handleDateSelection = (date) => {
-    const dateString = format(date, 'yyyy-MM-dd')
+    const dateString = fnsFormat(date, format)
     handleSelectDate(dateString)
   }
 
@@ -151,6 +159,7 @@ const Calendar = ({ date, handleSelectDate, closeCalendar }) => {
   }
 
   const generateMonth = () => {
+    console.log('generating month for selectedDate:', selectedDate)
     const daysInMonth = getDaysInMonth(selectedDate)
     const weeksInMonth = getWeeksInMonth(selectedDate)
     const startWeekday = getDay(startOfMonth(selectedDate))
@@ -159,6 +168,8 @@ const Calendar = ({ date, handleSelectDate, closeCalendar }) => {
     for (let i = 0; i < weeksInMonth; i++) {
       weeks.push(makeWeek({selectedDate, weekNum: i, daysInMonth, startWeekday }))
     }
+
+    console.log('weeks:', weeks)
 
     return weeks
   }
@@ -188,7 +199,7 @@ const Calendar = ({ date, handleSelectDate, closeCalendar }) => {
         </S.Icons>
         <S.Month role='heading'>
           <b>
-            {format(selectedDate, 'MMMM yyyy')}
+            {fnsFormat(selectedDate, 'MMMM yyyy')}
           </b>
         </S.Month>
         <S.Icons>
@@ -215,6 +226,7 @@ const Calendar = ({ date, handleSelectDate, closeCalendar }) => {
       <table
         id='grid'
         tabIndex='0'
+        onKeyDown={handleTableKeyPress}
         role='grid'
         aria-label='Month'
       >
@@ -234,16 +246,16 @@ const Calendar = ({ date, handleSelectDate, closeCalendar }) => {
             <tr className='week' key={`week-${i}`} role='row'>
               {week.map((day, i) => (
                 day
-                  ? <td
-                      className={`cell${isEqual(selectedDate, day) ? ' active' : ''}`}
+                  ? <S.Cell
+                      $selected={isEqual(selectedDate, day)}
                       key={`day-cell-${i}`}
                       onClick={() => handleDateSelection(day)}
                       role='gridcell'
                       aria-selected={isEqual(selectedDate, day)}
                     >
                     {getDate(day)}
-                  </td>
-                  : <td className='empty' key={`day-cell-${i}`}>&nbsp;</td>
+                  </S.Cell>
+                  : <S.Cell className='empty' key={`day-cell-${i}`}>&nbsp;</S.Cell>
               ))}
             </tr>
           ))}

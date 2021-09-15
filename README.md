@@ -25,6 +25,6 @@ const Example = () => {
 
 GNU General Public License v3.0 © [dr-mimic](https://github.com/dr-mimic)
 
-### code adapted from
+### code adapted/refactored from
 - https://blog.logrocket.com/how-to-build-an-accessible-date-picker-component-in-react/
-- https://github.com/jkithome/accessible-datepicker/blob/master/src/calendar.js
+- https://github.com/jkithome/accessible-datepicker
