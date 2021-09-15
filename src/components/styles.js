@@ -12,13 +12,33 @@ export const App = styled.div`
 export const DatePicker = styled.div`
   display: flex;
   flex-direction: row;
-  border: ${props => props.theme.border.dateSelect};
   cursor: pointer;
+  width: ${props => props.theme.dateInput.width};
 `
 
-export const DateDisplay = styled.div`
-  padding: 10px 20px;
-  border: ${props => props.theme.border.dateDisplay};
-  background-color: ${props => props.theme.bg.dateDisplay};
-  color: ${props => props.theme.text.dateDisplay}
+export const DateInput = styled.input`
+  padding: ${props => props.theme.dateInput.padding};
+  border: ${props => props.theme.dateInput.border};
+  background-color: ${props => props.theme.dateInput.backgroundColor};
+  color: ${props => props.theme.dateInput.color};
+  width: ${props => props.theme.dateInput.width};
+  height: ${props => props.theme.dateInput.height};
+`
+
+export const IconCalendar = styled.li`
+  text-decoration: none;
+  padding: ${props => props.theme.calendar.icon.padding};
+  border: ${props => props.theme.calendar.icon.border};
+  border-left: ${props => props.theme.calendar.icon.borderLeft};
+  background-color: ${props => props.theme.calendar.icon.backgroundColor};
+  color: ${props => props.theme.calendar.icon.color};
+  width: ${props => props.theme.calendar.icon.width};
+  height: ${props => props.theme.calendar.icon.height};
+`
+
+export const CalendarUl = styled.ul`
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 `

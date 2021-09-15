@@ -2,22 +2,40 @@ const primaryDark = '#1E4147'
 const activeBg = '#AAC789'
 
 export const defaultTheme = {
-  text: {
-    heading: '#FFFFFF',
-    daysOfWeek: `${primaryDark}`,
-    dateDisplay: '#000000'
+  calendar: {
+    border: `2px solid ${primaryDark}`,
+    margin: `.3em 0 0 .3em`,
+    icon: {
+      color: `${primaryDark}`,
+      backgroundColor: '#FFFFFF',
+      border: '1px solid #CC0000',
+      borderLeft: '0',
+      padding: '.4em 20px 0 20px',
+      width: 'auto',
+      height: 'auto'
+    },
+    heading: {
+      color: '#FFFFFF',
+      backgroundColor: `${primaryDark}`
+    },
+    days: {
+      titles: {
+        color: `${primaryDark}`
+      },
+      selected: {
+        backgroundColor: `${activeBg}`
+      },
+      hover: {
+        backgroundColor: `${activeBg}`
+      }
+    }
   },
-  bg: {
-    heading: `${primaryDark}`,
-    selectedDay: `${activeBg}`,
-    dateDisplay: '#FFFFFF'
-  },
-  hover: {
-    day: `${activeBg}`
-  },
-  border: {
-    dateDisplay: `1px solid ${primaryDark}`,
-    dateSelect: `2px solid ${primaryDark}`,
-    calendar: `2px solid ${primaryDark}`
+  dateInput: {
+    color: '#000000',
+    backgroundColor: '#FFFFFF',
+    border: '1px solid #CC0000',
+    padding: '10px 20px',
+    width: '6em',
+    height: 'auto'
   }
 }

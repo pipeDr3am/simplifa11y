@@ -4,9 +4,11 @@ export const Calendar = styled.div`
   width: 300px;
   display: flex;
   flex-direction: column;
-  border: ${props => props.theme.border.calendar};
+  border: ${props => props.theme.calendar.border};
   padding: 2px;
   border-radius: 5px;
+  position: absolute;
+  margin: ${props => props.theme.calendar.margin};
 `
 
 export const Title = styled.div`
@@ -14,8 +16,8 @@ export const Title = styled.div`
   flex-direction: row;
   justify-content: space-between;
   font-size: 16px;
-  color: ${props => props.theme.text.heading};
-  background-color: ${props => props.theme.bg.heading};
+  color: ${props => props.theme.calendar.heading.color};
+  background-color: ${props => props.theme.calendar.heading.backgroundColor};
   padding: 10px 0;
   border: 1px solid black;
 `
@@ -36,7 +38,7 @@ export const Month = styled.div`
 
 export const DaysOfWeek = styled.th`
   height: 30px;
-  color: ${props => props.theme.text.daysOfWeek};
+  color: ${props => props.theme.calendar.days.titles.color};
 `
 
 export const Cell = styled.td`
@@ -48,9 +50,9 @@ export const Cell = styled.td`
   font-family: arial, helvetica, sans-serif;
   font-size: 16px;
 
-  background-color: ${props => props.$selected ? props.theme.bg.selectedDay : 'inherit'};
+  background-color: ${props => props.$selected ? props.theme.calendar.days.selected.backgroundColor : 'inherit'};
 
   :hover {
-    background-color: ${props => props.theme.hover.day};
+    background-color: ${props => props.theme.calendar.days.hover.backgroundColor};
   }
 `
