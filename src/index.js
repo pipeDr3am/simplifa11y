@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { format as fnsFormat } from 'date-fns'
+import { ThemeProvider } from 'styled-components'
 
 import * as S from './components/styles'
+import { defaultTheme } from './components/defaultTheme'
 import { formatDate } from './helpers/formatDate'
 import SelectDate from './components/SelectDate'
 import Calendar from './components/Calendar'
@@ -13,6 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export const DatePicker = ({
+  theme,
   format,
   placeholder
 }) => {
@@ -40,23 +43,25 @@ export const DatePicker = ({
   }
 
   return (
-    <S.App>
-      {showSelectDate && (
-        <SelectDate 
-          date={date} 
-          handleSelect={toggleCalendar}
-          placeholder={placeholder}
-          hasSelected={hasSelected} 
-        />
-      )}
-      {showCalendar && (
-        <Calendar 
-          format={format}
-          date={date} 
-          handleSelectDate={handleSelectDate} 
-          closeCalendar={closeCalendar} 
-        />
-      )}
-    </S.App>
+    <ThemeProvider theme={theme || defaultTheme}>
+      <S.App>
+        {showSelectDate && (
+          <SelectDate 
+            date={date} 
+            handleSelect={toggleCalendar}
+            placeholder={placeholder}
+            hasSelected={hasSelected} 
+          />
+        )}
+        {showCalendar && (
+          <Calendar 
+            format={format}
+            date={date} 
+            handleSelectDate={handleSelectDate} 
+            closeCalendar={closeCalendar} 
+          />
+        )}
+      </S.App>
+    </ThemeProvider>
   )
 }

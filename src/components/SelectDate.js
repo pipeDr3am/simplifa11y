@@ -23,15 +23,15 @@ const SelectDate = ({
       aria-label='Datepicker'
     >
       {!hasSelected && (
-        <S.Select>
+        <S.DateDisplay>
           {placeholder}
-        </S.Select>
+        </S.DateDisplay>
       )}
       
       {hasSelected && (
-        <S.Date aria-label='Selected date'>
+        <S.DateDisplay aria-label='Selected date'>
           {date}
-        </S.Date>
+        </S.DateDisplay>
       )}
     </S.DatePicker>
   )

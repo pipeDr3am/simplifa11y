@@ -4,7 +4,6 @@ export const App = styled.div`
   text-align: center;
   display: flex;
   
-
   *:focus {
     outline: 2px solid #d71ef7;
   }
@@ -13,17 +12,13 @@ export const App = styled.div`
 export const DatePicker = styled.div`
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  border: ${props => props.theme.border.dateSelect};
   cursor: pointer;
 `
 
-export const Select = styled.div`
+export const DateDisplay = styled.div`
   padding: 10px 20px;
-`
-
-export const Date = styled.div`
-  padding: 10px 20px;
-  border-right: 1px solid black;
-  background-color: #00b5ad;
-  color: #000000;
+  border: ${props => props.theme.border.dateDisplay};
+  background-color: ${props => props.theme.bg.dateDisplay};
+  color: ${props => props.theme.text.dateDisplay}
 `

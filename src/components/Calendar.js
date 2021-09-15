@@ -159,7 +159,7 @@ const Calendar = ({
   }
 
   const generateMonth = () => {
-    console.log('generating month for selectedDate:', selectedDate)
+
     const daysInMonth = getDaysInMonth(selectedDate)
     const weeksInMonth = getWeeksInMonth(selectedDate)
     const startWeekday = getDay(startOfMonth(selectedDate))
@@ -168,8 +168,6 @@ const Calendar = ({
     for (let i = 0; i < weeksInMonth; i++) {
       weeks.push(makeWeek({selectedDate, weekNum: i, daysInMonth, startWeekday }))
     }
-
-    console.log('weeks:', weeks)
 
     return weeks
   }
@@ -232,13 +230,13 @@ const Calendar = ({
       >
         <thead>
           <tr role='row'>
-            <S.Header role='columnheader' aria-label='Sunday'><abbr title='Sunday'>Su</abbr></S.Header>
-            <S.Header role='columnheader' aria-label='Monday'><abbr title='Monday'>Mo</abbr></S.Header>
-            <S.Header role='columnheader' aria-label='Tuesday'><abbr title='Tuesday'>Tu</abbr></S.Header>
-            <S.Header role='columnheader' aria-label='Wednesday'><abbr title='Wednesday'>We</abbr></S.Header>
-            <S.Header role='columnheader' aria-label='Thursday'><abbr title='Thursday'>Th</abbr></S.Header>
-            <S.Header role='columnheader' aria-label='Friday'><abbr title='Friday'>Fr</abbr></S.Header>
-            <S.Header role='columnheader' aria-label='Saturday'><abbr title='Saturday'>Sa</abbr></S.Header>
+            <S.DaysOfWeek role='columnheader' aria-label='Sunday'><abbr title='Sunday'>Su</abbr></S.DaysOfWeek>
+            <S.DaysOfWeek role='columnheader' aria-label='Monday'><abbr title='Monday'>Mo</abbr></S.DaysOfWeek>
+            <S.DaysOfWeek role='columnheader' aria-label='Tuesday'><abbr title='Tuesday'>Tu</abbr></S.DaysOfWeek>
+            <S.DaysOfWeek role='columnheader' aria-label='Wednesday'><abbr title='Wednesday'>We</abbr></S.DaysOfWeek>
+            <S.DaysOfWeek role='columnheader' aria-label='Thursday'><abbr title='Thursday'>Th</abbr></S.DaysOfWeek>
+            <S.DaysOfWeek role='columnheader' aria-label='Friday'><abbr title='Friday'>Fr</abbr></S.DaysOfWeek>
+            <S.DaysOfWeek role='columnheader' aria-label='Saturday'><abbr title='Saturday'>Sa</abbr></S.DaysOfWeek>
           </tr>
         </thead>
         <tbody>
@@ -255,7 +253,7 @@ const Calendar = ({
                     >
                     {getDate(day)}
                   </S.Cell>
-                  : <S.Cell className='empty' key={`day-cell-${i}`}>&nbsp;</S.Cell>
+                  : <S.Cell $empty={true} key={`day-cell-${i}`}>&nbsp;</S.Cell>
               ))}
             </tr>
           ))}
