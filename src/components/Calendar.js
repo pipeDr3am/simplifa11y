@@ -7,6 +7,7 @@ import {
   subYears,
   addYears,
   getDaysInMonth,
+  getWeeksInMonth,
   getDay,
   endOfMonth,
   setDate,
@@ -17,7 +18,6 @@ import {
   subDays,
   addDays
 } from 'date-fns'
-import { chunk } from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -129,17 +129,38 @@ const Calendar = ({ date, handleSelectDate, closeCalendar }) => {
     handleSelectDate(dateString)
   }
 
+  const makeWeek = ({selectedDate, weekNum, daysInMonth, startWeekday}) => {
+
+    let returnArr = []
+    let dayNum = weekNum === 0 ? 1 : (weekNum * 7) - startWeekday + 1
+    for (let i = 0; i < 7; i++) {
+      if (weekNum === 0) {
+        if ( i < startWeekday ) {
+          returnArr.push(null)
+          continue
+        } 
+      }
+      if ( dayNum <= daysInMonth ) {
+        returnArr.push(setDate(selectedDate, dayNum))
+        dayNum++
+      } else {
+        returnArr.push(null)
+      }
+    }
+    return returnArr
+  }
+
   const generateMonth = () => {
     const daysInMonth = getDaysInMonth(selectedDate)
+    const weeksInMonth = getWeeksInMonth(selectedDate)
     const startWeekday = getDay(startOfMonth(selectedDate))
-    const endWeekday = getDay(endOfMonth(selectedDate))
-    const gridDays = chunk([
-      ...Array.from({ length: startWeekday }).fill(null),
-      ...Array.from({ length: daysInMonth }, (_, i) => setDate(selectedDate, i + 1)),
-      ...Array.from({ length: (6 - endWeekday) }).fill(null)
-    ], 7)
-    console.log('tt1:', gridDays)
-    return gridDays
+
+    let weeks = []
+    for (let i = 0; i < weeksInMonth; i++) {
+      weeks.push(makeWeek({selectedDate, weekNum: i, daysInMonth, startWeekday }))
+    }
+
+    return weeks
   }
 
   return (
