@@ -5,7 +5,7 @@
 ## install
 
 ```bash
-yarn add @pipeDr3am/simplifa11y -s
+yarn add @pipedr3am/simplifa11y -s
 ```
 
 ## use

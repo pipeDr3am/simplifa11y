@@ -1,15 +1,12 @@
 {
   "name": "@pipedr3am/simplifa11y",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "simple a11y-ready react component library",
   "author": "dr-mimic",
   "license": "GPL-3.0-only",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pipeDr3am/simplifa11y.git"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
