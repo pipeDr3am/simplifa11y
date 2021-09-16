@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
+import { format as fnsFormat } from 'date-fns'
 
 import * as S from './styles'
+import { dateFromString } from '../helpers/formatDate'
 
 const KEYCODE = {
   ENTER: 13,
@@ -11,10 +13,12 @@ const KEYCODE = {
 
 const SelectDate = ({ 
   date, 
+  format,
   placeholder,
   toggleCalendar,
   hasSelected,
   formatHint,
+  handleSelectDate,
   calendarShown
 }) => {
   
@@ -60,7 +64,14 @@ const SelectDate = ({
     const charCode = e.charCode
     console.log('key press:', charCode)
     if (charCode === KEYCODE.ENTER) {
-      // validate date
+      // @TODO validate string as date
+
+      // set selected date
+      const date = dateFromString({date: dateInput})
+      console.log('tt1:', {
+        date, format
+      })
+      handleSelectDate(fnsFormat(date, format))
     }
     
   }
@@ -95,8 +106,8 @@ const SelectDate = ({
       return v.replace(/\D/g, '')
     })
     console.log('values:', values)
-    if (values[0]) values[0] = checkValue(values[0], 2022)
-    if (values[1]) values[1] = checkValue(values[1], 12)
+    if (values[0]) values[0] = checkValue(values[0], 12)
+    if (values[1]) values[1] = checkValue(values[1], 31)
     let output = values.map((v, i) => {
       return v.length == 2 && i < 2 ? v + ' / ' : v
     })

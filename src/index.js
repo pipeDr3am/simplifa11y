@@ -17,14 +17,13 @@ export const DatePicker = ({
   theme,
   format,
   placeholder,
-  formatHint
+  formatHint,
+  onSelect
 }) => {
   
   const [showCalendar, setShowCalendar] = useState(false)
   const [date, setDate] = useState(fnsFormat(new Date(), format))
   const [hasSelected, setHasSelected] = useState(false)
-
-  console.log('date init:', date)
 
   const toggleCalendar = (e) => {
     setShowCalendar(!showCalendar)
@@ -33,6 +32,7 @@ export const DatePicker = ({
     const dateFormatted = formatDate({date, format})
     setDate(dateFormatted)
     setShowCalendar(false)
+    onSelect(dateFormatted)
     if (!hasSelected) {
       setHasSelected(true)
     }
@@ -45,11 +45,13 @@ export const DatePicker = ({
     <ThemeProvider theme={theme || defaultTheme || {}}>
       <SelectDate 
         date={date} 
+        format={format}
         toggleCalendar={toggleCalendar}
         placeholder={placeholder}
         hasSelected={hasSelected} 
         formatHint={formatHint}
         calendarShown={showCalendar}
+        handleSelectDate={handleSelectDate}
       />
       {showCalendar && (
         <Calendar 

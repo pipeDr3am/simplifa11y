@@ -15,12 +15,15 @@ export const formatDate = ({date, format}) => {
 export const dateFromString = ({date}) => { 
   try {
     console.log('returning date from str:', date)
-    const [ month, day, year ] = date.substr(0, 10).split('/')
+    // remove whitespace
+    const dateStr = date.replace(/\s+/g, '')
+    const [ month, day, year ] = dateStr.substr(0, 10).split('/')
     console.log('dateFromString:', {
       month,day,year
     })
     return new Date(year, (month-1), day)
   } catch(e) {
+    console.log('-- error on str format dateFromString --')
     console.error(e.message)
   }
 }

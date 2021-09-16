@@ -57,7 +57,6 @@ const Calendar = ({
   }
   const setPreviousDay = () => {
     const previousDay = subDays(selectedDate, 1)
-    console.log('setting selected day :', previousDay)
     setSelectedDate(previousDay)
   }
   const setNextDay = () => {
@@ -99,7 +98,9 @@ const Calendar = ({
     const control = e.shiftKey
     switch (keyCode) {
       case 13: // Enter
-        console.log('handle select date:', selectedDate)
+        console.log('tt0', {
+          selectedDate, format
+        })
         handleSelectDate(fnsFormat(selectedDate, format))
         return
       case 27: // Esc
@@ -136,6 +137,7 @@ const Calendar = ({
     }
   }
   const handleDateSelection = (date) => {
+    console.log('handleDateSelection:', date)
     const dateString = fnsFormat(date, format)
     handleSelectDate(dateString)
   }
