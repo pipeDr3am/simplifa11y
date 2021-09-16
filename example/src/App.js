@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 
 import { DatePicker } from 'simplifa11y'
-import 'simplifa11y/dist/index.css'
 
 const App = () => {
 
