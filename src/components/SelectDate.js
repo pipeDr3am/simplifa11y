@@ -9,6 +9,7 @@ const SelectDate = ({
   placeholder,
   toggleCalendar,
   hasSelected,
+  formatHint,
   calendarShown
 }) => {
   
@@ -61,7 +62,7 @@ const SelectDate = ({
             onChange={(e) => onInputChange(e)} 
             aria-label='Date Input' 
           />
-          <S.InputHint>test</S.InputHint>
+          <S.InputHint>{formatHint}</S.InputHint>
         </S.InputLi>
         <S.IconCalendar
           tabIndex='0 ' 

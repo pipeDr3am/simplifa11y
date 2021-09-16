@@ -10,7 +10,7 @@ export const defaultTheme = {
       backgroundColor: '#FFFFFF',
       border: '1px solid #CC0000',
       borderLeft: '0',
-      padding: '1em 20px 0 20px',
+      padding: '.5em 20px 0 20px',
       width: 'auto',
       height: 'auto'
     },
@@ -42,7 +42,13 @@ export const defaultTheme = {
     input: {
       width: '10em',
       fontSize: '1em',
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
+      padding: '0',
+      margin: '0'
+    },
+    inputHint: {
+      fontSize: '.8em',
+      color: '#1E4147'
     }
   }
 }

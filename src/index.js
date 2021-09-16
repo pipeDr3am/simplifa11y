@@ -16,7 +16,8 @@ if (process.env.NODE_ENV !== 'production') {
 export const DatePicker = ({
   theme,
   format,
-  placeholder
+  placeholder,
+  formatHint
 }) => {
   
   const [showCalendar, setShowCalendar] = useState(false)
@@ -45,6 +46,7 @@ export const DatePicker = ({
         toggleCalendar={toggleCalendar}
         placeholder={placeholder}
         hasSelected={hasSelected} 
+        formatHint={formatHint}
         calendarShown={showCalendar}
       />
       {showCalendar && (

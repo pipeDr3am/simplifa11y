@@ -14,6 +14,7 @@ export const DatePicker = styled.div`
   flex-direction: row;
   cursor: pointer;
   width: ${props => props.theme.dateInput.wrap.width};
+  height: ${props => props.theme.dateInput.wrap.height};
 `
 
 export const InputLi = styled.li`
@@ -49,10 +50,14 @@ export const DateInput = styled.input`
   border: none;
   text-align: center;
   font-size: ${props => props.theme.dateInput.input.fontSize};
+  padding: ${props => props.theme.dateInput.input.padding};
+  margin: ${props => props.theme.dateInput.input.margin};
 `
 
 export const InputHint = styled.p`
-  line-height: 10px;
   text-align: center;
-  font-size: .8em;
+  font-size: ${props => props.theme.dateInput.inputHint.fontSize};
+  color: ${props => props.theme.dateInput.inputHint.color};
+  padding: 0;
+  margin: 0;
 `
