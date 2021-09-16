@@ -1,6 +1,6 @@
 # simplifa11y
 
-> simple a11y-ready react component library
+> a11y-ready react component library using styled-components for theming
 
 ## install
 
