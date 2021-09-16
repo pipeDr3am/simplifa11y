@@ -24,14 +24,13 @@ import { faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from
 import * as S from './Calendar.styles'
 import { dateFromString } from '../helpers/formatDate'
 
-const Calendar = ({ 
+const Calendar = ({
   date,
-  format, 
-  handleSelectDate, 
-  closeCalendar 
+  format,
+  handleSelectDate,
+  closeCalendar
 }) => {
-  
-  const [selectedDate, setSelectedDate] = useState(dateFromString({date}))
+  const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
 
   const setPreviousMonth = () => {
     const previousMonth = subMonths(selectedDate, 1)
@@ -91,16 +90,12 @@ const Calendar = ({
   }
   const handleTableKeyPress = (e) => {
     const keyCode = e.keyCode
-    console.log('keycode pressed:', keyCode)
     // Check if control key was pressed
     // const control = e.ctrlKey;
     // Use shift key to prevent browser shortcut conflicts
     const control = e.shiftKey
     switch (keyCode) {
       case 13: // Enter
-        console.log('tt0', {
-          selectedDate, format
-        })
         handleSelectDate(fnsFormat(selectedDate, format))
         return
       case 27: // Esc
@@ -132,28 +127,27 @@ const Calendar = ({
         return
       case 40: // Down
         setNextWeek()
-
+        break
       default:
+        break
     }
   }
   const handleDateSelection = (date) => {
-    console.log('handleDateSelection:', date)
     const dateString = fnsFormat(date, format)
     handleSelectDate(dateString)
   }
 
-  const makeWeek = ({selectedDate, weekNum, daysInMonth, startWeekday}) => {
-
-    let returnArr = []
+  const makeWeek = ({ selectedDate, weekNum, daysInMonth, startWeekday }) => {
+    const returnArr = []
     let dayNum = weekNum === 0 ? 1 : (weekNum * 7) - startWeekday + 1
     for (let i = 0; i < 7; i++) {
       if (weekNum === 0) {
-        if ( i < startWeekday ) {
+        if (i < startWeekday) {
           returnArr.push(null)
           continue
-        } 
+        }
       }
-      if ( dayNum <= daysInMonth ) {
+      if (dayNum <= daysInMonth) {
         returnArr.push(setDate(selectedDate, dayNum))
         dayNum++
       } else {
@@ -164,14 +158,13 @@ const Calendar = ({
   }
 
   const generateMonth = () => {
-
     const daysInMonth = getDaysInMonth(selectedDate)
     const weeksInMonth = getWeeksInMonth(selectedDate)
     const startWeekday = getDay(startOfMonth(selectedDate))
 
-    let weeks = []
+    const weeks = []
     for (let i = 0; i < weeksInMonth; i++) {
-      weeks.push(makeWeek({selectedDate, weekNum: i, daysInMonth, startWeekday }))
+      weeks.push(makeWeek({ selectedDate, weekNum: i, daysInMonth, startWeekday }))
     }
 
     return weeks
@@ -247,18 +240,17 @@ const Calendar = ({
         <tbody>
           {generateMonth().map((week, i) => (
             <tr className='week' key={`week-${i}`} role='row'>
-              {week.map((day, i) => (
-                day
-                  ? <S.Cell
-                      $selected={isEqual(selectedDate, day)}
-                      key={`day-cell-${i}`}
-                      onClick={() => handleDateSelection(day)}
-                      role='gridcell'
-                      aria-selected={isEqual(selectedDate, day)}
-                    >
-                    {getDate(day)}
-                  </S.Cell>
-                  : <S.Cell $empty={true} key={`day-cell-${i}`}>&nbsp;</S.Cell>
+              {week.map((day, i) => (day
+                ? <S.Cell
+                    $selected={isEqual(selectedDate, day)}
+                    key={`day-cell-${i}`}
+                    onClick={() => handleDateSelection(day)}
+                    role='gridcell'
+                    aria-selected={isEqual(selectedDate, day)}
+                  >
+                  {getDate(day)}
+                </S.Cell>
+                : <S.Cell $empty key={`day-cell-${i}`}>&nbsp;</S.Cell>
               ))}
             </tr>
           ))}

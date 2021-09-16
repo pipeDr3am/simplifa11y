@@ -4,7 +4,7 @@ const activeBg = '#AAC789'
 export const defaultTheme = {
   calendar: {
     border: `2px solid ${primaryDark}`,
-    margin: `.3em 0 0 .3em`,
+    margin: '.3em 0 0 .3em',
     icon: {
       color: `${primaryDark}`,
       backgroundColor: '#FFFFFF',
