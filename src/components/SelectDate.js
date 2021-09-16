@@ -8,7 +8,8 @@ const SelectDate = ({
   date, 
   placeholder,
   toggleCalendar,
-  hasSelected
+  hasSelected,
+  calendarShown
 }) => {
   
   const [dateInput, setDateInput] = useState(hasSelected ? date : placeholder)
@@ -21,39 +22,51 @@ const SelectDate = ({
   
   const handleKeyPress = e => {
     const charCode = e.charCode
+    console.log('key press:', charCode)
     if (charCode === 13 || charCode === 32) {
       toggleCalendar()
     }
   }
 
-  const onClick = () => {
+  const clearInputIfEmpty = () => {
     if (dateInput === placeholder) {
       setDateInput('')
     }
-    toggleCalendar()
   }
 
   const onInputChange = e => {
     setDateInput(e.target.value)
   }
 
+  const onInputFocus = e => {
+    clearInputIfEmpty()
+  }
+
+  const onInputBlur = e => {
+    console.log('blurred off input with:', dateInput)
+  }
+
   return (
     <S.DatePicker
-      onClick={onClick}
-      onKeyPress={handleKeyPress}
       role='button'
       aria-label='Datepicker'
     >
       <S.CalendarUl>
-        <li>
+        <S.InputLi onKeyPress={handleKeyPress}>
           <S.DateInput
             tabIndex='0' 
+            onClick={onInputFocus}
+            onBlur={onInputBlur}
             value={dateInput}
             onChange={(e) => onInputChange(e)} 
             aria-label='Date Input' 
           />
-        </li>
-        <S.IconCalendar>
+          <S.InputHint>test</S.InputHint>
+        </S.InputLi>
+        <S.IconCalendar
+          tabIndex='0 ' 
+          onClick={toggleCalendar}
+        >
           <FontAwesomeIcon icon={faCalendar} />
         </S.IconCalendar>
       </S.CalendarUl>

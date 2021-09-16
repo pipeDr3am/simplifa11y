@@ -10,7 +10,7 @@ export const defaultTheme = {
       backgroundColor: '#FFFFFF',
       border: '1px solid #CC0000',
       borderLeft: '0',
-      padding: '.4em 20px 0 20px',
+      padding: '1em 20px 0 20px',
       width: 'auto',
       height: 'auto'
     },
@@ -31,11 +31,18 @@ export const defaultTheme = {
     }
   },
   dateInput: {
-    color: '#000000',
-    backgroundColor: '#FFFFFF',
-    border: '1px solid #CC0000',
-    padding: '10px 20px',
-    width: '6em',
-    height: 'auto'
+    wrap: {
+      color: '#000000',
+      backgroundColor: '#FFFFFF',
+      border: '1px solid #CC0000',
+      padding: '0',
+      width: '10em',
+      height: 'auto'
+    },
+    input: {
+      width: '10em',
+      fontSize: '1em',
+      backgroundColor: 'transparent'
+    }
   }
 }

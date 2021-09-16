@@ -13,16 +13,16 @@ export const DatePicker = styled.div`
   display: flex;
   flex-direction: row;
   cursor: pointer;
-  width: ${props => props.theme.dateInput.width};
+  width: ${props => props.theme.dateInput.wrap.width};
 `
 
-export const DateInput = styled.input`
-  padding: ${props => props.theme.dateInput.padding};
-  border: ${props => props.theme.dateInput.border};
-  background-color: ${props => props.theme.dateInput.backgroundColor};
-  color: ${props => props.theme.dateInput.color};
-  width: ${props => props.theme.dateInput.width};
-  height: ${props => props.theme.dateInput.height};
+export const InputLi = styled.li`
+  padding: ${props => props.theme.dateInput.wrap.padding};
+  border: ${props => props.theme.dateInput.wrap.border};
+  background-color: ${props => props.theme.dateInput.wrap.backgroundColor};
+  color: ${props => props.theme.dateInput.wrap.color};
+  width: ${props => props.theme.dateInput.wrap.width};
+  height: ${props => props.theme.dateInput.wrap.height};
 `
 
 export const IconCalendar = styled.li`
@@ -41,4 +41,18 @@ export const CalendarUl = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0;
+`
+
+export const DateInput = styled.input`
+  width: ${props => props.theme.dateInput.input.width};
+  background-color: ${props => props.theme.dateInput.input.backgroundColor};
+  border: none;
+  text-align: center;
+  font-size: ${props => props.theme.dateInput.input.fontSize};
+`
+
+export const InputHint = styled.p`
+  line-height: 10px;
+  text-align: center;
+  font-size: .8em;
 `

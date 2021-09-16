@@ -24,7 +24,7 @@ export const DatePicker = ({
   const [hasSelected, setHasSelected] = useState(false)
 
   const toggleCalendar = (e) => {
-    setShowCalendar(true)
+    setShowCalendar(!showCalendar)
   }
   const handleSelectDate = (date) => {
     const dateFormatted = formatDate({date, format})
@@ -45,6 +45,7 @@ export const DatePicker = ({
         toggleCalendar={toggleCalendar}
         placeholder={placeholder}
         hasSelected={hasSelected} 
+        calendarShown={showCalendar}
       />
       {showCalendar && (
         <Calendar 
