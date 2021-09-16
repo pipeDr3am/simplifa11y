@@ -6,9 +6,9 @@ import 'simplifa11y/dist/index.css'
 const App = () => {
   return (
     <DatePicker 
-      format='yyyy-MM-dd' 
+      format='MM-dd-yyyy' 
       placeholder='Enter a Date'
-      formatHint='YYYY MM DD' 
+      formatHint='MM DD YYYY' 
     />
   )
 }
