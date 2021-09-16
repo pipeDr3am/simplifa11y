@@ -32,6 +32,7 @@ const Calendar = ({
 }) => {
   
   const [selectedDate, setSelectedDate] = useState(dateFromString({date}))
+
   const setPreviousMonth = () => {
     const previousMonth = subMonths(selectedDate, 1)
     setSelectedDate(startOfMonth(previousMonth))
@@ -56,6 +57,7 @@ const Calendar = ({
   }
   const setPreviousDay = () => {
     const previousDay = subDays(selectedDate, 1)
+    console.log('setting selected day :', previousDay)
     setSelectedDate(previousDay)
   }
   const setNextDay = () => {
@@ -97,6 +99,7 @@ const Calendar = ({
     const control = e.shiftKey
     switch (keyCode) {
       case 13: // Enter
+        console.log('handle select date:', selectedDate)
         handleSelectDate(fnsFormat(selectedDate, format))
         return
       case 27: // Esc

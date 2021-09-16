@@ -21,6 +21,7 @@ const SelectDate = ({
   const [dateInput, setDateInput] = useState(hasSelected ? date : placeholder)
 
   useEffect(() => {
+    console.log('date update:', date)
     if (hasSelected) {
       setDateInput(date)
     }

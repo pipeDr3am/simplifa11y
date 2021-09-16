@@ -24,6 +24,8 @@ export const DatePicker = ({
   const [date, setDate] = useState(fnsFormat(new Date(), format))
   const [hasSelected, setHasSelected] = useState(false)
 
+  console.log('date init:', date)
+
   const toggleCalendar = (e) => {
     setShowCalendar(!showCalendar)
   }
