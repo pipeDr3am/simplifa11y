@@ -41,10 +41,14 @@ const Example = () => {
 pass a theme obj into DatePicker, overrides currently available:
 
 ```jsx
-const defaultTheme = {
+const primaryDark = '#1E4147'
+const activeBg = '#AAC789'
+
+export const defaultTheme = {
   calendar: {
     border: `2px solid ${primaryDark}`,
-    margin: `.3em 0 0 .3em`,
+    margin: '.3em 0 0 .3em',
+    backgroundColor: '#FFFFFF',
     icon: {
       color: `${primaryDark}`,
       backgroundColor: '#FFFFFF',

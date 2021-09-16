@@ -9,6 +9,7 @@ export const Calendar = styled.div`
   border-radius: 5px;
   position: absolute;
   margin: ${props => props.theme.calendar.margin};
+  background: ${props => props.theme.calendar.backgroundColor}
 `
 
 export const Title = styled.div`

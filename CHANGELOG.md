@@ -1,3 +1,7 @@
+## [0.0.4] - 2021-09-15
+### Added
+- backgroundColor param added to defaultTheme
+
 ## [0.0.3] - 2021-09-15
 ### Removed
 - removed @axe-core from packages
