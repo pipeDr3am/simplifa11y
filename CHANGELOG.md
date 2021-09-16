@@ -1,3 +1,7 @@
+## [0.0.2-rc0] - 2021-09-15
+### Removed
+- removed @axe-core from packages
+
 ## [0.0.1] - 2021-09-15
 ### Added
 - theming added for core date text and backgrounds

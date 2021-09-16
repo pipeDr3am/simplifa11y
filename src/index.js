@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
 import { format as fnsFormat } from 'date-fns'
 import { ThemeProvider } from 'styled-components'
 
@@ -7,11 +6,6 @@ import { defaultTheme } from './components/defaultTheme'
 import { formatDate } from './helpers/formatDate'
 import SelectDate from './components/SelectDate'
 import Calendar from './components/Calendar'
-
-if (process.env.NODE_ENV !== 'production') {
-  const axe = require('@axe-core/react')
-  axe(React, ReactDOM, 1000)
-}
 
 export const DatePicker = ({
   theme,
