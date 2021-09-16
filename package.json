@@ -1,10 +1,13 @@
 {
-  "name": "@pipeDr3am/simplifa11y",
-  "version": "0.0.1",
+  "name": "@pipedr3am/simplifa11y",
+  "version": "0.0.2",
   "description": "simple a11y-ready react component library",
   "author": "dr-mimic",
   "license": "GPL-3.0-only",
-  "repository": "pipeDr3am/simplifa11y",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pipeDr3am/simplifa11y.git"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -59,5 +62,17 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
     "date-fns": "^2.23.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/pipeDr3am/simplifa11y/issues"
+  },
+  "homepage": "https://github.com/pipeDr3am/simplifa11y#readme",
+  "directories": {
+    "example": "example"
+  },
+  "keywords": [
+    "react",
+    "a11y",
+    "datepicker"
+  ]
 }
