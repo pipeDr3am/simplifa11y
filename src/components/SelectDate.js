@@ -29,6 +29,14 @@ const SelectDate = ({
     }
   }
 
+  const onIconKeyPress = e => {
+    const charCode = e.charCode
+    console.log('key press:', charCode)
+    if (charCode === 13 || charCode === 32) {
+      toggleCalendar()
+    }
+  }
+
   const clearInputIfEmpty = () => {
     if (dateInput === placeholder) {
       setDateInput('')
@@ -67,6 +75,7 @@ const SelectDate = ({
         <S.IconCalendar
           tabIndex='0 ' 
           onClick={toggleCalendar}
+          onKeyPress={onIconKeyPress}
         >
           <FontAwesomeIcon icon={faCalendar} />
         </S.IconCalendar>

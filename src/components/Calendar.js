@@ -183,7 +183,7 @@ const Calendar = ({
             role='button'
             aria-label='Previous year'
           >
-            <FontAwesomeIcon icon={faAngleDoubleLeft} />
+
           </S.IconWrap>
           <S.IconWrap
             tabIndex='0'
