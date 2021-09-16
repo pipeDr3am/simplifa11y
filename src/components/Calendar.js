@@ -48,10 +48,10 @@ const Calendar = ({
     const nextYear = addYears(selectedDate, 1)
     setSelectedDate(startOfMonth(nextYear))
   }
-  const handleKeyPress = (e, cb) => {
+  const handleKeyPress = (e, callback) => {
     const charCode = e.charCode
     if (charCode === 13 || charCode === 32) {
-      cb()
+      callback()
     }
   }
   const setPreviousDay = () => {
@@ -183,7 +183,7 @@ const Calendar = ({
             role='button'
             aria-label='Previous year'
           >
-
+            <FontAwesomeIcon icon={faAngleDoubleLeft} />
           </S.IconWrap>
           <S.IconWrap
             tabIndex='0'
