@@ -1,4 +1,4 @@
-## [0.0.2-rc0] - 2021-09-15
+## [0.0.2-rc.0] - 2021-09-15
 ### Removed
 - removed @axe-core from packages
 

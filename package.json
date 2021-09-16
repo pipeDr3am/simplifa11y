@@ -1,6 +1,6 @@
 {
   "name": "@pipedr3am/simplifa11y",
-  "version": "0.0.2-rc0",
+  "version": "0.0.2-rc.0",
   "description": "simple a11y-ready react component library",
   "author": "dr-mimic",
   "license": "GPL-3.0-only",
