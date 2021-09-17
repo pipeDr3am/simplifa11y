@@ -1,6 +1,6 @@
 ## [0.0.5-rc.0] - 2021-09-15
 ### Fixed
-- backgroundColor fix for calendar
+- backgroundColor changed to background for Calendar solid bg
 
 ## [0.0.4] - 2021-09-15
 ### Added
