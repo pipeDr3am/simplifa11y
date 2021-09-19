@@ -6,8 +6,16 @@ const App = () => {
   const [dateString, setDateString] = useState('')
 
   const theme = {
-    calendar: {
-      zIndex: '2'
+    dateInput: {
+      wrap: {
+        width: '300px'
+      },
+      input: {
+        padding: '0 0 0 20px'
+      },
+      inputHint: {
+        padding: '0 0 0 20px'
+      }
     }
   }
 

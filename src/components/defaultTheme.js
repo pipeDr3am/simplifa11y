@@ -42,15 +42,15 @@ export const defaultTheme = {
       height: 'auto'
     },
     input: {
-      width: '10em',
       fontSize: '1em',
       backgroundColor: 'transparent',
-      padding: '0',
+      padding: '0 0 0 10px',
       margin: '0'
     },
     inputHint: {
       fontSize: '.8em',
-      color: '#1E4147'
+      color: '#1E4147',
+      padding: '0 0 0 10px'
     }
   }
 }

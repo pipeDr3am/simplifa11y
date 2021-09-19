@@ -45,19 +45,16 @@ export const CalendarUl = styled.ul`
 `
 
 export const DateInput = styled.input`
-  width: ${props => props.theme.dateInput.input.width};
   background-color: ${props => props.theme.dateInput.input.backgroundColor};
   border: none;
-  text-align: center;
   font-size: ${props => props.theme.dateInput.input.fontSize};
   padding: ${props => props.theme.dateInput.input.padding};
   margin: ${props => props.theme.dateInput.input.margin};
 `
 
 export const InputHint = styled.p`
-  text-align: center;
   font-size: ${props => props.theme.dateInput.inputHint.fontSize};
   color: ${props => props.theme.dateInput.inputHint.color};
-  padding: 0;
+  padding: ${props => props.theme.dateInput.inputHint.padding};
   margin: 0;
 `

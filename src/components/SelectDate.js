@@ -19,7 +19,7 @@ const SelectDate = ({
   hasSelected,
   formatHint,
   handleSelectDate,
-  calendarShown
+  calendarShown,
 }) => {
   const [dateInput, setDateInput] = useState(hasSelected ? date : placeholder)
 

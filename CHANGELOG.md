@@ -5,6 +5,7 @@
 - dateRange added for minimum and maximum dates
 - custom theme mods available for single parameter updates to defaultTheme
 - theme parameter 'none' available
+- padding param added to dateInput and inputHint
 
 ## [0.0.5-rc.0] - 2021-09-15
 ### Fixed
