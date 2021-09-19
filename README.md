@@ -49,6 +49,7 @@ export const defaultTheme = {
     border: `2px solid ${primaryDark}`,
     margin: '.3em 0 0 .3em',
     background: '#FFFFFF',
+    zIndex: 1,
     icon: {
       color: `${primaryDark}`,
       backgroundColor: '#FFFFFF',
@@ -106,6 +107,18 @@ pass in i.e.
   ...
 />
 ```
+
+single param updates will only modify params passed in and will use defaultTheme for rest:
+```
+const theme = {
+  calendar: {
+    zIndex: '2'
+  }
+}
+```
+
+no theme:
+`const theme = 'none'`
 
 ### 
 

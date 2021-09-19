@@ -6,6 +6,7 @@ export const defaultTheme = {
     border: `2px solid ${primaryDark}`,
     margin: '.3em 0 0 .3em',
     background: '#FFFFFF',
+    zIndex: 1,
     icon: {
       color: `${primaryDark}`,
       backgroundColor: '#FFFFFF',

@@ -1,3 +1,11 @@
+## [0.0.5-rc.1] - 2021-09-15
+### Added
+- zIndex added for calendar to solve absolute positioning issues on parent apps
+- width added for calendar
+- dateRange added for minimum and maximum dates
+- custom theme mods available for single parameter updates to defaultTheme
+- theme parameter 'none' available
+
 ## [0.0.5-rc.0] - 2021-09-15
 ### Fixed
 - backgroundColor changed to background for Calendar solid bg

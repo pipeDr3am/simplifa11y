@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components'
 
 import { defaultTheme } from './components/defaultTheme'
 import { formatDate } from './helpers/formatDate'
+import { mergeDeep } from './helpers/mergeDeep'
 import SelectDate from './components/SelectDate'
 import Calendar from './components/Calendar'
 
@@ -34,8 +35,14 @@ export const DatePicker = ({
     setShowCalendar(false)
   }
 
+  let themeMod = theme === 'none' ? {} : mergeDeep(defaultTheme, theme)
+
+  console.log('tt1:', {
+    themeMod
+  })
+
   return (
-    <ThemeProvider theme={theme || defaultTheme || {}}>
+    <ThemeProvider theme={themeMod}>
       <SelectDate
         date={date}
         format={format}

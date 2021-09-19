@@ -8,6 +8,7 @@ export const Calendar = styled.div`
   padding: 2px;
   border-radius: 5px;
   position: absolute;
+  z-index: ${props => props.theme.calendar.zIndex};
   margin: ${props => props.theme.calendar.margin};
   background: ${props => props.theme.calendar.background};
 `
