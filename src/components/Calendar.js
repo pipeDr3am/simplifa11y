@@ -24,6 +24,10 @@ import { faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from
 
 import * as S from './Calendar.styles'
 import { dateFromString } from '../helpers/formatDate'
+import { 
+  setPreviousMonth,
+  setNextMonth 
+} from '../helpers/calendar/keyboardControls'
 
 const Calendar = ({
   date,
@@ -32,16 +36,9 @@ const Calendar = ({
   closeCalendar,
   dateRange
 }) => {
+  
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
 
-  const setPreviousMonth = () => {
-    const previousMonth = subMonths(selectedDate, 1)
-    setSelectedDate(startOfMonth(previousMonth))
-  }
-  const setNextMonth = () => {
-    const nextMonth = addMonths(selectedDate, 1)
-    setSelectedDate(startOfMonth(nextMonth))
-  }
   const setPreviousYear = () => {
     const previousYear = subYears(selectedDate, 1)
     setSelectedDate(startOfMonth(previousYear))
@@ -53,7 +50,7 @@ const Calendar = ({
   const handleKeyPress = (e, callback) => {
     const charCode = e.charCode
     if (charCode === 13 || charCode === 32) {
-      callback()
+      callback({selectedDate, setSelectedDate})
     }
   }
   const setPreviousDay = () => {
@@ -233,7 +230,7 @@ const Calendar = ({
           </S.IconWrap>
           <S.IconWrap
             tabIndex='0'
-            onClick={setPreviousMonth}
+            onClick={() => setPreviousMonth({selectedDate, setSelectedDate})}
             onKeyPress={(e) => handleKeyPress(e, setPreviousMonth)}
             role='button'
             aria-label='Previous month'
@@ -249,7 +246,7 @@ const Calendar = ({
         <S.Icons>
           <S.IconWrap
             tabIndex='0'
-            onClick={setNextMonth}
+            onClick={() => setNextMonth({selectedDate, setSelectedDate})}
             onKeyPress={(e) => handleKeyPress(e, setNextMonth)}
             role='button'
             aria-label='Next year'

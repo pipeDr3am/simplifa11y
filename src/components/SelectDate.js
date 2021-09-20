@@ -111,7 +111,7 @@ const SelectDate = ({
           <S.InputHint>{formatHint}</S.InputHint>
         </S.InputLi>
         <S.IconCalendar
-          tabIndex='0 '
+          tabIndex='0'
           onClick={toggleCalendar}
           onKeyPress={onIconKeyPress}
         >

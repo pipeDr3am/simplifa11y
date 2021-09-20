@@ -42,9 +42,6 @@
     "standard": "^16.0.3",
     "styled-components": "^5.3.1"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
   "standard": {
     "env": [
       "jest"
