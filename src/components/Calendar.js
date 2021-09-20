@@ -24,11 +24,7 @@ import { faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from
 
 import * as S from './Calendar.styles'
 import { dateFromString } from '../helpers/formatDate'
-import { 
-  setPreviousMonth,
-  setNextMonth,
-  setPreviousYear
-} from '../helpers/calendar/keyboardControl'
+import makeKeyboardControl from '../helpers/calendar/keyboardControl'
 
 const Calendar = ({
   date,
@@ -39,7 +35,7 @@ const Calendar = ({
 }) => {
   
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
-
+  const keyboardControl = makeKeyboardControl({selectedDate, setSelectedDate})
   
   const setNextYear = () => {
     const nextYear = addYears(selectedDate, 1)
@@ -219,8 +215,8 @@ const Calendar = ({
         <S.Icons>
           <S.IconWrap
             tabIndex='0'
-            onClick={() => setPreviousYear({selectedDate, setSelectedDate})}
-            onKeyPress={(e) => handleKeyPress(e, setPreviousYear)}
+            onClick={keyboardControl.setPreviousYear}
+            onKeyPress={(e) => handleKeyPress(e, keyboardControl.setPreviousYear)}
             role='button'
             aria-label='Previous year'
           >
@@ -228,8 +224,8 @@ const Calendar = ({
           </S.IconWrap>
           <S.IconWrap
             tabIndex='0'
-            onClick={() => setPreviousMonth({selectedDate, setSelectedDate})}
-            onKeyPress={(e) => handleKeyPress(e, setPreviousMonth)}
+            onClick={keyboardControl.setPreviousMonth}
+            onKeyPress={(e) => handleKeyPress(e, keyboardControl.setPreviousMonth)}
             role='button'
             aria-label='Previous month'
           >
@@ -244,8 +240,8 @@ const Calendar = ({
         <S.Icons>
           <S.IconWrap
             tabIndex='0'
-            onClick={() => setNextMonth({selectedDate, setSelectedDate})}
-            onKeyPress={(e) => handleKeyPress(e, setNextMonth)}
+            onClick={keyboardControl.setNextMonth}
+            onKeyPress={(e) => handleKeyPress(e, keyboardControl.setNextMonth)}
             role='button'
             aria-label='Next year'
           >

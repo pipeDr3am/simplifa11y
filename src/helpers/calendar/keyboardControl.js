@@ -19,17 +19,28 @@ import {
   toDate
 } from 'date-fns'
 
-export const setPreviousMonth = ({selectedDate, setSelectedDate}) => {
-  const previousMonth = subMonths(selectedDate, 1)
-  setSelectedDate(startOfMonth(previousMonth))
+const makeKeyboardControl = ({selectedDate, setSelectedDate}) => {
+  
+  const setPreviousMonth = () => {
+    const previousMonth = subMonths(selectedDate, 1)
+    setSelectedDate(startOfMonth(previousMonth))
+  }
+  
+  const setNextMonth = () => {
+    const nextMonth = addMonths(selectedDate, 1)
+    setSelectedDate(startOfMonth(nextMonth))
+  }
+  
+  const setPreviousYear = () => {
+    const previousYear = subYears(selectedDate, 1)
+    setSelectedDate(startOfMonth(previousYear))
+  }
+
+  return Object.freeze({
+    setPreviousMonth,
+    setNextMonth,
+    setPreviousYear
+  })
 }
 
-export const setNextMonth = ({selectedDate, setSelectedDate}) => {
-  const nextMonth = addMonths(selectedDate, 1)
-  setSelectedDate(startOfMonth(nextMonth))
-}
-
-export const setPreviousYear = ({selectedDate, setSelectedDate}) => {
-  const previousYear = subYears(selectedDate, 1)
-  setSelectedDate(startOfMonth(previousYear))
-}
+export default makeKeyboardControl
