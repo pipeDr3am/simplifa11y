@@ -26,8 +26,9 @@ import * as S from './Calendar.styles'
 import { dateFromString } from '../helpers/formatDate'
 import { 
   setPreviousMonth,
-  setNextMonth 
-} from '../helpers/calendar/keyboardControls'
+  setNextMonth,
+  setPreviousYear
+} from '../helpers/calendar/keyboardControl'
 
 const Calendar = ({
   date,
@@ -39,10 +40,7 @@ const Calendar = ({
   
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
 
-  const setPreviousYear = () => {
-    const previousYear = subYears(selectedDate, 1)
-    setSelectedDate(startOfMonth(previousYear))
-  }
+  
   const setNextYear = () => {
     const nextYear = addYears(selectedDate, 1)
     setSelectedDate(startOfMonth(nextYear))
@@ -221,7 +219,7 @@ const Calendar = ({
         <S.Icons>
           <S.IconWrap
             tabIndex='0'
-            onClick={setPreviousYear}
+            onClick={() => setPreviousYear({selectedDate, setSelectedDate})}
             onKeyPress={(e) => handleKeyPress(e, setPreviousYear)}
             role='button'
             aria-label='Previous year'

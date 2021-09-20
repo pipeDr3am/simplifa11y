@@ -28,3 +28,8 @@ export const setNextMonth = ({selectedDate, setSelectedDate}) => {
   const nextMonth = addMonths(selectedDate, 1)
   setSelectedDate(startOfMonth(nextMonth))
 }
+
+export const setPreviousYear = ({selectedDate, setSelectedDate}) => {
+  const previousYear = subYears(selectedDate, 1)
+  setSelectedDate(startOfMonth(previousYear))
+}

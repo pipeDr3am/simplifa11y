@@ -1,8 +1,9 @@
 import { dateFromString } from '../../../helpers/formatDate'
 import { 
   setPreviousMonth,
-  setNextMonth
-} from '../../../helpers/calendar/keyboardControls'
+  setNextMonth,
+  setPreviousYear
+} from '../../../helpers/calendar/keyboardControl'
 
 let selectedDate = {}
 let expectedDate = {}
