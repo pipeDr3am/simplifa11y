@@ -22,6 +22,27 @@ const runTest = ({title, dateExp, callback}) => {
   })
 }
 
+test('handleKeyPress with charCode 13 runs callback', () => {
+  const e = { charCode: 13 }
+  const callback = jest.fn(() => {})
+  keyControl.handleKeyPress({e, callback})
+  expect(callback.mock.calls.length).toBe(1)
+})
+
+test('handleKeyPress with charCode 32 runs callback', () => {
+  const e = { charCode: 32 }
+  const callback = jest.fn(() => {})
+  keyControl.handleKeyPress({e, callback})
+  expect(callback.mock.calls.length).toBe(1)
+})
+
+test('handleKeyPress with !charCode 13 || 32 does not fire callback', () => {
+  const e = { charCode: 86 }
+  const callback = jest.fn(() => {})
+  keyControl.handleKeyPress({e, callback})
+  expect(callback.mock.calls.length).toBe(0)
+})
+
 runTest({
   title: 'setPreviousMonth functional',
   dateExp: dateFromString({date: '03/01/2086'}),
