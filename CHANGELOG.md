@@ -1,4 +1,8 @@
-## [0.0.5-rc.1] - 2021-09-15
+## [0.0.5-rc.2] - 2021-09-20
+### Fixed
+- dateRange year working and selects max year passed in
+
+## [0.0.5-rc.1] - 2021-09-19
 ### Added
 - zIndex added for calendar to solve absolute positioning issues on parent apps
 - width added for calendar

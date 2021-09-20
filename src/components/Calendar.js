@@ -140,19 +140,24 @@ const Calendar = ({
   }
 
   const makeWeek = ({ selectedDate, weekNum, daysInMonth, startWeekday }) => {
+    const curYear = toDate(new Date(selectedDate)).getFullYear()
     const curMonth = toDate(new Date(selectedDate)).getMonth() + 1
     let minDay = 0
     let maxDay = 0
     let minMonth = 0
     let maxMonth = 0
+    let minYear = 0
+    let maxYear = 0
 
     if (dateRange.min) {
-      const [miMonth, miDay] = dateRange.min.split('/')
-      const [maMonth, maDay] = dateRange.max.split('/')
+      const [miMonth, miDay, miYear] = dateRange.min.split('/')
+      const [maMonth, maDay, maYear] = dateRange.max.split('/')
       minDay = parseInt(miDay)
       maxDay = parseInt(maDay) + 1
       minMonth = parseInt(miMonth)
       maxMonth = parseInt(maMonth)
+      minYear = parseInt(miYear)
+      maxYear = parseInt(maYear)
     }
 
     const returnArr = []
@@ -172,6 +177,10 @@ const Calendar = ({
       let validDay = minDayValid && maxDayValid
 
       if (curMonth < minMonth || curMonth > maxMonth) {
+        validDay = false
+      }
+
+      if (curYear < minYear || curYear > maxYear) {
         validDay = false
       }
 

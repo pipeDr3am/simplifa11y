@@ -28,6 +28,10 @@ const Example = () => {
         placeholder='Enter a Date'
         formatHint='MM DD YYYY' 
         onSelect={setDateString}
+        dateRange={{
+          min: '08/02/2002',
+          max: '12/31/2030'
+        }}
       />
 
       <p>dateString is {dateString}</p>
