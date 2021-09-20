@@ -48,12 +48,24 @@ const makekeyControl = ({selectedDate, setSelectedDate}) => {
     setSelectedDate(startOfMonth(nextYear))
   }
 
+  const setPreviousDay = () => {
+    const previousDay = subDays(selectedDate, 1)
+    setSelectedDate(previousDay)
+  }
+
+  const setNextDay = () => {
+    const nextDay = addDays(selectedDate, 1)
+    setSelectedDate(nextDay)
+  }
+
   return Object.freeze({
     handleKeyPress,
     setPreviousMonth,
     setNextMonth,
     setPreviousYear,
-    setNextYear
+    setNextYear,
+    setPreviousDay,
+    setNextDay
   })
 }
 

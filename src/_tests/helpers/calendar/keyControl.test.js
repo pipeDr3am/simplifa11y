@@ -66,3 +66,15 @@ runTest({
   dateExp: dateFromString({date: '04/01/2087'}),
   callback: () => { keyControl.setNextYear() }
 })
+
+runTest({
+  title: 'setPreviousDay functional',
+  dateExp: dateFromString({date: '04/29/2086'}),
+  callback: () => { keyControl.setPreviousDay() }
+})
+
+runTest({
+  title: 'setNextDay functional',
+  dateExp: dateFromString({date: '04/31/2086'}),
+  callback: () => { keyControl.setNextDay() }
+})

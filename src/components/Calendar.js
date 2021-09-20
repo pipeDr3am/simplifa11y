@@ -37,14 +37,6 @@ const Calendar = ({
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
   const keyControl = makekeyControl({selectedDate, setSelectedDate})
   
-  const setPreviousDay = () => {
-    const previousDay = subDays(selectedDate, 1)
-    setSelectedDate(previousDay)
-  }
-  const setNextDay = () => {
-    const nextDay = addDays(selectedDate, 1)
-    setSelectedDate(nextDay)
-  }
   const setPreviousWeek = () => {
     const previousWeek = subWeeks(selectedDate, 1)
     setSelectedDate(previousWeek)
@@ -100,13 +92,13 @@ const Calendar = ({
         setMonthStart()
         return
       case 37: // Left
-        setPreviousDay()
+        keyControl.setPreviousDay()
         return
       case 38: // Up
         setPreviousWeek()
         return
       case 39: // Right
-        setNextDay()
+        keyControl.setNextDay()
         return
       case 40: // Down
         setNextWeek()
