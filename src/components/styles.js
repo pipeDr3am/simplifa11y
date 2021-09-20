@@ -15,6 +15,11 @@ export const DatePicker = styled.div`
   cursor: pointer;
   width: ${props => props.theme.dateInput.wrap.width};
   height: ${props => props.theme.dateInput.wrap.height};
+  :hover {
+    ul {
+      outline: ${props => props.theme.dateInput.wrap.hover.outline};
+    }
+  }
 `
 
 export const InputLi = styled.li`
@@ -42,6 +47,7 @@ export const CalendarUl = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0;
+  outline: ${props => props.theme.dateInput.wrap.outline};
 `
 
 export const DateInput = styled.input`

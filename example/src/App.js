@@ -22,6 +22,14 @@ const App = () => {
   const theme = {
     calendar: {
       zIndex: '2'
+    },
+    dateInput: {
+      wrap: {
+        outline: '2px solid yellow',
+        hover: {
+          outline: '5px solid green'
+        }
+      }
     }
   }
 

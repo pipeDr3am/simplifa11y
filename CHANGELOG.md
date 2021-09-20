@@ -1,3 +1,8 @@
+## [0.0.5-rc.3] - 2021-09-20
+### Added
+- outline param added for global wrap
+- outlineHover param added for global wrap
+
 ## [0.0.5-rc.2] - 2021-09-20
 ### Fixed
 - dateRange year working and selects max year passed in

@@ -39,7 +39,11 @@ export const defaultTheme = {
       border: '1px solid #CC0000',
       padding: '0',
       width: '10em',
-      height: 'auto'
+      height: 'auto',
+      outline: '1px solid #333',
+      hover: {
+        outline: '2px solid #999'
+      }
     },
     input: {
       fontSize: '1em',

@@ -149,7 +149,19 @@ const theme = {
 }
 ```
 
-### 
+### dateInput outline && :hover outline
+```jsx
+const theme = {
+  dateInput: {
+    wrap: {
+      outline: '2px solid yellow',
+      hover: {
+        outline: '5px solid green'
+      }
+    }
+  }
+  }
+```
 
 ## License
 
