@@ -35,12 +35,12 @@ const App = () => {
 
       <p>dateString is {dateString}</p>
 
-      <input 
+      <input
         style={{
           position: 'absolute'
         }}
-        type='text' 
-        value='test z-index' 
+        type='text'
+        value='test z-index'
       />
 
     </>

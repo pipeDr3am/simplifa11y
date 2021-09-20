@@ -140,7 +140,6 @@ const Calendar = ({
   }
 
   const makeWeek = ({ selectedDate, weekNum, daysInMonth, startWeekday }) => {
-    
     const curMonth = toDate(new Date(selectedDate)).getMonth() + 1
     let minDay = 0
     let maxDay = 0
@@ -148,8 +147,8 @@ const Calendar = ({
     let maxMonth = 0
 
     if (dateRange.min) {
-      let [miMonth, miDay] = dateRange.min.split('/')
-      let [maMonth, maDay] = dateRange.max.split('/')
+      const [miMonth, miDay] = dateRange.min.split('/')
+      const [maMonth, maDay] = dateRange.max.split('/')
       minDay = parseInt(miDay)
       maxDay = parseInt(maDay) + 1
       minMonth = parseInt(miMonth)
@@ -159,7 +158,6 @@ const Calendar = ({
     const returnArr = []
     let dayNum = weekNum === 0 ? 1 : (weekNum * 7) - startWeekday + 1
     for (let i = 0; i < 7; i++) {
-
       let minDayValid = true
       let maxDayValid = true
       const inMinMonth = curMonth === minMonth
@@ -167,7 +165,7 @@ const Calendar = ({
 
       if (inMinMonth) {
         minDayValid = dayNum > minDay
-      } 
+      }
       if (inMaxMonth) {
         maxDayValid = dayNum < maxDay
       }

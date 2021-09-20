@@ -36,7 +36,7 @@ export const DatePicker = ({
     setShowCalendar(false)
   }
 
-  let themeMod = theme === 'none' ? {} : mergeDeep(defaultTheme, theme)
+  const themeMod = theme === 'none' ? {} : mergeDeep(defaultTheme, theme)
 
   return (
     <ThemeProvider theme={themeMod}>
