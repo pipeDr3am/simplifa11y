@@ -14,14 +14,34 @@ beforeEach(() => {
   keyboardControl = makeKeyboardControl({selectedDate, setSelectedDate})
 })
 
-test('setPreviousMonth functional', () => {
-  expectedDate = dateFromString({date: '03/01/2086'})
-  keyboardControl.setPreviousMonth({selectedDate, setSelectedDate})
-  expect(setSelectedDate.mock.calls.length).toBe(1)
+const runTest = ({title, dateExp, callback}) => {
+  test(`${title}`, () => {
+    expectedDate = dateExp
+    callback()
+    expect(setSelectedDate.mock.calls.length).toBe(1)
+  })
+}
+
+runTest({
+  title: 'setPreviousMonth functional',
+  dateExp: dateFromString({date: '03/01/2086'}),
+  callback: () => { keyboardControl.setPreviousMonth() }
 })
 
-test('setNextMonth functional', () => {
-  expectedDate = dateFromString({date: '05/01/2086'})
-  keyboardControl.setNextMonth({selectedDate, setSelectedDate})
-  expect(setSelectedDate.mock.calls.length).toBe(1)
+runTest({
+  title: 'setNextMonth functional',
+  dateExp: dateFromString({date: '05/01/2086'}),
+  callback: () => { keyboardControl.setNextMonth() }
+})
+
+runTest({
+  title: 'setPreviousYear functional',
+  dateExp: dateFromString({date: '04/01/2085'}),
+  callback: () => { keyboardControl.setPreviousYear() }
+})
+
+runTest({
+  title: 'setNextYear functional',
+  dateExp: dateFromString({date: '04/01/2087'}),
+  callback: () => { keyboardControl.setNextYear() }
 })

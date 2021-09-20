@@ -37,10 +37,6 @@ const Calendar = ({
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
   const keyboardControl = makeKeyboardControl({selectedDate, setSelectedDate})
   
-  const setNextYear = () => {
-    const nextYear = addYears(selectedDate, 1)
-    setSelectedDate(startOfMonth(nextYear))
-  }
   const handleKeyPress = (e, callback) => {
     const charCode = e.charCode
     if (charCode === 13 || charCode === 32) {
@@ -249,8 +245,8 @@ const Calendar = ({
           </S.IconWrap>
           <S.IconWrap
             tabIndex='0'
-            onClick={setNextYear}
-            onKeyPress={(e) => handleKeyPress(e, setNextYear)}
+            onClick={keyboardControl.setNextYear}
+            onKeyPress={(e) => handleKeyPress(e, keyboardControl.setNextYear)}
             role='button'
             aria-label='Next year'
           >

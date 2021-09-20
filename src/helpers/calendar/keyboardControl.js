@@ -36,10 +36,16 @@ const makeKeyboardControl = ({selectedDate, setSelectedDate}) => {
     setSelectedDate(startOfMonth(previousYear))
   }
 
+  const setNextYear = () => {
+    const nextYear = addYears(selectedDate, 1)
+    setSelectedDate(startOfMonth(nextYear))
+  }
+
   return Object.freeze({
     setPreviousMonth,
     setNextMonth,
-    setPreviousYear
+    setPreviousYear,
+    setNextYear
   })
 }
 
