@@ -36,33 +36,8 @@ const Calendar = ({
   
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
   const keyControl = makekeyControl({selectedDate, setSelectedDate})
-  
-  const setPreviousWeek = () => {
-    const previousWeek = subWeeks(selectedDate, 1)
-    setSelectedDate(previousWeek)
-  }
-  const setNextWeek = () => {
-    const nextWeek = addWeeks(selectedDate, 1)
-    setSelectedDate(nextWeek)
-  }
-  const setDatePreviousMonth = () => {
-    setSelectedDate(subMonths(selectedDate, 1))
-  }
-  const setDateNextMonth = () => {
-    setSelectedDate(addMonths(selectedDate, 1))
-  }
-  const setDatePreviousYear = () => {
-    setSelectedDate(subYears(selectedDate, 1))
-  }
-  const setDateNextYear = () => {
-    setSelectedDate(addYears(selectedDate, 1))
-  }
-  const setMonthStart = () => {
-    setSelectedDate(startOfMonth(selectedDate))
-  }
-  const setMonthEnd = () => {
-    setSelectedDate(endOfMonth(selectedDate))
-  }
+
+  // @TODO move to keyControl + unit tests
   const handleTableKeyPress = (e) => {
     const keyCode = e.keyCode
     // Check if control key was pressed
@@ -80,28 +55,28 @@ const Calendar = ({
         handleSelectDate(fnsFormat(selectedDate, format))
         return
       case 33: // Page Up
-        control ? setDatePreviousYear() : setDatePreviousMonth()
+        control ? keyControl.setDatePreviousYear() : keyControl.setDatePreviousMonth()
         return
       case 34: // Page Down
-        control ? setDateNextYear() : setDateNextMonth()
+        control ? keyControl.setDateNextYear() : keyControl.setDateNextMonth()
         return
       case 35: // End
-        setMonthEnd()
+        keyControl.setMonthEnd()
         return
       case 36: // Home
-        setMonthStart()
+        keyControl.setMonthStart()
         return
       case 37: // Left
         keyControl.setPreviousDay()
         return
       case 38: // Up
-        setPreviousWeek()
+        keyControl.setPreviousWeek()
         return
       case 39: // Right
         keyControl.setNextDay()
         return
       case 40: // Down
-        setNextWeek()
+        keyControl.setNextWeek()
         break
       default:
         break
@@ -112,6 +87,7 @@ const Calendar = ({
     handleSelectDate(dateString)
   }
 
+  // @TODO refactor this, extract + unit test
   const makeWeek = ({ selectedDate, weekNum, daysInMonth, startWeekday }) => {
     const curYear = toDate(new Date(selectedDate)).getFullYear()
     const curMonth = toDate(new Date(selectedDate)).getMonth() + 1
@@ -178,6 +154,7 @@ const Calendar = ({
     return returnArr
   }
 
+  // @TODO same refactor somewhere
   const generateMonth = () => {
     const daysInMonth = getDaysInMonth(selectedDate)
     const weeksInMonth = getWeeksInMonth(selectedDate)

@@ -58,6 +58,40 @@ const makekeyControl = ({selectedDate, setSelectedDate}) => {
     setSelectedDate(nextDay)
   }
 
+  const setPreviousWeek = () => {
+    const previousWeek = subWeeks(selectedDate, 1)
+    setSelectedDate(previousWeek)
+  }
+
+  const setNextWeek = () => {
+    const nextWeek = addWeeks(selectedDate, 1)
+    setSelectedDate(nextWeek)
+  }
+
+  const setDatePreviousMonth = () => {
+    setSelectedDate(subMonths(selectedDate, 1))
+  }
+
+  const setDateNextMonth = () => {
+    setSelectedDate(addMonths(selectedDate, 1))
+  }
+
+  const setDatePreviousYear = () => {
+    setSelectedDate(subYears(selectedDate, 1))
+  }
+
+  const setDateNextYear = () => {
+    setSelectedDate(addYears(selectedDate, 1))
+  }
+
+  const setMonthStart = () => {
+    setSelectedDate(startOfMonth(selectedDate))
+  }
+
+  const setMonthEnd = () => {
+    setSelectedDate(endOfMonth(selectedDate))
+  }
+
   return Object.freeze({
     handleKeyPress,
     setPreviousMonth,
@@ -65,7 +99,15 @@ const makekeyControl = ({selectedDate, setSelectedDate}) => {
     setPreviousYear,
     setNextYear,
     setPreviousDay,
-    setNextDay
+    setNextDay,
+    setPreviousWeek,
+    setNextWeek,
+    setDatePreviousMonth,
+    setDateNextMonth,
+    setDatePreviousYear,
+    setDateNextYear,
+    setMonthStart,
+    setMonthEnd
   })
 }
 

@@ -14,7 +14,8 @@ beforeEach(() => {
   keyControl = makekeyControl({selectedDate, setSelectedDate})
 })
 
-const runTest = ({title, dateExp, callback}) => {
+const runTest = ({selDate, title, dateExp, callback}) => {
+  selectedDate = selDate || selectedDate
   test(`${title}`, () => {
     expectedDate = dateExp
     callback()
@@ -75,6 +76,48 @@ runTest({
 
 runTest({
   title: 'setNextDay functional',
-  dateExp: dateFromString({date: '04/31/2086'}),
+  dateExp: dateFromString({date: '05/01/2086'}),
   callback: () => { keyControl.setNextDay() }
+})
+
+runTest({
+  title: 'setPreviousWeek functional',
+  dateExp: dateFromString({date: '04/23/2086'}),
+  callback: () => { keyControl.setPreviousWeek() }
+})
+
+runTest({
+  title: 'setNextWeek functional',
+  dateExp: dateFromString({date: '05/07/2086'}),
+  callback: () => { keyControl.setNextWeek() }
+})
+
+runTest({
+  title: 'setDatePreviousMonth functional',
+  dateExp: dateFromString({date: '03/30/2086'}),
+  callback: () => { keyControl.setDatePreviousMonth() }
+})
+
+runTest({
+  title: 'setDateNextMonth functional',
+  dateExp: dateFromString({date: '05/30/2086'}),
+  callback: () => { keyControl.setDateNextMonth() }
+})
+
+runTest({
+  title: 'setDatePreviousYear functional',
+  dateExp: dateFromString({date: '04/30/2085'}),
+  callback: () => { keyControl.setDatePreviousYear() }
+})
+
+runTest({
+  title: 'setDateNextYear functional',
+  dateExp: dateFromString({date: '04/30/2087'}),
+  callback: () => { keyControl.setDateNextYear() }
+})
+
+runTest({
+  title: 'setMonthStart functional',
+  dateExp: dateFromString({date: '04/01/2086'}),
+  callback: () => { keyControl.setMonthStart() }
 })
