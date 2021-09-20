@@ -24,7 +24,7 @@ import { faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from
 
 import * as S from './Calendar.styles'
 import { dateFromString } from '../helpers/formatDate'
-import makeKeyboardControl from '../helpers/calendar/keyboardControl'
+import makekeyControl from '../helpers/calendar/keyControl'
 
 const Calendar = ({
   date,
@@ -35,14 +35,8 @@ const Calendar = ({
 }) => {
   
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
-  const keyboardControl = makeKeyboardControl({selectedDate, setSelectedDate})
+  const keyControl = makekeyControl({selectedDate, setSelectedDate})
   
-  const handleKeyPress = (e, callback) => {
-    const charCode = e.charCode
-    if (charCode === 13 || charCode === 32) {
-      callback({selectedDate, setSelectedDate})
-    }
-  }
   const setPreviousDay = () => {
     const previousDay = subDays(selectedDate, 1)
     setSelectedDate(previousDay)
@@ -211,8 +205,8 @@ const Calendar = ({
         <S.Icons>
           <S.IconWrap
             tabIndex='0'
-            onClick={keyboardControl.setPreviousYear}
-            onKeyPress={(e) => handleKeyPress(e, keyboardControl.setPreviousYear)}
+            onClick={keyControl.setPreviousYear}
+            onKeyPress={(e) => keyControl.handleKeyPress({e, callback: keyControl.setPreviousYear})}
             role='button'
             aria-label='Previous year'
           >
@@ -220,8 +214,8 @@ const Calendar = ({
           </S.IconWrap>
           <S.IconWrap
             tabIndex='0'
-            onClick={keyboardControl.setPreviousMonth}
-            onKeyPress={(e) => handleKeyPress(e, keyboardControl.setPreviousMonth)}
+            onClick={keyControl.setPreviousMonth}
+            onKeyPress={(e) => keyControl.handleKeyPress({e, callback: keyControl.setPreviousMonth})}
             role='button'
             aria-label='Previous month'
           >
@@ -236,8 +230,8 @@ const Calendar = ({
         <S.Icons>
           <S.IconWrap
             tabIndex='0'
-            onClick={keyboardControl.setNextMonth}
-            onKeyPress={(e) => handleKeyPress(e, keyboardControl.setNextMonth)}
+            onClick={keyControl.setNextMonth}
+            onKeyPress={(e) => keyControl.handleKeyPress({e, callback: keyControl.setNextMonth})}
             role='button'
             aria-label='Next year'
           >
@@ -245,8 +239,8 @@ const Calendar = ({
           </S.IconWrap>
           <S.IconWrap
             tabIndex='0'
-            onClick={keyboardControl.setNextYear}
-            onKeyPress={(e) => handleKeyPress(e, keyboardControl.setNextYear)}
+            onClick={keyControl.setNextYear}
+            onKeyPress={(e) => keyControl.handleKeyPress({e, callback: keyControl.setNextYear})}
             role='button'
             aria-label='Next year'
           >

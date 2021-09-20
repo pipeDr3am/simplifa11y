@@ -19,7 +19,14 @@ import {
   toDate
 } from 'date-fns'
 
-const makeKeyboardControl = ({selectedDate, setSelectedDate}) => {
+const makekeyControl = ({selectedDate, setSelectedDate}) => {
+
+  const handleKeyPress = ({e, callback}) => {
+    const charCode = e.charCode
+    if (charCode === 13 || charCode === 32) {
+      callback({selectedDate, setSelectedDate})
+    }
+  }
   
   const setPreviousMonth = () => {
     const previousMonth = subMonths(selectedDate, 1)
@@ -42,6 +49,7 @@ const makeKeyboardControl = ({selectedDate, setSelectedDate}) => {
   }
 
   return Object.freeze({
+    handleKeyPress,
     setPreviousMonth,
     setNextMonth,
     setPreviousYear,
@@ -49,4 +57,4 @@ const makeKeyboardControl = ({selectedDate, setSelectedDate}) => {
   })
 }
 
-export default makeKeyboardControl
+export default makekeyControl
