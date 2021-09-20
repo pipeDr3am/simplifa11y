@@ -4,8 +4,9 @@
 - width added for calendar
 - dateRange added for minimum and maximum dates
 - custom theme mods available for single parameter updates to defaultTheme
-- theme parameter 'none' available
+- theme parameter 'none' available for using plain css 
 - padding param added to dateInput and inputHint
+- width param added to dateInput
 
 ## [0.0.5-rc.0] - 2021-09-15
 ### Fixed

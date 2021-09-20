@@ -16,7 +16,8 @@ import {
   subWeeks,
   addWeeks,
   subDays,
-  addDays
+  addDays,
+  toDate
 } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
@@ -28,7 +29,8 @@ const Calendar = ({
   date,
   format,
   handleSelectDate,
-  closeCalendar
+  closeCalendar,
+  dateRange
 }) => {
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
 
@@ -138,9 +140,43 @@ const Calendar = ({
   }
 
   const makeWeek = ({ selectedDate, weekNum, daysInMonth, startWeekday }) => {
+    
+    const curMonth = toDate(new Date(selectedDate)).getMonth() + 1
+    let minDay = 0
+    let maxDay = 0
+    let minMonth = 0
+    let maxMonth = 0
+
+    if (dateRange.min) {
+      let [miMonth, miDay] = dateRange.min.split('/')
+      let [maMonth, maDay] = dateRange.max.split('/')
+      minDay = parseInt(miDay)
+      maxDay = parseInt(maDay) + 1
+      minMonth = parseInt(miMonth)
+      maxMonth = parseInt(maMonth)
+    }
+
     const returnArr = []
     let dayNum = weekNum === 0 ? 1 : (weekNum * 7) - startWeekday + 1
     for (let i = 0; i < 7; i++) {
+
+      let minDayValid = true
+      let maxDayValid = true
+      const inMinMonth = curMonth === minMonth
+      const inMaxMonth = curMonth === maxMonth
+
+      if (inMinMonth) {
+        minDayValid = dayNum > minDay
+      } 
+      if (inMaxMonth) {
+        maxDayValid = dayNum < maxDay
+      }
+      let validDay = minDayValid && maxDayValid
+
+      if (curMonth < minMonth || curMonth > maxMonth) {
+        validDay = false
+      }
+
       if (weekNum === 0) {
         if (i < startWeekday) {
           returnArr.push(null)
@@ -148,8 +184,13 @@ const Calendar = ({
         }
       }
       if (dayNum <= daysInMonth) {
-        returnArr.push(setDate(selectedDate, dayNum))
-        dayNum++
+        if (validDay) {
+          returnArr.push(setDate(selectedDate, dayNum))
+          dayNum++
+        } else {
+          returnArr.push(null)
+          dayNum++
+        }
       } else {
         returnArr.push(null)
       }

@@ -8,7 +8,7 @@ const App = () => {
   const theme = {
     dateInput: {
       wrap: {
-        width: '300px'
+        width: '250px'
       },
       input: {
         padding: '0 0 0 20px'
@@ -27,6 +27,10 @@ const App = () => {
         placeholder='Enter a Date'
         formatHint='MM DD YYYY'
         onSelect={setDateString}
+        dateRange={{
+          min: '08/02/2021',
+          max: '09/20/2021'
+        }}
       />
 
       <p>dateString is {dateString}</p>

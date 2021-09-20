@@ -13,7 +13,8 @@ export const DatePicker = ({
   format,
   placeholder,
   formatHint,
-  onSelect
+  onSelect,
+  dateRange
 }) => {
   const [showCalendar, setShowCalendar] = useState(false)
   const [date, setDate] = useState(fnsFormat(new Date(), format))
@@ -37,10 +38,6 @@ export const DatePicker = ({
 
   let themeMod = theme === 'none' ? {} : mergeDeep(defaultTheme, theme)
 
-  console.log('tt1:', {
-    themeMod
-  })
-
   return (
     <ThemeProvider theme={themeMod}>
       <SelectDate
@@ -59,6 +56,7 @@ export const DatePicker = ({
           date={date}
           handleSelectDate={handleSelectDate}
           closeCalendar={closeCalendar}
+          dateRange={dateRange}
         />
       )}
     </ThemeProvider>
