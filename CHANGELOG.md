@@ -2,7 +2,7 @@
 ### Added
 - outline param added for global wrap
 - outlineHover param added for global wrap
-*- dateRange min and max constrains left & right arrows
+- dateRange min and max constrains left & right month & year functionality
 
 ## [0.0.5-rc.2] - 2021-09-20
 ### Fixed
