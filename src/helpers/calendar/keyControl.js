@@ -56,8 +56,6 @@ const makeKeyControl = ({
     const nextMonthVal = getMonth(nextMonth) + 1
     const startOfNextMonthVal = startOfMonth(nextMonth)
 
-    console.log('selectedDate:', selectedDate)
-
     if (nextYearVal === maxYear) {
       if (nextMonthVal < maxMonth) {
         setSelectedDate(startOfNextMonthVal)

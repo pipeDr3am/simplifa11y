@@ -12,7 +12,6 @@ beforeEach(() => {
     min: '08/02/2002',
     max: '10/31/3044'
   }
-  console.log('b')
   setSelectedDate = jest.fn((date) => {
     expect(date).toStrictEqual(expectedDate)
   })
