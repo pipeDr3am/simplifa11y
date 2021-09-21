@@ -16,10 +16,17 @@ import {
   addWeeks,
   subDays,
   addDays,
-  toDate
+  toDate,
+  getYear
 } from 'date-fns'
 
-const makekeyControl = ({selectedDate, setSelectedDate}) => {
+const makekeyControl = ({
+  dateRange,
+  selectedDate, 
+  setSelectedDate
+}) => {
+
+  const maxYear = dateRange.max.split('/')[2]
 
   const handleKeyPress = ({e, callback}) => {
     const charCode = e.charCode
@@ -35,7 +42,10 @@ const makekeyControl = ({selectedDate, setSelectedDate}) => {
   
   const setNextMonth = () => {
     const nextMonth = addMonths(selectedDate, 1)
-    setSelectedDate(startOfMonth(nextMonth))
+    const nextYearVal = getYear(nextMonth)
+    if (nextYearVal <= maxYear) {
+      setSelectedDate(startOfMonth(nextMonth))
+    }
   }
   
   const setPreviousYear = () => {
@@ -45,7 +55,10 @@ const makekeyControl = ({selectedDate, setSelectedDate}) => {
 
   const setNextYear = () => {
     const nextYear = addYears(selectedDate, 1)
-    setSelectedDate(startOfMonth(nextYear))
+    const nextYearVal = getYear(nextYear)
+    if (nextYearVal <= maxYear) {
+      setSelectedDate(startOfMonth(nextYear))
+    }
   }
 
   const setPreviousDay = () => {

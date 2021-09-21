@@ -2,21 +2,12 @@ import React, { useState } from 'react'
 import {
   format as fnsFormat,
   startOfMonth,
-  subMonths,
-  addMonths,
-  subYears,
-  addYears,
   getDaysInMonth,
   getWeeksInMonth,
   getDay,
-  endOfMonth,
   setDate,
   getDate,
   isEqual,
-  subWeeks,
-  addWeeks,
-  subDays,
-  addDays,
   toDate
 } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -35,7 +26,11 @@ const Calendar = ({
 }) => {
   
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
-  const keyControl = makekeyControl({selectedDate, setSelectedDate})
+  const keyControl = makekeyControl({
+    dateRange, 
+    selectedDate, 
+    setSelectedDate
+  })
 
   // @TODO move to keyControl + unit tests
   const handleTableKeyPress = (e) => {
