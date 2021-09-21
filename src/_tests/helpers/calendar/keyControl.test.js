@@ -114,3 +114,68 @@ test('setNextYear: year invalid', () => {
   keyControl.setNextYear()
   expect(setSelectedDate.mock.calls.length).toBe(0)
 })
+
+test('setPreviousMonth: year valid && month valid', () => {
+  dateRange = {
+    min: '03/02/2021',
+    max: '10/31/3044'
+  }
+  selectedDate = dateFromString({date: '04/15/2022'})
+  expectedDate = dateFromString({date: '03/01/2022'})
+
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.setPreviousMonth()
+  expect(setSelectedDate.mock.calls.length).toBe(1)
+})
+
+test('setPreviousMonth: year valid && month blocked', () => {
+  dateRange = {
+    min: '01/02/2021',
+    max: '03/31/2024'
+  }
+  selectedDate = dateFromString({date: '02/15/2022'})
+  expectedDate = dateFromString({date: '01/01/2022'})
+
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.setPreviousMonth()
+  expect(setSelectedDate.mock.calls.length).toBe(1)
+})
+
+test('setPreviousMonth: year blocked && month valid', () => {
+  dateRange = {
+    min: '01/02/2021',
+    max: '03/31/2023'
+  }
+  selectedDate = dateFromString({date: '02/15/2021'})
+  expectedDate = dateFromString({date: '01/01/2021'})
+
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.setPreviousMonth()
+  expect(setSelectedDate.mock.calls.length).toBe(1)
+})
+
+test('setPreviousYear: year valid', () => {
+  dateRange = {
+    min: '03/02/2021',
+    max: '10/31/3044'
+  }
+  selectedDate = dateFromString({date: '10/15/2022'})
+  expectedDate = dateFromString({date: '10/01/2021'})
+
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.setPreviousYear()
+  expect(setSelectedDate.mock.calls.length).toBe(1)
+})
+
+test('setPreviousYear: year invalid', () => {
+  dateRange = {
+    min: '03/02/2021',
+    max: '10/31/2022'
+  }
+  selectedDate = dateFromString({date: '04/15/2021'})
+  expectedDate = dateFromString({date: '04/01/2020'})
+
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.setPreviousYear()
+  expect(setSelectedDate.mock.calls.length).toBe(0)
+})

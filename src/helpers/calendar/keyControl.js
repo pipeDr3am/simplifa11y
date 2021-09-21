@@ -44,9 +44,15 @@ const makeKeyControl = ({
   const setPreviousMonth = () => {
     const previousMonth = subMonths(selectedDate, 1)
     const previousYearVal = getYear(previousMonth)
-    const previousMonthVal = getMonth(previousMonth)
-    if (previousYearVal >= minYear && previousMonthVal >= minMonth) {
-      setSelectedDate(startOfMonth(previousMonth))
+    const previousMonthVal = getMonth(previousMonth) + 1
+    const startOfPrevMonthVal = startOfMonth(previousMonth)
+
+    if (previousYearVal === minYear) {
+      if (previousMonthVal >= minMonth) {
+        setSelectedDate(startOfPrevMonthVal)
+      }
+    } else if (previousYearVal >= minYear) {
+      setSelectedDate(startOfPrevMonthVal)
     }
   }
   
