@@ -24,11 +24,10 @@ const Calendar = ({
   closeCalendar,
   dateRange
 }) => {
-  
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
   const keyControl = makeKeyControl({
-    dateRange, 
-    selectedDate, 
+    dateRange,
+    selectedDate,
     setSelectedDate
   })
 
@@ -175,7 +174,7 @@ const Calendar = ({
           <S.IconWrap
             tabIndex='0'
             onClick={keyControl.setPreviousYear}
-            onKeyPress={(e) => keyControl.handleKeyPress({e, callback: keyControl.setPreviousYear})}
+            onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setPreviousYear })}
             role='button'
             aria-label='Previous year'
           >
@@ -184,7 +183,7 @@ const Calendar = ({
           <S.IconWrap
             tabIndex='0'
             onClick={keyControl.setPreviousMonth}
-            onKeyPress={(e) => keyControl.handleKeyPress({e, callback: keyControl.setPreviousMonth})}
+            onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setPreviousMonth })}
             role='button'
             aria-label='Previous month'
           >
@@ -200,7 +199,7 @@ const Calendar = ({
           <S.IconWrap
             tabIndex='0'
             onClick={keyControl.setNextMonth}
-            onKeyPress={(e) => keyControl.handleKeyPress({e, callback: keyControl.setNextMonth})}
+            onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextMonth })}
             role='button'
             aria-label='Next year'
           >
@@ -209,7 +208,7 @@ const Calendar = ({
           <S.IconWrap
             tabIndex='0'
             onClick={keyControl.setNextYear}
-            onKeyPress={(e) => keyControl.handleKeyPress({e, callback: keyControl.setNextYear})}
+            onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextYear })}
             role='button'
             aria-label='Next year'
           >

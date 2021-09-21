@@ -1,32 +1,23 @@
 import {
-  format as fnsFormat,
   startOfMonth,
   subMonths,
   addMonths,
   subYears,
   addYears,
-  getDaysInMonth,
-  getWeeksInMonth,
-  getDay,
   endOfMonth,
-  setDate,
-  getDate,
-  isEqual,
   subWeeks,
   addWeeks,
   subDays,
   addDays,
-  toDate,
   getYear,
   getMonth
 } from 'date-fns'
 
 const makeKeyControl = ({
   dateRange,
-  selectedDate, 
+  selectedDate,
   setSelectedDate
 }) => {
-
   const maxRangeArr = dateRange.max.split('/')
   const minRangeArr = dateRange.min.split('/')
   const maxYear = parseInt(maxRangeArr[2])
@@ -34,13 +25,13 @@ const makeKeyControl = ({
   const maxMonth = parseInt(maxRangeArr[0])
   const minMonth = parseInt(minRangeArr[0])
 
-  const handleKeyPress = ({e, callback}) => {
+  const handleKeyPress = ({ e, callback }) => {
     const charCode = e.charCode
     if (charCode === 13 || charCode === 32) {
-      callback({selectedDate, setSelectedDate})
+      callback()
     }
   }
-  
+
   const setPreviousMonth = () => {
     const previousMonth = subMonths(selectedDate, 1)
     const previousYearVal = getYear(previousMonth)
@@ -55,7 +46,7 @@ const makeKeyControl = ({
       setSelectedDate(startOfPrevMonthVal)
     }
   }
-  
+
   const setNextMonth = () => {
     const nextMonth = addMonths(selectedDate, 1)
     const nextYearVal = getYear(nextMonth)
@@ -68,10 +59,9 @@ const makeKeyControl = ({
       }
     } else if (nextYearVal <= maxYear) {
       setSelectedDate(startOfNextMonthVal)
-    } 
-
+    }
   }
-  
+
   const setPreviousYear = () => {
     const previousYear = subYears(selectedDate, 1)
     const previousYearVal = getYear(previousYear)
@@ -135,7 +125,7 @@ const makeKeyControl = ({
       }
     } else if (nextYearVal <= maxYear) {
       setSelectedDate(addMonth)
-    } 
+    }
   }
 
   const setDatePreviousYear = () => {
