@@ -17,15 +17,6 @@ beforeEach(() => {
   })
 })
 
-const runTest = ({selDate, title, dateExp, callback}) => {
-  selectedDate = selDate || dateFromString({date: '04/30/2086'})
-  test(`${title}`, () => {
-    expectedDate = dateExp
-    callback()
-    expect(setSelectedDate.mock.calls.length).toBe(1)
-  })
-}
-
 test('handleKeyPress with charCode 13 runs callback', () => {
   const e = { charCode: 13 }
   const callback = jest.fn(() => {})
@@ -73,7 +64,7 @@ test('setNextMonth: year valid && month blocked', () => {
 
   keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
   keyControl.setNextMonth()
-  expect(setSelectedDate.mock.calls.length).toBe(0)
+  expect(setSelectedDate.mock.calls.length).toBe(1)
 })
 
 test('setNextMonth: year blocked && month valid', () => {
@@ -86,7 +77,33 @@ test('setNextMonth: year blocked && month valid', () => {
 
   keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
   keyControl.setNextMonth()
+  expect(setSelectedDate.mock.calls.length).toBe(1)
+})
+
+test('setNextMonth: year blocked && month blocked', () => {
+  dateRange = {
+    min: '01/02/2021',
+    max: '03/31/2021'
+  }
+  selectedDate = dateFromString({date: '03/15/2021'})
+  expectedDate = dateFromString({date: '04/01/2021'})
+
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.setNextMonth()
   expect(setSelectedDate.mock.calls.length).toBe(0)
+})
+
+test('setNextMonth: year blocked && month - 1', () => {
+  dateRange = {
+    min: '01/02/2021',
+    max: '04/31/2021'
+  }
+  selectedDate = dateFromString({date: '03/15/2021'})
+  expectedDate = dateFromString({date: '04/01/2021'})
+
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.setNextMonth()
+  expect(setSelectedDate.mock.calls.length).toBe(1)
 })
 
 test('setNextYear: year valid', () => {

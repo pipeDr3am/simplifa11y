@@ -63,7 +63,7 @@ const makeKeyControl = ({
     const startOfNextMonthVal = startOfMonth(nextMonth)
 
     if (nextYearVal === maxYear) {
-      if (nextMonthVal < maxMonth) {
+      if (nextMonthVal <= maxMonth) {
         setSelectedDate(startOfNextMonthVal)
       }
     } else if (nextYearVal <= maxYear) {
@@ -109,11 +109,33 @@ const makeKeyControl = ({
   }
 
   const setDatePreviousMonth = () => {
-    setSelectedDate(subMonths(selectedDate, 1))
+    const previousMonth = subMonths(selectedDate, 1)
+    const previousYearVal = getYear(previousMonth)
+    const previousMonthVal = getMonth(previousMonth) + 1
+    const subMonth = subMonths(selectedDate, 1)
+
+    if (previousYearVal === minYear) {
+      if (previousMonthVal >= minMonth) {
+        setSelectedDate(subMonth)
+      }
+    } else if (previousYearVal >= minYear) {
+      setSelectedDate(subMonth)
+    }
   }
 
   const setDateNextMonth = () => {
-    setSelectedDate(addMonths(selectedDate, 1))
+    const nextMonth = addMonths(selectedDate, 1)
+    const nextYearVal = getYear(nextMonth)
+    const nextMonthVal = getMonth(nextMonth) + 1
+    const addMonth = addMonths(selectedDate, 1)
+
+    if (nextYearVal === maxYear) {
+      if (nextMonthVal < maxMonth) {
+        setSelectedDate(addMonth)
+      }
+    } else if (nextYearVal <= maxYear) {
+      setSelectedDate(addMonth)
+    } 
   }
 
   const setDatePreviousYear = () => {
