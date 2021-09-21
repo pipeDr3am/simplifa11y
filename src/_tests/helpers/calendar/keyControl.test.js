@@ -26,26 +26,29 @@ const runTest = ({selDate, title, dateExp, callback}) => {
   })
 }
 
-// test('handleKeyPress with charCode 13 runs callback', () => {
-//   const e = { charCode: 13 }
-//   const callback = jest.fn(() => {})
-//   keyControl.handleKeyPress({e, callback})
-//   expect(callback.mock.calls.length).toBe(1)
-// })
+test('handleKeyPress with charCode 13 runs callback', () => {
+  const e = { charCode: 13 }
+  const callback = jest.fn(() => {})
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.handleKeyPress({e, callback})
+  expect(callback.mock.calls.length).toBe(1)
+})
 
-// test('handleKeyPress with charCode 32 runs callback', () => {
-//   const e = { charCode: 32 }
-//   const callback = jest.fn(() => {})
-//   keyControl.handleKeyPress({e, callback})
-//   expect(callback.mock.calls.length).toBe(1)
-// })
+test('handleKeyPress with charCode 32 runs callback', () => {
+  const e = { charCode: 32 }
+  const callback = jest.fn(() => {})
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.handleKeyPress({e, callback})
+  expect(callback.mock.calls.length).toBe(1)
+})
 
-// test('handleKeyPress with !charCode 13 || 32 does not fire callback', () => {
-//   const e = { charCode: 86 }
-//   const callback = jest.fn(() => {})
-//   keyControl.handleKeyPress({e, callback})
-//   expect(callback.mock.calls.length).toBe(0)
-// })
+test('handleKeyPress with !charCode 13 || 32 does not fire callback', () => {
+  const e = { charCode: 86 }
+  const callback = jest.fn(() => {})
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.handleKeyPress({e, callback})
+  expect(callback.mock.calls.length).toBe(0)
+})
 
 test('setNextMonth: year valid && month valid', () => {
   dateRange = {
@@ -86,80 +89,28 @@ test('setNextMonth: year blocked && month valid', () => {
   expect(setSelectedDate.mock.calls.length).toBe(0)
 })
 
-// runTest({
-//   title: 'setPreviousMonth functional',
-//   dateExp: dateFromString({date: '03/01/2086'}),
-//   callback: () => { keyControl.setPreviousMonth() }
-// })
+test('setNextYear: year valid', () => {
+  dateRange = {
+    min: '03/02/2021',
+    max: '10/31/3044'
+  }
+  selectedDate = dateFromString({date: '10/15/2022'})
+  expectedDate = dateFromString({date: '10/01/2023'})
 
-// runTest({
-//   title: 'setNextMonth functional',
-//   dateExp: dateFromString({date: '05/01/2086'}),
-//   callback: () => { keyControl.setNextMonth() }
-// })
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.setNextYear()
+  expect(setSelectedDate.mock.calls.length).toBe(1)
+})
 
-// runTest({
-//   title: 'setPreviousYear functional',
-//   dateExp: dateFromString({date: '04/01/2085'}),
-//   callback: () => { keyControl.setPreviousYear() }
-// })
+test('setNextYear: year invalid', () => {
+  dateRange = {
+    min: '03/02/2021',
+    max: '10/31/2022'
+  }
+  selectedDate = dateFromString({date: '04/15/2022'})
+  expectedDate = dateFromString({date: '04/01/2023'})
 
-// runTest({
-//   title: 'setNextYear functional',
-//   dateExp: dateFromString({date: '04/01/2087'}),
-//   callback: () => { keyControl.setNextYear() }
-// })
-
-// runTest({
-//   title: 'setPreviousDay functional',
-//   dateExp: dateFromString({date: '04/29/2086'}),
-//   callback: () => { keyControl.setPreviousDay() }
-// })
-
-// runTest({
-//   title: 'setNextDay functional',
-//   dateExp: dateFromString({date: '05/01/2086'}),
-//   callback: () => { keyControl.setNextDay() }
-// })
-
-// runTest({
-//   title: 'setPreviousWeek functional',
-//   dateExp: dateFromString({date: '04/23/2086'}),
-//   callback: () => { keyControl.setPreviousWeek() }
-// })
-
-// runTest({
-//   title: 'setNextWeek functional',
-//   dateExp: dateFromString({date: '05/07/2086'}),
-//   callback: () => { keyControl.setNextWeek() }
-// })
-
-// runTest({
-//   title: 'setDatePreviousMonth functional',
-//   dateExp: dateFromString({date: '03/30/2086'}),
-//   callback: () => { keyControl.setDatePreviousMonth() }
-// })
-
-// runTest({
-//   title: 'setDateNextMonth functional',
-//   dateExp: dateFromString({date: '05/30/2086'}),
-//   callback: () => { keyControl.setDateNextMonth() }
-// })
-
-// runTest({
-//   title: 'setDatePreviousYear functional',
-//   dateExp: dateFromString({date: '04/30/2085'}),
-//   callback: () => { keyControl.setDatePreviousYear() }
-// })
-
-// runTest({
-//   title: 'setDateNextYear functional',
-//   dateExp: dateFromString({date: '04/30/2087'}),
-//   callback: () => { keyControl.setDateNextYear() }
-// })
-
-// runTest({
-//   title: 'setMonthStart functional',
-//   dateExp: dateFromString({date: '04/01/2086'}),
-//   callback: () => { keyControl.setMonthStart() }
-// })
+  keyControl = makeKeyControl({dateRange, selectedDate, setSelectedDate})
+  keyControl.setNextYear()
+  expect(setSelectedDate.mock.calls.length).toBe(0)
+})
