@@ -21,7 +21,7 @@ import {
   getMonth
 } from 'date-fns'
 
-const makekeyControl = ({
+const makeKeyControl = ({
   dateRange,
   selectedDate, 
   setSelectedDate
@@ -29,10 +29,10 @@ const makekeyControl = ({
 
   const maxRangeArr = dateRange.max.split('/')
   const minRangeArr = dateRange.min.split('/')
-  const maxYear = maxRangeArr[2]
-  const minYear = minRangeArr[2]
-  const maxMonth = maxRangeArr[0]
-  const minMonth = minRangeArr[0]
+  const maxYear = parseInt(maxRangeArr[2])
+  const minYear = parseInt(minRangeArr[2])
+  const maxMonth = parseInt(maxRangeArr[0])
+  const minMonth = parseInt(minRangeArr[0])
 
   const handleKeyPress = ({e, callback}) => {
     const charCode = e.charCode
@@ -53,21 +53,19 @@ const makekeyControl = ({
   const setNextMonth = () => {
     const nextMonth = addMonths(selectedDate, 1)
     const nextYearVal = getYear(nextMonth)
-    const nextMonthVal = getMonth(nextMonth)
-    console.log('tt1:', {
-      nextYearVal,
-      maxYear,
-      nextMonthVal,
-      maxMonth
-    })
-    // @TODO fix logic :P
-    if (nextYearVal <= maxYear) {
-      setSelectedDate(startOfMonth(nextMonth))
-    } else {
+    const nextMonthVal = getMonth(nextMonth) + 1
+    const startOfNextMonthVal = startOfMonth(nextMonth)
+
+    console.log('selectedDate:', selectedDate)
+
+    if (nextYearVal === maxYear) {
       if (nextMonthVal < maxMonth) {
-        setSelectedDate(startOfMonth(nextMonth))
+        setSelectedDate(startOfNextMonthVal)
       }
-    }
+    } else if (nextYearVal <= maxYear) {
+      setSelectedDate(startOfNextMonthVal)
+    } 
+
   }
   
   const setPreviousYear = () => {
@@ -149,4 +147,4 @@ const makekeyControl = ({
   })
 }
 
-export default makekeyControl
+export default makeKeyControl

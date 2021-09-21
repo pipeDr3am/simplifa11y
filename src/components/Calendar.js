@@ -15,7 +15,7 @@ import { faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from
 
 import * as S from './Calendar.styles'
 import { dateFromString } from '../helpers/formatDate'
-import makekeyControl from '../helpers/calendar/keyControl'
+import makeKeyControl from '../helpers/calendar/keyControl'
 
 const Calendar = ({
   date,
@@ -26,7 +26,7 @@ const Calendar = ({
 }) => {
   
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
-  const keyControl = makekeyControl({
+  const keyControl = makeKeyControl({
     dateRange, 
     selectedDate, 
     setSelectedDate
