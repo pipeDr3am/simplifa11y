@@ -43,7 +43,7 @@ const App = () => {
         onSelect={setDateString}
         dateRange={{
           min: '08/02/2002',
-          max: '12/31/2008'
+          max: '10/31/2008'
         }}
       />
 

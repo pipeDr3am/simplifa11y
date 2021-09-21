@@ -104,6 +104,9 @@ const Calendar = ({
       maxYear = parseInt(maYear)
     }
 
+    const inMinYear = curYear === minYear
+    const inMaxYear = curYear === maxYear
+
     const returnArr = []
     let dayNum = weekNum === 0 ? 1 : (weekNum * 7) - startWeekday + 1
     for (let i = 0; i < 7; i++) {
@@ -120,7 +123,9 @@ const Calendar = ({
       }
       let validDay = minDayValid && maxDayValid
 
-      if (curMonth < minMonth || curMonth > maxMonth) {
+      if (curMonth < minMonth && inMinYear) {
+        validDay = false
+      } else if (curMonth > maxMonth && inMaxYear) {
         validDay = false
       }
 
