@@ -130,7 +130,7 @@ const makeKeyControl = ({
     const addMonth = addMonths(selectedDate, 1)
 
     if (nextYearVal === maxYear) {
-      if (nextMonthVal < maxMonth) {
+      if (nextMonthVal <= maxMonth) {
         setSelectedDate(addMonth)
       }
     } else if (nextYearVal <= maxYear) {
@@ -139,11 +139,22 @@ const makeKeyControl = ({
   }
 
   const setDatePreviousYear = () => {
-    setSelectedDate(subYears(selectedDate, 1))
+    const previousYear = subYears(selectedDate, 1)
+    const previousYearVal = getYear(previousYear)
+    const subYear = subYears(selectedDate, 1)
+
+    if (previousYearVal >= minYear) {
+      setSelectedDate(subYear)
+    }
   }
 
   const setDateNextYear = () => {
-    setSelectedDate(addYears(selectedDate, 1))
+    const nextYear = addYears(selectedDate, 1)
+    const nextYearVal = getYear(nextYear)
+    const addYear = addYears(selectedDate, 1)
+    if (nextYearVal <= maxYear) {
+      setSelectedDate(addYear)
+    }
   }
 
   const setMonthStart = () => {
