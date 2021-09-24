@@ -46,9 +46,9 @@ const SelectDate = ({
 
     if (charCode === KEYCODE.ENTER) {
       const isValid = isValidDate({ dateRange, str: dateInput })
-      console.log('datevalid:', isValid)
+      
       if (!isValid) {
-        // prob want to fire some error message back up ? or let super user handle it...
+
         onInvalidDate({
           message: 'date outside of range',
           details: {

@@ -2,6 +2,8 @@
 
 > a11y-ready react component library using styled-components for theming
 
+trying to make this as barebones as possible while keeping decent customization
+
 ## install
 
 ```bash
@@ -65,6 +67,8 @@ no theme:
 `const theme = 'none'`
 
 ### onInvalidDate
+- will not call `onSelect` method
+- will return error object for you to handle
 ```jsx
 const onInvalidDate = (e) => {
   /*
