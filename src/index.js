@@ -26,7 +26,6 @@ export const DatePicker = ({
     setShowCalendar(!showCalendar)
   }
   const handleSelectDate = (date) => {
-    console.log('handleSelectDate call')
     const dateFormatted = formatDate({ date, format })
     setDate(dateFormatted)
     setShowCalendar(false)
