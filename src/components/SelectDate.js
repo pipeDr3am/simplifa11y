@@ -6,6 +6,7 @@ import { format as fnsFormat } from 'date-fns'
 import * as S from './styles'
 import { isValidDate } from '../helpers/isValidDate'
 import { dateFromString } from '../helpers/formatDate'
+import { throwError } from 'rxjs'
 
 const KEYCODE = {
   ENTER: 13,
@@ -21,7 +22,8 @@ const SelectDate = ({
   formatHint,
   handleSelectDate,
   calendarShown,
-  dateRange
+  dateRange,
+  onInvalidDate
 }) => {
   const [dateInput, setDateInput] = useState(hasSelected ? date : placeholder)
 
@@ -44,8 +46,20 @@ const SelectDate = ({
     const charCode = e.charCode
 
     if (charCode === KEYCODE.ENTER) {
-      // @TODO validate string as date
+
       const isValid = isValidDate({dateRange, str: dateInput})
+      console.log('datevalid:', isValid)
+      if (!isValid) {
+        // prob want to fire some error message back up ? or let super user handle it...
+        onInvalidDate({
+          message: 'date outside of range',
+          details: {
+            dateRange,
+            dateInput
+          }
+        })
+        return false
+      }
 
       // set selected date
       const date = dateFromString({ date: dateInput })

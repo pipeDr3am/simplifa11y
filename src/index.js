@@ -14,7 +14,8 @@ export const DatePicker = ({
   placeholder,
   formatHint,
   onSelect,
-  dateRange
+  dateRange,
+  onInvalidDate
 }) => {
   const [showCalendar, setShowCalendar] = useState(false)
   const [date, setDate] = useState(fnsFormat(new Date(dateRange.max), format))
@@ -50,6 +51,7 @@ export const DatePicker = ({
         calendarShown={showCalendar}
         handleSelectDate={handleSelectDate}
         dateRange={dateRange}
+        onInvalidDate={onInvalidDate}
       />
       {showCalendar && (
         <Calendar

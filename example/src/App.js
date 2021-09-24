@@ -33,6 +33,10 @@ const App = () => {
     }
   }
 
+  const onInvalidDate = (e) => {
+    console.log('received error:', e)
+  }
+
   return (
     <>
       <DatePicker
@@ -45,6 +49,7 @@ const App = () => {
           min: '08/02/2002',
           max: '10/31/2008'
         }}
+        onInvalidDate={onInvalidDate}
       />
 
       <p>dateString is {dateString}</p>

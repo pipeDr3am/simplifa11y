@@ -1,10 +1,18 @@
 import { clearWhiteSpace } from "./strOps"
 
 export const isValidDate = ({dateRange, str}) => {
+  if (!dateRange) {
+    return true
+  }
+
+  console.log('checking date:', {
+    dateRange,
+    strMod
+  })
+
   let isValid = false
   const {min, max} = dateRange
   const strMod = clearWhiteSpace({str})
-  const range = dateRange || ''
 
   try {
 
