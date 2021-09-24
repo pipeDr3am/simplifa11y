@@ -115,18 +115,24 @@ const SelectDate = ({
         <S.InputLi onKeyPress={onInputKeyPress}>
           <S.DateInput
             tabIndex='0'
+            aria-label='Date Input'
+            aria-describedby='formatHint'
             onClick={onInputFocus}
             onFocus={onInputFocus}
             onBlur={onInputBlur}
             value={dateInput}
             onChange={(e) => onInputChange(e)}
-            aria-label='Date Input'
           />
-          <S.InputHint>{formatHint}</S.InputHint>
+          <S.InputHint
+            aria-label={`format as ${formatHint}`} 
+            id='formatHint'
+          >
+            {formatHint}
+          </S.InputHint>
         </S.InputLi>
         <S.IconCalendar
-          aria-label='toggle calendar'
           tabIndex='0'
+          aria-label='toggle calendar'
           onClick={toggleCalendar}
           onKeyPress={onIconKeyPress}
         >

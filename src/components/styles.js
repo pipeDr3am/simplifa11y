@@ -63,4 +63,7 @@ export const InputHint = styled.p`
   color: ${props => props.theme.dateInput.inputHint.color};
   padding: ${props => props.theme.dateInput.inputHint.padding};
   margin: 0;
+  span {
+    opacity: 0;
+  }
 `

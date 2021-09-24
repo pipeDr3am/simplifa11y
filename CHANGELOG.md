@@ -1,3 +1,11 @@
+## [0.0.6] - 2021-09-20
+### Changed
+- [todo] added better support for screen-readers
+  - added aria-label 'toggle calendar' to calendar icon 
+  - calendar icon changed from li to div to optimize what screen reader announces
+  - added aria-describedby for date input pointing to inputHint
+  - added aria-label for inputHint as `format is ${inputHint}`
+
 ## [0.0.5] - 2021-09-20
 ### Added
 - onInvalidDate callback sends out {message, details: { dateRange, dateInput }}
