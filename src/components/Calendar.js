@@ -92,16 +92,14 @@ const Calendar = ({
     let minYear = 0
     let maxYear = 0
 
-    if (dateRange.min) {
-      const [miMonth, miDay, miYear] = dateRange.min.split('/')
-      const [maMonth, maDay, maYear] = dateRange.max.split('/')
-      minDay = parseInt(miDay)
-      maxDay = parseInt(maDay) + 1
-      minMonth = parseInt(miMonth)
-      maxMonth = parseInt(maMonth)
-      minYear = parseInt(miYear)
-      maxYear = parseInt(maYear)
-    }
+    const [miMonth, miDay, miYear] = dateRange ? dateRange.min.split('/') : ['01','01','0000']
+    const [maMonth, maDay, maYear] = dateRange ? dateRange.max.split('/') : ['01','01','9999']
+    minDay = parseInt(miDay)
+    maxDay = parseInt(maDay) + 1
+    minMonth = parseInt(miMonth)
+    maxMonth = parseInt(maMonth)
+    minYear = parseInt(miYear)
+    maxYear = parseInt(maYear)
 
     const inMinYear = curYear === minYear
     const inMaxYear = curYear === maxYear

@@ -17,8 +17,9 @@ export const DatePicker = ({
   dateRange,
   onInvalidDate
 }) => {
+  const defaultDate = dateRange ? new Date(dateRange.max) : new Date()
   const [showCalendar, setShowCalendar] = useState(false)
-  const [date, setDate] = useState(fnsFormat(new Date(dateRange.max), format))
+  const [date, setDate] = useState(fnsFormat(new Date(defaultDate), format))
   const [hasSelected, setHasSelected] = useState(false)
 
   const toggleCalendar = (e) => {

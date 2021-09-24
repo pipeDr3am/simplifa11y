@@ -1,12 +1,10 @@
 ## [0.0.5] - 2021-09-20
 ### Added
 - onInvalidDate callback sends out {message, details: { dateRange, dateInput }}
+- date validation on input enter (date range check)
 
 ### Changed
-- [todo] dateRange no longer required, when left out there is no limit on calendar selections
-
-### Fixed
-- [todo] date validation on input enter (date range check)
+- dateRange no longer required, when left out year limits are 0000 and 9999
 
 ## [0.0.5-rc.3] - 2021-09-20
 ### Added
