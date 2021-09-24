@@ -1,5 +1,5 @@
-//@Todo implement
-import { isValidDate } from "../../helpers/isValidDate"
+// @Todo implement
+import { isValidDate } from '../../helpers/isValidDate'
 
 let str = ''
 let dateRange = {
@@ -9,13 +9,13 @@ let dateRange = {
 
 test('date valid - day', () => {
   str = '01/14/2000'
-  const isValid = isValidDate({dateRange, str})
+  const isValid = isValidDate({ dateRange, str })
   expect(isValid).toBe(true)
 })
 
 test('date invalid - day', () => {
   str = '01/22/2000'
-  const isValid = isValidDate({dateRange, str})
+  const isValid = isValidDate({ dateRange, str })
   expect(isValid).toBe(false)
 })
 
@@ -25,7 +25,7 @@ test('date valid - month', () => {
     max: '03/01/2000'
   }
   str = '02/01/2000'
-  const isValid = isValidDate({dateRange, str})
+  const isValid = isValidDate({ dateRange, str })
   expect(isValid).toBe(true)
 })
 
@@ -35,7 +35,7 @@ test('date invalid - month', () => {
     max: '03/01/2000'
   }
   str = '04/01/2000'
-  const isValid = isValidDate({dateRange, str})
+  const isValid = isValidDate({ dateRange, str })
   expect(isValid).toBe(false)
 })
 
@@ -45,7 +45,7 @@ test('date valid - year', () => {
     max: '01/20/2001'
   }
   str = '01/01/2000'
-  const isValid = isValidDate({dateRange, str})
+  const isValid = isValidDate({ dateRange, str })
   expect(isValid).toBe(true)
 })
 
@@ -55,6 +55,6 @@ test('date invalid - year', () => {
     max: '01/20/2001'
   }
   str = '01/01/2003'
-  const isValid = isValidDate({dateRange, str})
+  const isValid = isValidDate({ dateRange, str })
   expect(isValid).toBe(false)
 })

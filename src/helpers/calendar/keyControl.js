@@ -18,8 +18,8 @@ const makeKeyControl = ({
   selectedDate,
   setSelectedDate
 }) => {
-  const maxRangeArr = dateRange ? dateRange.max.split('/') : ['01','01','9999']
-  const minRangeArr = dateRange ? dateRange.min.split('/') : ['01','01','0000']
+  const maxRangeArr = dateRange ? dateRange.max.split('/') : ['01', '01', '9999']
+  const minRangeArr = dateRange ? dateRange.min.split('/') : ['01', '01', '0000']
   const maxYear = parseInt(maxRangeArr[2])
   const minYear = parseInt(minRangeArr[2])
   const maxMonth = parseInt(maxRangeArr[0])

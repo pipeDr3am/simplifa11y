@@ -6,7 +6,6 @@ import { format as fnsFormat } from 'date-fns'
 import * as S from './styles'
 import { isValidDate } from '../helpers/isValidDate'
 import { dateFromString } from '../helpers/formatDate'
-import { throwError } from 'rxjs'
 
 const KEYCODE = {
   ENTER: 13,
@@ -46,8 +45,7 @@ const SelectDate = ({
     const charCode = e.charCode
 
     if (charCode === KEYCODE.ENTER) {
-
-      const isValid = isValidDate({dateRange, str: dateInput})
+      const isValid = isValidDate({ dateRange, str: dateInput })
       console.log('datevalid:', isValid)
       if (!isValid) {
         // prob want to fire some error message back up ? or let super user handle it...
