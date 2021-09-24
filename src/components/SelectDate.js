@@ -125,6 +125,7 @@ const SelectDate = ({
           <S.InputHint>{formatHint}</S.InputHint>
         </S.InputLi>
         <S.IconCalendar
+          aria-label='toggle calendar'
           tabIndex='0'
           onClick={toggleCalendar}
           onKeyPress={onIconKeyPress}
