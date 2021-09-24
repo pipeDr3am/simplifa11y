@@ -1,5 +1,9 @@
 ## [0.0.5] - 2021-09-20
-### Added
+### Changed
+- [todo] dateRange no longer required, when left out there is no limit on calendar selections
+
+### Fixed
+- [todo] date validation on input enter (date range check)
 
 ## [0.0.5-rc.3] - 2021-09-20
 ### Added

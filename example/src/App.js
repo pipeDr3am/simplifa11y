@@ -55,6 +55,7 @@ const App = () => {
         }}
         type='text'
         value='test z-index'
+        onChange={() => {}}
       />
 
     </>

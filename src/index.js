@@ -49,6 +49,7 @@ export const DatePicker = ({
         formatHint={formatHint}
         calendarShown={showCalendar}
         handleSelectDate={handleSelectDate}
+        dateRange={dateRange}
       />
       {showCalendar && (
         <Calendar

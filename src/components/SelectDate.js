@@ -4,6 +4,7 @@ import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 import { format as fnsFormat } from 'date-fns'
 
 import * as S from './styles'
+import { isValidDate } from '../helpers/isValidDate'
 import { dateFromString } from '../helpers/formatDate'
 
 const KEYCODE = {
@@ -19,7 +20,8 @@ const SelectDate = ({
   hasSelected,
   formatHint,
   handleSelectDate,
-  calendarShown
+  calendarShown,
+  dateRange
 }) => {
   const [dateInput, setDateInput] = useState(hasSelected ? date : placeholder)
 
@@ -38,11 +40,12 @@ const SelectDate = ({
     return str
   }
 
-  const handleInputKeyPress = e => {
+  const onInputKeyPress = e => {
     const charCode = e.charCode
 
     if (charCode === KEYCODE.ENTER) {
       // @TODO validate string as date
+      const isValid = isValidDate({dateRange, str: dateInput})
 
       // set selected date
       const date = dateFromString({ date: dateInput })
@@ -98,7 +101,7 @@ const SelectDate = ({
       aria-label='Datepicker'
     >
       <S.CalendarUl>
-        <S.InputLi onKeyPress={handleInputKeyPress}>
+        <S.InputLi onKeyPress={onInputKeyPress}>
           <S.DateInput
             tabIndex='0'
             onClick={onInputFocus}
