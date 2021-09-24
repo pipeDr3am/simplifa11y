@@ -22,7 +22,8 @@ const Calendar = ({
   format,
   handleSelectDate,
   closeCalendar,
-  dateRange
+  dateRange,
+  calendarShown
 }) => {
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
   const keyControl = makeKeyControl({
@@ -166,24 +167,24 @@ const Calendar = ({
   }
 
   return (
-    <S.Calendar>
+    <S.Calendar id='calendarDisplay' aria-expanded={calendarShown}>
       <S.Title>
         <S.Icons>
           <S.IconWrap
             tabIndex='0'
+            role='button'
+            aria-label='previous year'
             onClick={keyControl.setPreviousYear}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setPreviousYear })}
-            role='button'
-            aria-label='Previous year'
           >
             <FontAwesomeIcon icon={faAngleDoubleLeft} />
           </S.IconWrap>
           <S.IconWrap
             tabIndex='0'
+            role='button'
+            aria-label='previous month'
             onClick={keyControl.setPreviousMonth}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setPreviousMonth })}
-            role='button'
-            aria-label='Previous month'
           >
             <FontAwesomeIcon icon={faAngleLeft} />
           </S.IconWrap>
@@ -196,30 +197,29 @@ const Calendar = ({
         <S.Icons>
           <S.IconWrap
             tabIndex='0'
+            role='button'
+            aria-label='next month'
             onClick={keyControl.setNextMonth}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextMonth })}
-            role='button'
-            aria-label='Next year'
           >
             <FontAwesomeIcon icon={faAngleRight} />
           </S.IconWrap>
           <S.IconWrap
             tabIndex='0'
+            role='button'
+            aria-label='next year'
             onClick={keyControl.setNextYear}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextYear })}
-            role='button'
-            aria-label='Next year'
           >
             <FontAwesomeIcon icon={faAngleDoubleRight} />
           </S.IconWrap>
         </S.Icons>
       </S.Title>
       <table
-        id='grid'
         tabIndex='0'
-        onKeyDown={handleTableKeyPress}
         role='grid'
-        aria-label='Month'
+        aria-label='select day via arrow keys'
+        onKeyDown={handleTableKeyPress}
       >
         <thead>
           <tr role='row'>

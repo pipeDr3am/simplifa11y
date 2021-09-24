@@ -133,6 +133,7 @@ const SelectDate = ({
         <S.IconCalendar
           tabIndex='0'
           aria-label='toggle calendar'
+          aria-controls='calendarDisplay'
           onClick={toggleCalendar}
           onKeyPress={onIconKeyPress}
         >

@@ -61,6 +61,7 @@ export const DatePicker = ({
           handleSelectDate={handleSelectDate}
           closeCalendar={closeCalendar}
           dateRange={dateRange}
+          calendarShown={showCalendar}
         />
       )}
     </ThemeProvider>
