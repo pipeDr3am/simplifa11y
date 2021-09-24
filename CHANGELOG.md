@@ -1,4 +1,7 @@
 ## [0.0.5] - 2021-09-20
+### Added
+- onInvalidDate callback sends out {message, details: { dateRange, dateInput }}
+
 ### Changed
 - [todo] dateRange no longer required, when left out there is no limit on calendar selections
 
