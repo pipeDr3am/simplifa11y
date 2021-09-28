@@ -37,13 +37,14 @@ const Calendar = ({
 }) => {
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
   const keyControl = makeKeyControl({
+    format,
     dateRange,
     selectedDate,
     setSelectedDate
   })
 
   // @TODO move to keyControl + unit tests
-  const handleTableKeyPress = (e) => {
+  const handleDayKeyPress = (e) => {
     const keyCode = e.keyCode
     // Check if control key was pressed
     // const control = e.ctrlKey;
@@ -236,7 +237,6 @@ const Calendar = ({
       <table
         role='grid'
         aria-label='select day via arrow keys'
-        onKeyDown={handleTableKeyPress}
       >
         <thead>
           <tr role='row'>
@@ -261,7 +261,12 @@ const Calendar = ({
                     key={`day-cell-${i}`}
                     onClick={() => handleDateSelection(day)}
                   >
-                  <button tabIndex='-1'>{getDate(day)}</button>
+                  <button 
+                    id={fnsFormat(day, format)}
+                    onKeyDown={handleDayKeyPress}
+                    tabIndex={`${isEqual(selectedDate, day) ? '0' : '-1'}`}>
+                    {getDate(day)}
+                  </button>
                 </S.Cell>
                 : <S.Cell $empty key={`day-cell-${i}`}>&nbsp;</S.Cell>
               ))}

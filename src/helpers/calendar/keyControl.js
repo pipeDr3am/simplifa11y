@@ -10,10 +10,12 @@ import {
   subDays,
   addDays,
   getYear,
-  getMonth
+  getMonth,
+  format as fnsFormat
 } from 'date-fns'
 
 const makeKeyControl = ({
+  format,
   dateRange,
   selectedDate,
   setSelectedDate
@@ -78,23 +80,38 @@ const makeKeyControl = ({
     }
   }
 
+  const getButtonFromDate = ({dateStr}) => document.getElementById(dateStr)
+
+  const focusDayButton = ({date}) => {
+    const previousDate = getButtonFromDate({dateStr: fnsFormat(selectedDate, format)})
+    previousDate.setAttribute('tabindex', '-1')
+    const dateStr = fnsFormat(date, format)
+    const dayButton = getButtonFromDate({dateStr})
+    dayButton.focus()
+    dayButton.setAttribute('tabindex', '0')
+  }
+
   const setPreviousDay = () => {
     const previousDay = subDays(selectedDate, 1)
+    focusDayButton({date: previousDay})
     setSelectedDate(previousDay)
   }
 
   const setNextDay = () => {
     const nextDay = addDays(selectedDate, 1)
+    focusDayButton({date: nextDay})
     setSelectedDate(nextDay)
   }
 
   const setPreviousWeek = () => {
     const previousWeek = subWeeks(selectedDate, 1)
+    focusDayButton({date: previousWeek})
     setSelectedDate(previousWeek)
   }
 
   const setNextWeek = () => {
     const nextWeek = addWeeks(selectedDate, 1)
+    focusDayButton({date: nextWeek})
     setSelectedDate(nextWeek)
   }
 
