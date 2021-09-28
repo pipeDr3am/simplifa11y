@@ -1,6 +1,8 @@
-## [0.0.6] - 2021-09-20
+## [0.0.6-rc.0] - 2021-09-20
 ### Added
 - on receiving a full date, input box now fires set dateString method up component
+  - calls `onInvalidDate` error up if invalid dateRange
+
 ### Changed
 - added better support for screen-readers, structure updates and tabbing control
   - added aria-label 'toggle calendar' to calendar icon 

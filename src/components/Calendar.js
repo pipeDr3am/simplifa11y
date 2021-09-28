@@ -57,7 +57,6 @@ const Calendar = ({
   useEffect(() => {
     if (calendarShown && focusDay.focus) {
       setFocusDay(false)
-      console.log('focusing:', selectedDate)
       keyControl.focusSelectedDate({previousDate: focusDay.previousDate})
     }
   }, [calendarShown, focusDay])
@@ -65,10 +64,6 @@ const Calendar = ({
   const previousYearKeyPress = e => {
     const keyCode = e.keyCode
     const control = e.shiftKey
-
-    console.log('previousYear key press :', {
-      keyCode, control
-    })
 
     if (keyCode === 13 || keyCode === 32) {
       e.preventDefault()
@@ -119,8 +114,6 @@ const Calendar = ({
         keyControl.setMonthStart()
         return
       case 37: // Left
-      // console.log('focusing:', document.getElementById('16 Thursday'))
-      //   document.getElementById('16 Thursday').focus()
         keyControl.setPreviousDay()
         return
       case 38: // Up

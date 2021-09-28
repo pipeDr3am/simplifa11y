@@ -113,10 +113,6 @@ const makeKeyControl = ({
         setFocusDay({ focus: true, previousDate: selectedDate})
       }
     } else if (nextYearVal > minYear) {
-      console.log('ehh', {
-        nextMonthVal,
-        minMonth
-      })
       setSelectedDate(previousDay)
       setFocusDay({ focus: true, previousDate: selectedDate})
     }
@@ -141,13 +137,6 @@ const makeKeyControl = ({
     const previousWeek = subWeeks(selectedDate, 1)
     const nextYearVal = getYear(previousWeek)
     const nextMonthVal = getMonth(previousWeek) + 1
-    console.log('tt1:', {
-      nextYearVal,
-      minYear,
-      nextMonthVal,
-      minMonth,
-      previousWeek
-    })
     if (nextYearVal > minYear) {
       setSelectedDate(previousWeek)
       setFocusDay({ focus: true, previousDate: selectedDate})

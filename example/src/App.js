@@ -20,7 +20,7 @@ const App = () => {
   }
 
   const onInvalidDate = (e) => {
-    console.log('received error:', e)
+    console.error('received error:', e)
   }
 
   return (
