@@ -65,6 +65,7 @@ const SelectDate = ({
   }
 
   const onIconKeyPress = e => {
+    e.preventDefault()
     const charCode = e.charCode
     if (charCode === KEYCODE.ENTER || charCode === KEYCODE.SPACE) {
       toggleCalendar()

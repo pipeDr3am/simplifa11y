@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   format as fnsFormat,
   startOfMonth,
@@ -36,12 +36,25 @@ const Calendar = ({
   calendarShown
 }) => {
   const [selectedDate, setSelectedDate] = useState(dateFromString({ date }))
+  const [focusDay, setFocusDay] = useState({
+    focus: true,
+    previousDate: ''
+  })
   const keyControl = makeKeyControl({
     format,
     dateRange,
     selectedDate,
-    setSelectedDate
+    setSelectedDate,
+    setFocusDay
   })
+
+  useEffect(() => {
+    if (calendarShown && focusDay.focus) {
+      setFocusDay(false)
+      console.log('focusing:', selectedDate)
+      keyControl.focusSelectedDate({previousDate: focusDay.previousDate})
+    }
+  }, [calendarShown, focusDay])
 
   const previousYearKeyPress = e => {
     const keyCode = e.keyCode
@@ -192,7 +205,7 @@ const Calendar = ({
     return returnArr
   }
 
-  const dev = ({day}) => {
+  const getWrittenDay = ({day}) => {
     const dateString = fnsFormat(day, format)
     const dayIdx = getDay(new Date(dateString))
     return ariaDays[dayIdx]
@@ -273,9 +286,9 @@ const Calendar = ({
             <tr className='week' key={`week-${i}`} role='row'>
               {week.map((day, i) => (day
                 ? <S.Cell
-                    id={`${getDate(day)} ${dev({day})}`}
+                    id={`${getDate(day)} ${getWrittenDay({day})}`}
                     aria-selected={isEqual(selectedDate, day)}
-                    aria-label={`${getDate(day)} ${dev({day})}`}
+                    aria-label={`${getDate(day)} ${getWrittenDay({day})}`}
                     $selected={isEqual(selectedDate, day)}
                     key={`day-cell-${i}`}
                     onClick={() => handleDateSelection(day)}

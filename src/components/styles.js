@@ -31,7 +31,7 @@ export const InputLi = styled.li`
   height: ${props => props.theme.dateInput.wrap.height};
 `
 
-export const IconCalendar = styled.div`
+export const IconCalendar = styled.button`
   text-decoration: none;
   padding: ${props => props.theme.calendar.icon.padding};
   border: ${props => props.theme.calendar.icon.border};

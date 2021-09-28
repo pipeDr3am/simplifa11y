@@ -18,7 +18,8 @@ const makeKeyControl = ({
   format,
   dateRange,
   selectedDate,
-  setSelectedDate
+  setSelectedDate,
+  setFocusDay
 }) => {
   const maxRangeArr = dateRange ? dateRange.max.split('/') : ['01', '01', '9999']
   const minRangeArr = dateRange ? dateRange.min.split('/') : ['01', '01', '0000']
@@ -28,15 +29,14 @@ const makeKeyControl = ({
   const minMonth = parseInt(minRangeArr[0])
 
   const getButtonFromDate = ({dateStr}) => document.getElementById(dateStr)
-  const focusSelectedDate = () => getButtonFromDate({dateStr: fnsFormat(selectedDate, format)}).focus() 
-
-  const focusDayButton = ({date}) => {
-    const previousDate = getButtonFromDate({dateStr: fnsFormat(selectedDate, format)})
-    previousDate.setAttribute('tabindex', '-1')
-    const dateStr = fnsFormat(date, format)
-    const dayButton = getButtonFromDate({dateStr})
-    dayButton.focus()
-    dayButton.setAttribute('tabindex', '0')
+  const focusSelectedDate = ({previousDate}) => {
+    if (previousDate) {
+      const prevDate = getButtonFromDate({dateStr: fnsFormat(previousDate, format)})
+      prevDate && prevDate.setAttribute('tabindex', '-1')
+    }
+    const selectedDayButton = getButtonFromDate({dateStr: fnsFormat(selectedDate, format)})
+    selectedDayButton.focus()
+    selectedDayButton.setAttribute('tabindex', '0')
   }
 
   const handleKeyPress = ({ e, callback }) => {
@@ -94,26 +94,26 @@ const makeKeyControl = ({
 
   const setPreviousDay = () => {
     const previousDay = subDays(selectedDate, 1)
-    focusDayButton({date: previousDay})
     setSelectedDate(previousDay)
+    setFocusDay({ focus: true, previousDate: selectedDate})
   }
 
   const setNextDay = () => {
     const nextDay = addDays(selectedDate, 1)
-    focusDayButton({date: nextDay})
     setSelectedDate(nextDay)
+    setFocusDay({ focus: true, previousDate: selectedDate})
   }
 
   const setPreviousWeek = () => {
     const previousWeek = subWeeks(selectedDate, 1)
-    focusDayButton({date: previousWeek})
     setSelectedDate(previousWeek)
+    setFocusDay({ focus: true, previousDate: selectedDate})
   }
 
   const setNextWeek = () => {
     const nextWeek = addWeeks(selectedDate, 1)
-    focusDayButton({date: nextWeek})
     setSelectedDate(nextWeek)
+    setFocusDay({ focus: true, previousDate: selectedDate})
   }
 
   const setDatePreviousMonth = () => {
