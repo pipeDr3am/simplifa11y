@@ -29,7 +29,7 @@ export const Icons = styled.div`
   flex-direction: row;
 `
 
-export const IconWrap = styled.div`
+export const IconWrap = styled.button`
   padding: 0 10px;
   cursor: pointer;
 `

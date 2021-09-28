@@ -17,6 +17,16 @@ import * as S from './Calendar.styles'
 import { dateFromString } from '../helpers/formatDate'
 import makeKeyControl from '../helpers/calendar/keyControl'
 
+const ariaDays = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday'
+]
+
 const Calendar = ({
   date,
   format,
@@ -40,6 +50,13 @@ const Calendar = ({
     // Use shift key to prevent browser shortcut conflicts
     const control = e.shiftKey
     switch (keyCode) {
+      case 9:  // TAB
+      if (!control) {
+        document.getElementById('previousYear').focus()
+        //flag = true
+        return
+      }
+      break
       case 13: // Enter
         handleSelectDate(fnsFormat(selectedDate, format))
         return
@@ -62,6 +79,8 @@ const Calendar = ({
         keyControl.setMonthStart()
         return
       case 37: // Left
+      // console.log('focusing:', document.getElementById('16 Thursday'))
+      //   document.getElementById('16 Thursday').focus()
         keyControl.setPreviousDay()
         return
       case 38: // Up
@@ -152,6 +171,12 @@ const Calendar = ({
     return returnArr
   }
 
+  const dev = ({day}) => {
+    const dateString = fnsFormat(day, format)
+    const dayIdx = getDay(new Date(dateString))
+    return ariaDays[dayIdx]
+  }
+
   // @TODO same refactor somewhere
   const generateMonth = () => {
     const daysInMonth = getDaysInMonth(selectedDate)
@@ -171,8 +196,7 @@ const Calendar = ({
       <S.Title>
         <S.Icons>
           <S.IconWrap
-            tabIndex='0'
-            role='button'
+            id='previousYear'
             aria-label='previous year'
             onClick={keyControl.setPreviousYear}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setPreviousYear })}
@@ -180,8 +204,6 @@ const Calendar = ({
             <FontAwesomeIcon icon={faAngleDoubleLeft} />
           </S.IconWrap>
           <S.IconWrap
-            tabIndex='0'
-            role='button'
             aria-label='previous month'
             onClick={keyControl.setPreviousMonth}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setPreviousMonth })}
@@ -196,8 +218,6 @@ const Calendar = ({
         </S.Month>
         <S.Icons>
           <S.IconWrap
-            tabIndex='0'
-            role='button'
             aria-label='next month'
             onClick={keyControl.setNextMonth}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextMonth })}
@@ -205,8 +225,6 @@ const Calendar = ({
             <FontAwesomeIcon icon={faAngleRight} />
           </S.IconWrap>
           <S.IconWrap
-            tabIndex='0'
-            role='button'
             aria-label='next year'
             onClick={keyControl.setNextYear}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextYear })}
@@ -216,7 +234,6 @@ const Calendar = ({
         </S.Icons>
       </S.Title>
       <table
-        tabIndex='0'
         role='grid'
         aria-label='select day via arrow keys'
         onKeyDown={handleTableKeyPress}
@@ -237,13 +254,14 @@ const Calendar = ({
             <tr className='week' key={`week-${i}`} role='row'>
               {week.map((day, i) => (day
                 ? <S.Cell
+                    id={`${getDate(day)} ${dev({day})}`}
+                    aria-selected={isEqual(selectedDate, day)}
+                    aria-label={`${getDate(day)} ${dev({day})}`}
                     $selected={isEqual(selectedDate, day)}
                     key={`day-cell-${i}`}
                     onClick={() => handleDateSelection(day)}
-                    role='gridcell'
-                    aria-selected={isEqual(selectedDate, day)}
                   >
-                  {getDate(day)}
+                  <button tabIndex='-1'>{getDate(day)}</button>
                 </S.Cell>
                 : <S.Cell $empty key={`day-cell-${i}`}>&nbsp;</S.Cell>
               ))}
