@@ -57,7 +57,7 @@ const Calendar = ({
   useEffect(() => {
     if (calendarShown && focusDay.focus) {
       setFocusDay(false)
-      keyControl.focusSelectedDate({previousDate: focusDay.previousDate})
+      keyControl.focusSelectedDate({ previousDate: focusDay.previousDate })
     }
   }, [calendarShown, focusDay])
 
@@ -70,12 +70,12 @@ const Calendar = ({
       keyControl.setPreviousYear()
     } else if (keyCode === 9) { // TAB
       if (control) {
-        //shift held
+        // shift held
         e.preventDefault()
         if (document.activeElement === document.getElementById('previousYear')) {
-          keyControl.focusSelectedDate({previousDate: ''})
+          keyControl.focusSelectedDate({ previousDate: '' })
         }
-      } 
+      }
     }
   }
 
@@ -84,14 +84,13 @@ const Calendar = ({
     const keyCode = e.keyCode
     const control = e.shiftKey
     switch (keyCode) {
-      case 9:  // TAB
-      if (!control) {
-        document.getElementById('previousYear').focus()
-        e.stopPropagation();
-        e.preventDefault();
-        return
-      } 
-      break
+      case 9: // TAB
+        if (!control) {
+          document.getElementById('previousYear').focus()
+          e.stopPropagation()
+          e.preventDefault()
+        }
+        break
       case 13: // Enter
         handleSelectDate(fnsFormat(selectedDate, format))
         return
@@ -173,7 +172,7 @@ const Calendar = ({
         maxDayValid = dayNum < maxDay
       }
       let validDay = true
-      
+
       if (curMonth < minMonth && inMinYear) {
         validDay = false
       } else if (curMonth > maxMonth && inMaxYear) {
@@ -205,7 +204,7 @@ const Calendar = ({
     return returnArr
   }
 
-  const getWrittenDay = ({day}) => {
+  const getWrittenDay = ({ day }) => {
     const dateString = fnsFormat(day, format)
     const dateObj = new Date(dateString)
     const dayIdx = getDay(dateObj)
@@ -292,17 +291,18 @@ const Calendar = ({
             <tr className='week' key={`week-${i}`} role='row'>
               {week.map((day, i) => (day
                 ? <S.Cell
-                    id={`${getDate(day)} ${getWrittenDay({day})}`}
+                    id={`${getDate(day)} ${getWrittenDay({ day })}`}
                     aria-selected={isEqual(selectedDate, day)}
                     $selected={isEqual(selectedDate, day)}
                     key={`day-cell-${i}`}
                     onClick={() => handleDateSelection(day)}
                   >
-                  <button 
+                  <button
                     id={fnsFormat(day, format)}
-                    aria-label={`${getDate(day)} ${getWrittenDay({day})}`}
+                    aria-label={`${getDate(day)} ${getWrittenDay({ day })}`}
                     onKeyDown={handleDayKeyPress}
-                    tabIndex={`${isEqual(selectedDate, day) ? '0' : '-1'}`}>
+                    tabIndex={`${isEqual(selectedDate, day) ? '0' : '-1'}`}
+                  >
                     {getDate(day)}
                   </button>
                 </S.Cell>

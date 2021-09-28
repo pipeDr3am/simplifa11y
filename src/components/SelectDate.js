@@ -94,7 +94,7 @@ const SelectDate = ({
     })
     const update = output.join('').substr(0, 14)
 
-    if(inputString.length === 14) {
+    if (inputString.length === 14) {
       const isValid = isValidDate({ dateRange, str: update })
       if (isValid) {
         // send up value
@@ -142,7 +142,7 @@ const SelectDate = ({
             onChange={(e) => onInputChange(e)}
           />
           <S.InputHint
-            aria-label={`format as ${formatHint}`} 
+            aria-label={`format as ${formatHint}`}
             id='formatHint'
           >
             {formatHint}
