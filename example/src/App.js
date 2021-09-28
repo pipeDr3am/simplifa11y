@@ -33,7 +33,7 @@ const App = () => {
         onSelect={setDateString}
         dateRange={{
           min: '08/02/2002',
-          max: '10/31/2008'
+          max: '08/31/2008'
         }}
         onInvalidDate={onInvalidDate}
       />

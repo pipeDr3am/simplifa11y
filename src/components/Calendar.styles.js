@@ -57,4 +57,11 @@ export const Cell = styled.td`
   :hover {
     background-color: ${props => props.theme.calendar.days.hover.backgroundColor};
   }
+
+  button, button:active, button:focus {
+    background: none;
+    border: none;
+    //outline: none;
+  }
+
 `

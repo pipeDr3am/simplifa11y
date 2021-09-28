@@ -5,6 +5,8 @@ import {
   getDaysInMonth,
   getWeeksInMonth,
   getDay,
+  getMonth,
+  getYear,
   setDate,
   getDate,
   isEqual,
@@ -25,6 +27,10 @@ const ariaDays = [
   'Thursday',
   'Friday',
   'Saturday'
+]
+
+const ariaMonths = [
+  'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
 ]
 
 const Calendar = ({
@@ -72,7 +78,7 @@ const Calendar = ({
         //shift held
         e.preventDefault()
         if (document.activeElement === document.getElementById('previousYear')) {
-          keyControl.focusSelectedDate()
+          keyControl.focusSelectedDate({previousDate: ''})
         }
       } 
     }
@@ -157,6 +163,7 @@ const Calendar = ({
 
     const inMinYear = curYear === minYear
     const inMaxYear = curYear === maxYear
+    const yearValid = curYear >= minYear && curYear <= maxYear
 
     const returnArr = []
     let dayNum = weekNum === 0 ? 1 : (weekNum * 7) - startWeekday + 1
@@ -166,14 +173,14 @@ const Calendar = ({
       const inMinMonth = curMonth === minMonth
       const inMaxMonth = curMonth === maxMonth
 
-      if (inMinMonth) {
+      if (inMinMonth && yearValid) {
         minDayValid = dayNum > minDay
       }
-      if (inMaxMonth) {
+      if (inMaxMonth && yearValid) {
         maxDayValid = dayNum < maxDay
       }
-      let validDay = minDayValid && maxDayValid
-
+      let validDay = true
+      
       if (curMonth < minMonth && inMinYear) {
         validDay = false
       } else if (curMonth > maxMonth && inMaxYear) {
@@ -207,8 +214,14 @@ const Calendar = ({
 
   const getWrittenDay = ({day}) => {
     const dateString = fnsFormat(day, format)
-    const dayIdx = getDay(new Date(dateString))
-    return ariaDays[dayIdx]
+    const dateObj = new Date(dateString)
+    const dayIdx = getDay(dateObj)
+    const monthIdx = getMonth(dateObj)
+    const year = getYear(dateObj)
+
+    const writtenDay = ariaDays[dayIdx]
+    const writtenMonth = ariaMonths[monthIdx]
+    return `${writtenDay} ${writtenMonth} ${year}`
   }
 
   // @TODO same refactor somewhere
@@ -288,13 +301,13 @@ const Calendar = ({
                 ? <S.Cell
                     id={`${getDate(day)} ${getWrittenDay({day})}`}
                     aria-selected={isEqual(selectedDate, day)}
-                    aria-label={`${getDate(day)} ${getWrittenDay({day})}`}
                     $selected={isEqual(selectedDate, day)}
                     key={`day-cell-${i}`}
                     onClick={() => handleDateSelection(day)}
                   >
                   <button 
                     id={fnsFormat(day, format)}
+                    aria-label={`${getDate(day)} ${getWrittenDay({day})}`}
                     onKeyDown={handleDayKeyPress}
                     tabIndex={`${isEqual(selectedDate, day) ? '0' : '-1'}`}>
                     {getDate(day)}

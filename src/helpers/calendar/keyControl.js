@@ -14,6 +14,8 @@ import {
   format as fnsFormat
 } from 'date-fns'
 
+//@Todo need actual unit tests here ++ big refactor
+
 const makeKeyControl = ({
   format,
   dateRange,
@@ -35,8 +37,10 @@ const makeKeyControl = ({
       prevDate && prevDate.setAttribute('tabindex', '-1')
     }
     const selectedDayButton = getButtonFromDate({dateStr: fnsFormat(selectedDate, format)})
-    selectedDayButton.focus()
-    selectedDayButton.setAttribute('tabindex', '0')
+    if( selectedDayButton) {
+      selectedDayButton.focus()
+      selectedDayButton.setAttribute('tabindex', '0')
+    } 
   }
 
   const handleKeyPress = ({ e, callback }) => {
@@ -79,8 +83,15 @@ const makeKeyControl = ({
   const setPreviousYear = () => {
     const previousYear = subYears(selectedDate, 1)
     const previousYearVal = getYear(previousYear)
-    if (previousYearVal >= minYear) {
+    const previousMonth = getMonth(previousYear)
+    if (previousYearVal > minYear) {
       setSelectedDate(startOfMonth(previousYear))
+    } else if (previousYearVal === minYear) {
+      if (previousMonth <= minMonth) {
+        setSelectedDate(new Date(`${minMonth}/01/${minYear}`))
+      } else {
+        setSelectedDate(startOfMonth(previousYear))
+      }
     }
   }
 
@@ -94,26 +105,73 @@ const makeKeyControl = ({
 
   const setPreviousDay = () => {
     const previousDay = subDays(selectedDate, 1)
-    setSelectedDate(previousDay)
-    setFocusDay({ focus: true, previousDate: selectedDate})
+    const nextYearVal = getYear(previousDay)
+    const nextMonthVal = getMonth(previousDay) + 1
+    if (nextYearVal === minYear) {
+      if (nextMonthVal >= minMonth) {
+        setSelectedDate(previousDay)
+        setFocusDay({ focus: true, previousDate: selectedDate})
+      }
+    } else if (nextYearVal > minYear) {
+      console.log('ehh', {
+        nextMonthVal,
+        minMonth
+      })
+      setSelectedDate(previousDay)
+      setFocusDay({ focus: true, previousDate: selectedDate})
+    }
   }
 
   const setNextDay = () => {
     const nextDay = addDays(selectedDate, 1)
-    setSelectedDate(nextDay)
-    setFocusDay({ focus: true, previousDate: selectedDate})
+    const nextYearVal = getYear(nextDay)
+    const nextMonthVal = getMonth(nextDay) + 1
+    if (nextYearVal === maxYear) {
+      if (nextMonthVal <= maxMonth) {
+        setSelectedDate(nextDay)
+        setFocusDay({ focus: true, previousDate: selectedDate})
+      }
+    } else if (nextYearVal < maxYear) {
+      setSelectedDate(nextDay)
+      setFocusDay({ focus: true, previousDate: selectedDate})
+    }
   }
 
   const setPreviousWeek = () => {
     const previousWeek = subWeeks(selectedDate, 1)
-    setSelectedDate(previousWeek)
-    setFocusDay({ focus: true, previousDate: selectedDate})
+    const nextYearVal = getYear(previousWeek)
+    const nextMonthVal = getMonth(previousWeek) + 1
+    console.log('tt1:', {
+      nextYearVal,
+      minYear,
+      nextMonthVal,
+      minMonth,
+      previousWeek
+    })
+    if (nextYearVal > minYear) {
+      setSelectedDate(previousWeek)
+      setFocusDay({ focus: true, previousDate: selectedDate})
+    } else if (nextYearVal === minYear) {
+      if (nextMonthVal >= minMonth) {
+        setSelectedDate(previousWeek)
+        setFocusDay({ focus: true, previousDate: selectedDate})
+      }
+    }
   }
 
   const setNextWeek = () => {
     const nextWeek = addWeeks(selectedDate, 1)
-    setSelectedDate(nextWeek)
-    setFocusDay({ focus: true, previousDate: selectedDate})
+    const nextYearVal = getYear(nextWeek)
+    const nextMonthVal = getMonth(nextWeek) + 1
+    if (nextYearVal === maxYear) {
+      if (nextMonthVal <= maxMonth) {
+        setSelectedDate(nextWeek)
+        setFocusDay({ focus: true, previousDate: selectedDate})
+      }
+    } else if (nextYearVal < maxYear) {
+      setSelectedDate(nextWeek)
+      setFocusDay({ focus: true, previousDate: selectedDate})
+    }
   }
 
   const setDatePreviousMonth = () => {
