@@ -43,20 +43,40 @@ const Calendar = ({
     setSelectedDate
   })
 
-  // @TODO move to keyControl + unit tests
-  const handleDayKeyPress = (e) => {
+  const previousYearKeyPress = e => {
     const keyCode = e.keyCode
-    // Check if control key was pressed
-    // const control = e.ctrlKey;
-    // Use shift key to prevent browser shortcut conflicts
+    const control = e.shiftKey
+
+    console.log('previousYear key press :', {
+      keyCode, control
+    })
+
+    if (keyCode === 13 || keyCode === 32) {
+      e.preventDefault()
+      keyControl.setPreviousYear()
+    } else if (keyCode === 9) { // TAB
+      if (control) {
+        //shift held
+        e.preventDefault()
+        if (document.activeElement === document.getElementById('previousYear')) {
+          keyControl.focusSelectedDate()
+        }
+      } 
+    }
+  }
+
+  // @TODO move to keyControl + unit tests
+  const handleDayKeyPress = e => {
+    const keyCode = e.keyCode
     const control = e.shiftKey
     switch (keyCode) {
       case 9:  // TAB
       if (!control) {
         document.getElementById('previousYear').focus()
-        //flag = true
+        e.stopPropagation();
+        e.preventDefault();
         return
-      }
+      } 
       break
       case 13: // Enter
         handleSelectDate(fnsFormat(selectedDate, format))
@@ -200,14 +220,13 @@ const Calendar = ({
             id='previousYear'
             aria-label='previous year'
             onClick={keyControl.setPreviousYear}
-            onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setPreviousYear })}
+            onKeyDown={(e) => previousYearKeyPress(e)}
           >
             <FontAwesomeIcon icon={faAngleDoubleLeft} />
           </S.IconWrap>
           <S.IconWrap
             aria-label='previous month'
             onClick={keyControl.setPreviousMonth}
-            onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setPreviousMonth })}
           >
             <FontAwesomeIcon icon={faAngleLeft} />
           </S.IconWrap>

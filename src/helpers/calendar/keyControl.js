@@ -27,6 +27,18 @@ const makeKeyControl = ({
   const maxMonth = parseInt(maxRangeArr[0])
   const minMonth = parseInt(minRangeArr[0])
 
+  const getButtonFromDate = ({dateStr}) => document.getElementById(dateStr)
+  const focusSelectedDate = () => getButtonFromDate({dateStr: fnsFormat(selectedDate, format)}).focus() 
+
+  const focusDayButton = ({date}) => {
+    const previousDate = getButtonFromDate({dateStr: fnsFormat(selectedDate, format)})
+    previousDate.setAttribute('tabindex', '-1')
+    const dateStr = fnsFormat(date, format)
+    const dayButton = getButtonFromDate({dateStr})
+    dayButton.focus()
+    dayButton.setAttribute('tabindex', '0')
+  }
+
   const handleKeyPress = ({ e, callback }) => {
     const charCode = e.charCode
     if (charCode === 13 || charCode === 32) {
@@ -78,17 +90,6 @@ const makeKeyControl = ({
     if (nextYearVal <= maxYear) {
       setSelectedDate(startOfMonth(nextYear))
     }
-  }
-
-  const getButtonFromDate = ({dateStr}) => document.getElementById(dateStr)
-
-  const focusDayButton = ({date}) => {
-    const previousDate = getButtonFromDate({dateStr: fnsFormat(selectedDate, format)})
-    previousDate.setAttribute('tabindex', '-1')
-    const dateStr = fnsFormat(date, format)
-    const dayButton = getButtonFromDate({dateStr})
-    dayButton.focus()
-    dayButton.setAttribute('tabindex', '0')
   }
 
   const setPreviousDay = () => {
@@ -173,6 +174,7 @@ const makeKeyControl = ({
   }
 
   return Object.freeze({
+    focusSelectedDate,
     handleKeyPress,
     setPreviousMonth,
     setNextMonth,
