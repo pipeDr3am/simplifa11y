@@ -80,6 +80,7 @@ const SelectDate = ({
 
   const onInputChange = e => {
     let inputString = e.target.value
+    console.log('inputString:', inputString.length)
 
     const test = /\D\/$/.test(inputString)
 
@@ -93,6 +94,12 @@ const SelectDate = ({
       return v.length === 2 && i < 2 ? v + ' / ' : v
     })
     const update = output.join('').substr(0, 14)
+
+    if(inputString.length === 14) {
+      // send up value
+      const date = dateFromString({ date: update })
+      handleSelectDate(fnsFormat(date, format))
+    }
 
     setDateInput(update)
   }

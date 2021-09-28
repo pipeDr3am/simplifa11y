@@ -1,6 +1,8 @@
 ## [0.0.6] - 2021-09-20
+### Added
+- on receiving a full date, input box now fires set dateString method up component
 ### Changed
-- [todo] added better support for screen-readers, structure updates and tabbing control
+- added better support for screen-readers, structure updates and tabbing control
   - added aria-label 'toggle calendar' to calendar icon 
   - calendar icon changed from li to div to optimize what screen reader announces
   - added aria-describedby for date input pointing to inputHint
