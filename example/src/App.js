@@ -25,6 +25,7 @@ const App = () => {
 
   return (
     <>
+      <form onSubmit={e => e.preventDefault()}>
       <DatePicker
         theme={theme}
         format='MM/dd/yyyy'
@@ -48,6 +49,7 @@ const App = () => {
         value='test z-index'
         onChange={() => {}}
       />
+      </form>
 
     </>
   )

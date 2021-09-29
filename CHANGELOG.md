@@ -1,10 +1,11 @@
-## [0.0.6-rc.3] - 2021-09-28
+## [0.0.6-rc.4] - 2021-09-29
 ### Added
 - inputId param added to override default date input text id
 - on receiving a full date, input box now fires set dateString method up component
   - calls `onInvalidDate` error up if invalid dateRange
 
 ### Fixed
+- input <enter> will skip format and validation check if character length is not 14, will instead call the error callback
 - invalid date input check will skip format if character length is not 14
 - valid date checks on every keystroke fire errors up to parent
 - hitting enter after only entering partial date input will no longer throw error

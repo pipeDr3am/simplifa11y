@@ -46,6 +46,17 @@ const SelectDate = ({
     const charCode = e.charCode
 
     if (charCode === KEYCODE.ENTER) {
+      if (dateInput.length < 14) {
+        onInvalidDate({
+          message: 'date input invalid',
+          details: {
+            dateRange,
+            dateInput
+          }
+        })
+        e.preventDefault()
+        return false
+      }
       const isValid = isValidDate({ dateRange, str: dateInput })
 
       if (!isValid) {
@@ -56,6 +67,7 @@ const SelectDate = ({
             dateInput
           }
         })
+        e.preventDefault()
         return false
       }
 
@@ -97,6 +109,7 @@ const SelectDate = ({
 
     const isValid = (inputString.length === 14) ? isValidDate({ dateRange, str: update }) : false
     const date = dateFromString({ date: update })
+
     if (isValid) {
       handleSelectDate(fnsFormat(date, format))
     } else {
