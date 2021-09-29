@@ -56,7 +56,7 @@ const Calendar = ({
 
   useEffect(() => {
     if (calendarShown && focusDay.focus) {
-      setFocusDay(false)
+      setFocusDay({ focus: false })
       keyControl.focusSelectedDate({ previousDate: focusDay.previousDate })
     }
   }, [calendarShown, focusDay])

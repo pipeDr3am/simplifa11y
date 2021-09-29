@@ -5,6 +5,7 @@
   - calls `onInvalidDate` error up if invalid dateRange
 
 ### Fixed
+- calendar icon button type set to 'button' to prevent form submitions via formik
 - removed year / month arrow button backgrounds and borders
 - input <enter> will skip format and validation check if character length is not 14, will instead call the error callback
 - invalid date input check will skip format if character length is not 14

@@ -161,6 +161,7 @@ const SelectDate = ({
           </S.InputHint>
         </S.InputLi>
         <S.IconCalendar
+          type='button'
           tabIndex='0'
           aria-label='toggle calendar'
           aria-controls='calendarDisplay'
