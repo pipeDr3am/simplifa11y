@@ -1,7 +1,11 @@
-## [0.0.6-rc.0] - 2021-09-20
+## [0.0.6-rc.1] - 2021-09-28
 ### Added
 - on receiving a full date, input box now fires set dateString method up component
   - calls `onInvalidDate` error up if invalid dateRange
+
+### Fixed
+- valid date checks on every keystroke fire errors up to parent
+- hitting enter after only entering partial date input will no longer throw error
 
 ### Changed
 - added better support for screen-readers, structure updates and tabbing control

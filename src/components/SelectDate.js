@@ -94,21 +94,18 @@ const SelectDate = ({
     })
     const update = output.join('').substr(0, 14)
 
-    if (inputString.length === 14) {
-      const isValid = isValidDate({ dateRange, str: update })
-      if (isValid) {
-        // send up value
-        const date = dateFromString({ date: update })
-        handleSelectDate(fnsFormat(date, format))
-      } else {
-        onInvalidDate({
-          message: 'date outside of range',
-          details: {
-            dateRange,
-            dateInput: update
-          }
-        })
-      }
+    const isValid = isValidDate({ dateRange, str: update })
+    const date = dateFromString({ date: update })
+    if (isValid) {
+      handleSelectDate(fnsFormat(date, format))
+    } else {
+      onInvalidDate({
+        message: 'date outside of range',
+        details: {
+          dateRange,
+          dateInput: update
+        }
+      })
     }
 
     setDateInput(update)
