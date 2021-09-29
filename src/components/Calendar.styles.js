@@ -32,6 +32,17 @@ export const Icons = styled.div`
 export const IconWrap = styled.button`
   padding: 0 10px;
   cursor: pointer;
+
+  background: none;
+  border: none;
+
+  color: #FFFFFF;
+
+  &active, &focus {
+    background: none;
+    border: none;
+    //outline: none;
+  }
 `
 
 export const Month = styled.div`
