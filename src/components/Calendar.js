@@ -235,6 +235,7 @@ const Calendar = ({
       <S.Title>
         <S.Icons>
           <S.IconWrap
+            type='button'
             id='previousYear'
             aria-label='previous year'
             onClick={keyControl.setPreviousYear}
@@ -243,6 +244,7 @@ const Calendar = ({
             <FontAwesomeIcon icon={faAngleDoubleLeft} />
           </S.IconWrap>
           <S.IconWrap
+            type='button'
             aria-label='previous month'
             onClick={keyControl.setPreviousMonth}
           >
@@ -256,6 +258,7 @@ const Calendar = ({
         </S.Month>
         <S.Icons>
           <S.IconWrap
+            type='button'
             aria-label='next month'
             onClick={keyControl.setNextMonth}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextMonth })}
@@ -263,6 +266,7 @@ const Calendar = ({
             <FontAwesomeIcon icon={faAngleRight} />
           </S.IconWrap>
           <S.IconWrap
+            type='button'
             aria-label='next year'
             onClick={keyControl.setNextYear}
             onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextYear })}
@@ -298,6 +302,7 @@ const Calendar = ({
                     onClick={() => handleDateSelection(day)}
                   >
                   <button
+                    type='button'
                     id={fnsFormat(day, format)}
                     aria-label={`${getDate(day)} ${getWrittenDay({ day })}`}
                     onKeyDown={handleDayKeyPress}

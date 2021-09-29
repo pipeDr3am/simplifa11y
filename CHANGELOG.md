@@ -1,10 +1,12 @@
-## [0.0.6-rc.7] - 2021-09-29
+## [0.0.6-rc.8] - 2021-09-29
 ### Added
 - inputId param added to override default date input text id
 - on receiving a full date, input box now fires set dateString method up component
   - calls `onInvalidDate` error up if invalid dateRange
 
 ### Fixed
+- calendar td button types set to 'button' to prevent form submitions via formik
+- next previous year month button types set to 'button' to prevent form submitions via formik
 - calendar icon button type set to 'button' to prevent form submitions via formik
 - removed year / month arrow button backgrounds and borders
 - input <enter> will skip format and validation check if character length is not 14, will instead call the error callback
