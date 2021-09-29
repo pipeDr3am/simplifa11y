@@ -1,4 +1,4 @@
-## [0.0.6-rc.6] - 2021-09-29
+## [0.0.6-rc.7] - 2021-09-29
 ### Added
 - inputId param added to override default date input text id
 - on receiving a full date, input box now fires set dateString method up component
@@ -18,6 +18,9 @@
   - calendar icon changed from li to div to optimize what screen reader announces
   - added aria-describedby for date input pointing to inputHint
   - added aria-label for inputHint as `format is ${inputHint}`
+
+### Security
+- security updates
 
 ## [0.0.5] - 2021-09-20
 ### Added
