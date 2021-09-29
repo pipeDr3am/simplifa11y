@@ -15,7 +15,8 @@ export const DatePicker = ({
   formatHint,
   onSelect,
   dateRange,
-  onInvalidDate
+  onInvalidDate,
+  inputId
 }) => {
   const defaultDate = dateRange ? new Date(dateRange.max) : new Date()
   const [showCalendar, setShowCalendar] = useState(false)
@@ -53,6 +54,7 @@ export const DatePicker = ({
         handleSelectDate={handleSelectDate}
         dateRange={dateRange}
         onInvalidDate={onInvalidDate}
+        inputId={inputId}
       />
       {showCalendar && (
         <Calendar

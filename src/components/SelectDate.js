@@ -22,7 +22,8 @@ const SelectDate = ({
   handleSelectDate,
   calendarShown,
   dateRange,
-  onInvalidDate
+  onInvalidDate,
+  inputId
 }) => {
   const [dateInput, setDateInput] = useState(hasSelected ? date : placeholder)
 
@@ -129,6 +130,7 @@ const SelectDate = ({
       <S.CalendarUl>
         <S.InputLi onKeyPress={onInputKeyPress}>
           <S.DateInput
+            id={inputId || 'a11y-date-input'}
             tabIndex='0'
             aria-label='Date Input'
             aria-describedby='formatHint'
