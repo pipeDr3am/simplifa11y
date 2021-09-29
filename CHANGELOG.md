@@ -1,4 +1,4 @@
-## [0.0.6-rc.5] - 2021-09-29
+## [0.0.6-rc.6] - 2021-09-29
 ### Added
 - inputId param added to override default date input text id
 - on receiving a full date, input box now fires set dateString method up component
