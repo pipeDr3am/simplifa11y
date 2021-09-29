@@ -94,7 +94,7 @@ const SelectDate = ({
     })
     const update = output.join('').substr(0, 14)
 
-    const isValid = isValidDate({ dateRange, str: update })
+    const isValid = (inputString.length === 14) ? isValidDate({ dateRange, str: update }) : false
     const date = dateFromString({ date: update })
     if (isValid) {
       handleSelectDate(fnsFormat(date, format))
