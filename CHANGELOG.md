@@ -1,3 +1,7 @@
+## [0.0.6-rc.9] - 2021-10-05
+### Fixed
+- enter logic on DateInput fixes, removed the spacing around the '/'
+
 ## [0.0.6-rc.8] - 2021-09-29
 ### Added
 - inputId param added to override default date input text id

@@ -20,35 +20,36 @@ const App = () => {
   }
 
   const onInvalidDate = (e) => {
-    console.error('received error:', e)
+    console.error('onInvalidDate override:', e)
   }
 
   return (
     <>
       <form onSubmit={e => e.preventDefault()}>
-      <DatePicker
-        theme={theme}
-        format='MM/dd/yyyy'
-        placeholder='Enter a Date'
-        formatHint='MM DD YYYY'
-        onSelect={setDateString}
-        dateRange={{
-          min: '08/02/2002',
-          max: '08/31/2008'
-        }}
-        onInvalidDate={onInvalidDate}
-      />
+        <DatePicker
+          inputId='test...'
+          theme={theme}
+          format='MM/dd/yyyy'
+          placeholder='Enter a Date'
+          formatHint='MM DD YYYY'
+          onSelect={setDateString}
+          dateRange={{
+            min: '08/02/2002',
+            max: '08/31/2008'
+          }}
+          onInvalidDate={onInvalidDate}
+        />
 
-      <p>dateString is {dateString}</p>
+        <p>dateString is {dateString}</p>
 
-      <input
-        style={{
-          position: 'absolute'
-        }}
-        type='text'
-        value='test z-index'
-        onChange={() => {}}
-      />
+        <input
+          style={{
+            position: 'absolute'
+          }}
+          type='text'
+          value='test z-index'
+          onChange={() => {}}
+        />
       </form>
 
     </>

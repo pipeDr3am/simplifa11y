@@ -46,7 +46,7 @@ const SelectDate = ({
     const charCode = e.charCode
 
     if (charCode === KEYCODE.ENTER) {
-      if (dateInput.length < 14) {
+      if (dateInput.length < 10) {
         onInvalidDate({
           message: 'date input invalid',
           details: {
@@ -103,11 +103,11 @@ const SelectDate = ({
     if (values[0]) values[0] = checkValue(values[0], 12)
     if (values[1]) values[1] = checkValue(values[1], 31)
     const output = values.map((v, i) => {
-      return v.length === 2 && i < 2 ? v + ' / ' : v
+      return v.length === 2 && i < 2 ? v + '/' : v
     })
-    const update = output.join('').substr(0, 14)
+    const update = output.join('').substr(0, 10)
 
-    const isValid = (inputString.length === 14) ? isValidDate({ dateRange, str: update }) : false
+    const isValid = (inputString.length === 10) ? isValidDate({ dateRange, str: update }) : false
     const date = dateFromString({ date: update })
 
     if (isValid) {
