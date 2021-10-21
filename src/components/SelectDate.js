@@ -23,9 +23,22 @@ const SelectDate = ({
   calendarShown,
   dateRange,
   onInvalidDate,
-  inputId
+  inputId,
+  initialDate
 }) => {
-  const [dateInput, setDateInput] = useState(hasSelected ? date : placeholder)
+  const initDate = initialDate ? initialDate : hasSelected ? date : placeholder
+  const [dateInput, setDateInput] = useState(initDate)
+
+  useEffect(() => {
+    if (initialDate) {
+      onInputChange({
+        target: {
+          value: initialDate
+        }
+      })
+      //setDateInput(initialDate)
+    }
+  }, [initialDate])
 
   useEffect(() => {
     if (hasSelected) {

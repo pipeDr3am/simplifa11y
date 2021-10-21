@@ -16,7 +16,8 @@ export const DatePicker = ({
   onSelect,
   dateRange,
   onInvalidDate,
-  inputId
+  inputId,
+  initialDate
 }) => {
   const defaultDate = dateRange ? new Date(dateRange.max) : new Date()
   const [showCalendar, setShowCalendar] = useState(false)
@@ -55,6 +56,7 @@ export const DatePicker = ({
         dateRange={dateRange}
         onInvalidDate={onInvalidDate}
         inputId={inputId}
+        initialDate={initialDate}
       />
       {showCalendar && (
         <Calendar
