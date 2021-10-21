@@ -72,8 +72,20 @@ const App = () => {
           onSelect={setDateString}
           dateRange={{
             min: '08/02/2002',
-            max: '08/31/2008'
+            max: '08/31/2044'
           }}
+          onInvalidDate={onInvalidDate}
+        />
+
+        <p className='section'>no dateRange</p>
+        
+        <DatePicker
+          inputId='test...'
+          theme={theme}
+          format='MM/dd/yyyy'
+          placeholder='Enter a Date'
+          formatHint='MM DD YYYY'
+          onSelect={setDateString}
           onInvalidDate={onInvalidDate}
         />
 

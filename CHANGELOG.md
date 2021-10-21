@@ -1,4 +1,8 @@
 ## [0.0.7-rc.0] - 2021-10-21
+### Added
+- if cur date > max date, cal ui will start on max date not current
+- if cur date < max date, cal ui will start on cur date
+
 ### Fixed
 - updating initialDate after an API call now triggers correctly
 - fixed bug with having multiple datepickers on page s
