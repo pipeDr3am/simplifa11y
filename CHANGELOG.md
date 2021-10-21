@@ -1,5 +1,6 @@
 ## [0.0.7-rc.0] - 2021-10-21
 ### Added
+- parameterized aria-label for formatHint as `ariaLabelFormatHint`
 - if cur date > max date, cal ui will start on max date not current
 - if cur date < max date, cal ui will start on cur date
 

@@ -18,7 +18,8 @@ export const DatePicker = ({
   dateRange,
   onInvalidDate,
   inputId,
-  initialDate
+  initialDate,
+  ariaLabelFormatHint
 }) => {
   
   let defaultDate = getDefaultDate({dateRange})
@@ -60,6 +61,7 @@ export const DatePicker = ({
         onInvalidDate={onInvalidDate}
         inputId={inputId}
         initialDate={initialDate}
+        ariaLabelFormatHint={ariaLabelFormatHint}
       />
       {showCalendar && (
         <Calendar

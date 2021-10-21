@@ -6,6 +6,7 @@ import { format as fnsFormat } from 'date-fns'
 import * as S from './styles'
 import { isValidDate } from '../helpers/isValidDate'
 import { dateFromString } from '../helpers/formatDate'
+import { createUid } from '../helpers/uidMap'
 
 const KEYCODE = {
   ENTER: 13,
@@ -24,8 +25,11 @@ const SelectDate = ({
   dateRange,
   onInvalidDate,
   inputId,
-  initialDate
+  initialDate,
+  ariaLabelFormatHint
 }) => {
+  const uid = createUid()
+  const defaultFormatHintAriaLabel = `format as ${formatHint}`
   const initDate = initialDate ? initialDate : hasSelected ? date : placeholder
   const [dateInput, setDateInput] = useState(initDate)
 
@@ -36,7 +40,6 @@ const SelectDate = ({
           value: initialDate
         }
       })
-      //setDateInput(initialDate)
     }
   }, [initialDate])
 
@@ -159,7 +162,7 @@ const SelectDate = ({
             id={inputId || 'a11y-date-input'}
             tabIndex='0'
             aria-label='Date Input'
-            aria-describedby='formatHint'
+            aria-describedby={`formatHint-${uid}`}
             onClick={onInputFocus}
             onFocus={onInputFocus}
             onBlur={onInputBlur}
@@ -167,8 +170,8 @@ const SelectDate = ({
             onChange={(e) => onInputChange(e)}
           />
           <S.InputHint
-            aria-label={`format as ${formatHint}`}
-            id='formatHint'
+            aria-label={ariaLabelFormatHint || defaultFormatHintAriaLabel}
+            id={`formatHint-${uid}`}
           >
             {formatHint}
           </S.InputHint>

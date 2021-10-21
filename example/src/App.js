@@ -87,6 +87,7 @@ const App = () => {
           formatHint='MM DD YYYY'
           onSelect={setDateString}
           onInvalidDate={onInvalidDate}
+          ariaLabelFormatHint="format into a pipe dream"
         />
 
         <p>dateString is: {dateString}</p>
