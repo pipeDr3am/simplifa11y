@@ -1,3 +1,12 @@
+## [0.0.7-rc.0] - 2021-10-21
+### Fixed
+- updating initialDate after an API call now triggers correctly
+- fixed bug with having multiple datepickers on page s
+
+## [0.0.6-rc.10] - 2021-10-06
+### Lost
+- rc.10 and rc.11 updates were lost to the void...
+
 ## [0.0.6-rc.9] - 2021-10-05
 ### Fixed
 - enter logic on DateInput fixes, removed the spacing around the '/'
