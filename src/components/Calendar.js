@@ -30,17 +30,17 @@ const ariaDays = [
 ]
 
 const ariaMonths = [
-  'January', 
-  'February', 
-  'March', 
-  'April', 
-  'May', 
-  'June', 
-  'July', 
-  'August', 
-  'September', 
-  'October', 
-  'November', 
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
   'December'
 ]
 
@@ -243,9 +243,9 @@ const Calendar = ({
   }
 
   const onBlur = e => {
-    //@Recall was trying to close calendar on clicking off of it ... getting there
+    // @Recall was trying to close calendar on clicking off of it ... getting there
     // leaving this as its not needed atm
-    //console.log('blur')
+    // console.log('blur')
     // if user is not focusing on a calendar button, they have clicked outside the calendar
     // const activeFocus = document.activeElement['data-focus']
     // console.log('activeFocus:', document.activeElement)
@@ -256,8 +256,8 @@ const Calendar = ({
   }
 
   return (
-    <S.Calendar 
-      id='calendarDisplay' 
+    <S.Calendar
+      id='calendarDisplay'
       aria-expanded={calendarShown}
       onBlur={onBlur}
     >

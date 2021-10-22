@@ -1,5 +1,5 @@
-import { expect } from "@jest/globals"
-import { createUid } from "../../helpers/uidMap"
+import { expect } from '@jest/globals'
+import { createUid } from '../../helpers/uidMap'
 
 test('creates uids correctly', () => {
   const uidMap = {}
@@ -14,5 +14,4 @@ test('creates uids correctly', () => {
   }
 
   expect(duplicates).toBe(false)
-  
 })

@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     <>
-    <div className='bigSpace' />
+      <div className='bigSpace' />
       {error && (
         <>
           <p>error: {error.message}</p>
@@ -72,7 +72,7 @@ const App = () => {
         />
 
         <p className='section'>no initialDate</p>
-        
+
         <DatePicker
           inputId='test...'
           theme={theme}
@@ -88,7 +88,7 @@ const App = () => {
         />
 
         <p className='section'>no dateRange</p>
-        
+
         <DatePicker
           inputId='test...'
           theme={theme}
@@ -97,7 +97,7 @@ const App = () => {
           formatHint='MM DD YYYY'
           onSelect={setDateString}
           onInvalidDate={onInvalidDate}
-          ariaLabelFormatHint="format into a pipe dream"
+          ariaLabelFormatHint='format into a pipe dream'
         />
 
         <p>dateString is: {dateString}</p>

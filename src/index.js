@@ -21,8 +21,7 @@ export const DatePicker = ({
   initialDate,
   ariaLabelFormatHint
 }) => {
-  
-  let defaultDate = getDefaultDate({dateRange})
+  const defaultDate = getDefaultDate({ dateRange })
 
   const [showCalendar, setShowCalendar] = useState(false)
   const [date, setDate] = useState(fnsFormat(new Date(defaultDate), format))

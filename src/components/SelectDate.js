@@ -31,7 +31,7 @@ const SelectDate = ({
 }) => {
   const uid = createUid()
   const defaultFormatHintAriaLabel = `format as ${formatHint}`
-  const initDate = initialDate ? initialDate : hasSelected ? date : placeholder
+  const initDate = initialDate || (hasSelected ? date : placeholder)
   const [dateInput, setDateInput] = useState(initDate)
 
   useEffect(() => {
@@ -70,18 +70,18 @@ const SelectDate = ({
 
   const onInputKeyUp = e => {
     if (dateInput.length === 10) {
-      submitInputDate({e})
+      submitInputDate({ e })
     }
   }
 
   const onInputKeyPress = e => {
     const charCode = e.charCode
     if (charCode === KEYCODE.ENTER) {
-      submitInputDate({e})
+      submitInputDate({ e })
     }
   }
 
-  const submitInputDate = ({e}) => {
+  const submitInputDate = ({ e }) => {
     if (dateInput.length < 10) {
       onInvalidDate({
         message: 'date input invalid',
