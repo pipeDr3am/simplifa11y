@@ -63,48 +63,56 @@ const SelectDate = ({
     if (e.keyCode === KEYCODE.BACKSPACE) {
       const lastChar = dateInput.charAt(dateInput.length - 1)
       if (lastChar === '/') {
-        console.log('bang')
         setDateInput(dateInput.substr(0, dateInput.length - 1))
       }
     }
   }
 
+  const onInputKeyUp = e => {
+    if (dateInput.length === 10) {
+      submitInputDate({e})
+    }
+  }
+
   const onInputKeyPress = e => {
     const charCode = e.charCode
-    console.log('charcode:', charCode)
-    console.log('dateInput:', dateInput)
-    console.log('len:', dateInput.length)
     if (charCode === KEYCODE.ENTER) {
-      console.log('enter press')
-      if (dateInput.length < 10) {
-        onInvalidDate({
-          message: 'date input invalid',
-          details: {
-            dateRange,
-            dateInput
-          }
-        })
-        e.preventDefault()
-        return false
-      }
-      const isValid = isValidDate({ dateRange, str: dateInput })
-
-      if (!isValid) {
-        onInvalidDate({
-          message: 'date outside of range',
-          details: {
-            dateRange,
-            dateInput
-          }
-        })
-        e.preventDefault()
-        return false
-      }
-
-      // set selected date
-      const date = dateFromString({ date: dateInput })
-      handleSelectDate(fnsFormat(date, format))
+      submitInputDate({e})
     }
+  }
+
+  const submitInputDate = ({e}) => {
+    console.log('enter press')
+    if (dateInput.length < 10) {
+      onInvalidDate({
+        message: 'date input invalid',
+        details: {
+          dateRange,
+          dateInput
+        }
+      })
+      e.preventDefault()
+      return false
+    }
+    const isValid = isValidDate({ dateRange, str: dateInput })
+
+    if (!isValid) {
+      onInvalidDate({
+        message: 'date outside of range',
+        details: {
+          dateRange,
+          dateInput
+        }
+      })
+      e.preventDefault()
+      return false
+    }
+    // clear errors
+    onInvalidDate('')
+
+    // set selected date
+    const date = dateFromString({ date: dateInput })
+    handleSelectDate(fnsFormat(date, format))
   }
 
   const onIconKeyPress = e => {
@@ -171,7 +179,7 @@ const SelectDate = ({
       aria-label='Datepicker'
     >
       <S.CalendarUl>
-        <S.InputLi onKeyPress={onInputKeyPress}>
+        <S.InputLi onKeyPress={onInputKeyPress} onKeyUp={onInputKeyUp}>
           <S.DateInput
             id={inputId || 'a11y-date-input'}
             tabIndex='0'
