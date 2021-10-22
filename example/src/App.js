@@ -29,6 +29,7 @@ const App = () => {
   }
 
   const onInvalidDate = (e) => {
+    console.log(e)
     setError(e)
   }
 

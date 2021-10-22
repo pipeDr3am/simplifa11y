@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { format as fnsFormat, compareAsc } from 'date-fns'
 import { ThemeProvider } from 'styled-components'
+import PropTypes from 'prop-types'
 
 import { defaultTheme } from './components/defaultTheme'
 import { formatDate } from './helpers/formatDate'
