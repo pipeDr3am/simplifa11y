@@ -6,6 +6,7 @@ import { DatePicker } from 'simplifa11y'
 const App = () => {
   const [dateString, setDateString] = useState('')
   const [initialDate, setInitialDate] = useState('')
+  const [error, setError] = useState('')
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,11 +29,20 @@ const App = () => {
   }
 
   const onInvalidDate = (e) => {
-    console.error('onInvalidDate override:', e)
+    setError(e)
   }
 
   return (
     <>
+      <div className='bigSpace' />
+      {error && (
+        <>
+          <p>error: {error.message}</p>
+          <p>dateInput: {error.details.dateInput}</p>
+          <p>dateRange max: {error.details.dateRange.max}</p>
+          <p>dateRange min: {error.details.dateRange.min}</p>
+        </>
+      )}
       <form onSubmit={e => e.preventDefault()}>
         <DatePicker
           inputId='test...'
@@ -62,7 +72,7 @@ const App = () => {
         />
 
         <p className='section'>no initialDate</p>
-        
+
         <DatePicker
           inputId='test...'
           theme={theme}
@@ -72,9 +82,22 @@ const App = () => {
           onSelect={setDateString}
           dateRange={{
             min: '08/02/2002',
-            max: '08/31/2008'
+            max: '08/31/2044'
           }}
           onInvalidDate={onInvalidDate}
+        />
+
+        <p className='section'>no dateRange</p>
+
+        <DatePicker
+          inputId='test...'
+          theme={theme}
+          format='MM/dd/yyyy'
+          placeholder='Enter a Date'
+          formatHint='MM DD YYYY'
+          onSelect={setDateString}
+          onInvalidDate={onInvalidDate}
+          ariaLabelFormatHint='format into a pipe dream'
         />
 
         <p>dateString is: {dateString}</p>

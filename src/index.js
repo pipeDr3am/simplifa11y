@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { format as fnsFormat } from 'date-fns'
+import { format as fnsFormat, compareAsc } from 'date-fns'
 import { ThemeProvider } from 'styled-components'
 
 import { defaultTheme } from './components/defaultTheme'
 import { formatDate } from './helpers/formatDate'
 import { mergeDeep } from './helpers/mergeDeep'
+import { getDefaultDate } from './helpers/calendar/defaultDate'
 import SelectDate from './components/SelectDate'
 import Calendar from './components/Calendar'
 
@@ -17,9 +18,11 @@ export const DatePicker = ({
   dateRange,
   onInvalidDate,
   inputId,
-  initialDate
+  initialDate,
+  ariaLabelFormatHint
 }) => {
-  const defaultDate = dateRange ? new Date(dateRange.max) : new Date()
+  const defaultDate = getDefaultDate({ dateRange })
+
   const [showCalendar, setShowCalendar] = useState(false)
   const [date, setDate] = useState(fnsFormat(new Date(defaultDate), format))
   const [hasSelected, setHasSelected] = useState(false)
@@ -57,6 +60,7 @@ export const DatePicker = ({
         onInvalidDate={onInvalidDate}
         inputId={inputId}
         initialDate={initialDate}
+        ariaLabelFormatHint={ariaLabelFormatHint}
       />
       {showCalendar && (
         <Calendar
