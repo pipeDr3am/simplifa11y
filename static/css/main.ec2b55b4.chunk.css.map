@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/app.css"],"names":[],"mappings":"AAAA,UACE,eAAgB,CAChB,UAAW,CACX,eACF,CAEA,UACE,aACF","file":"main.ec2b55b4.chunk.css","sourcesContent":["p.section {\r\n  margin-top: 80px;\r\n  color: grey;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.bigSpace {\r\n  height:1200px;\r\n}"]}
