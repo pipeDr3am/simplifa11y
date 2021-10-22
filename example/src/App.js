@@ -6,6 +6,7 @@ import { DatePicker } from 'simplifa11y'
 const App = () => {
   const [dateString, setDateString] = useState('')
   const [initialDate, setInitialDate] = useState('')
+  const [error, setError] = useState('')
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,11 +29,20 @@ const App = () => {
   }
 
   const onInvalidDate = (e) => {
-    console.error('onInvalidDate override:', e)
+    setError(e)
   }
 
   return (
     <>
+    <div className='bigSpace' />
+      {error && (
+        <>
+          <p>error: {error.message}</p>
+          <p>dateInput: {error.details.dateInput}</p>
+          <p>dateRange max: {error.details.dateRange.max}</p>
+          <p>dateRange min: {error.details.dateRange.min}</p>
+        </>
+      )}
       <form onSubmit={e => e.preventDefault()}>
         <DatePicker
           inputId='test...'

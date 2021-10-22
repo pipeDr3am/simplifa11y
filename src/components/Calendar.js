@@ -81,6 +81,7 @@ const Calendar = ({
 
   // @TODO move to keyControl + unit tests
   const handleDayKeyPress = e => {
+    e.preventDefault()
     const keyCode = e.keyCode
     const control = e.shiftKey
     switch (keyCode) {

@@ -10,7 +10,8 @@ import { createUid } from '../helpers/uidMap'
 
 const KEYCODE = {
   ENTER: 13,
-  SPACE: 32
+  SPACE: 32,
+  BACKSPACE: 8
 }
 
 const SelectDate = ({
@@ -58,10 +59,23 @@ const SelectDate = ({
     return str
   }
 
+  const onInputKeyDown = e => {
+    if (e.keyCode === KEYCODE.BACKSPACE) {
+      const lastChar = dateInput.charAt(dateInput.length - 1)
+      if (lastChar === '/') {
+        console.log('bang')
+        setDateInput(dateInput.substr(0, dateInput.length - 1))
+      }
+    }
+  }
+
   const onInputKeyPress = e => {
     const charCode = e.charCode
-
+    console.log('charcode:', charCode)
+    console.log('dateInput:', dateInput)
+    console.log('len:', dateInput.length)
     if (charCode === KEYCODE.ENTER) {
+      console.log('enter press')
       if (dateInput.length < 10) {
         onInvalidDate({
           message: 'date input invalid',
@@ -168,6 +182,7 @@ const SelectDate = ({
             onBlur={onInputBlur}
             value={dateInput}
             onChange={(e) => onInputChange(e)}
+            onKeyDown={(e) => onInputKeyDown(e)}
           />
           <S.InputHint
             aria-label={ariaLabelFormatHint || defaultFormatHintAriaLabel}
