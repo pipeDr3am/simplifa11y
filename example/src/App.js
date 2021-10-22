@@ -29,12 +29,12 @@ const App = () => {
   }
 
   const onInvalidDate = (e) => {
+    console.log(e)
     setError(e)
   }
 
   return (
     <>
-      <div className='bigSpace' />
       {error && (
         <>
           <p>error: {error.message}</p>
