@@ -34,7 +34,6 @@ const App = () => {
 
   return (
     <>
-      <div className='bigSpace' />
       {error && (
         <>
           <p>error: {error.message}</p>
