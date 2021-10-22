@@ -1,5 +1,6 @@
 import { dateFromString } from '../../../helpers/formatDate'
 import makeKeyControl from '../../../helpers/calendar/keyControl'
+import { expect } from '@jest/globals'
 
 let keyControl = {}
 let selectedDate = {}
@@ -52,6 +53,7 @@ test('setNextMonth: year valid && month valid', () => {
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setNextMonth()
   expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setNextMonth: year valid && month blocked', () => {
@@ -65,6 +67,7 @@ test('setNextMonth: year valid && month blocked', () => {
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setNextMonth()
   expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setNextMonth: year blocked && month valid', () => {
@@ -78,6 +81,7 @@ test('setNextMonth: year blocked && month valid', () => {
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setNextMonth()
   expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setNextMonth: year blocked && month blocked', () => {
@@ -86,11 +90,12 @@ test('setNextMonth: year blocked && month blocked', () => {
     max: '03/31/2021'
   }
   selectedDate = dateFromString({ date: '03/15/2021' })
-  expectedDate = dateFromString({ date: '04/01/2021' })
+  expectedDate = undefined
 
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setNextMonth()
   expect(setSelectedDate.mock.calls.length).toBe(0)
+  expect(setSelectedDate.mock.calls[0]).toEqual(expectedDate)
 })
 
 test('setNextMonth: year blocked && month - 1', () => {
@@ -104,6 +109,7 @@ test('setNextMonth: year blocked && month - 1', () => {
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setNextMonth()
   expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setNextYear: year valid', () => {
@@ -117,6 +123,7 @@ test('setNextYear: year valid', () => {
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setNextYear()
   expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setNextYear: year invalid', () => {
@@ -125,11 +132,12 @@ test('setNextYear: year invalid', () => {
     max: '10/31/2022'
   }
   selectedDate = dateFromString({ date: '04/15/2022' })
-  expectedDate = dateFromString({ date: '04/01/2023' })
+  expectedDate = undefined
 
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setNextYear()
   expect(setSelectedDate.mock.calls.length).toBe(0)
+  expect(setSelectedDate.mock.calls[0]).toEqual(expectedDate)
 })
 
 test('setPreviousMonth: year valid && month valid', () => {
@@ -143,6 +151,7 @@ test('setPreviousMonth: year valid && month valid', () => {
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setPreviousMonth()
   expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setPreviousMonth: year valid && month blocked', () => {
@@ -156,6 +165,7 @@ test('setPreviousMonth: year valid && month blocked', () => {
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setPreviousMonth()
   expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setPreviousMonth: year blocked && month valid', () => {
@@ -169,6 +179,7 @@ test('setPreviousMonth: year blocked && month valid', () => {
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setPreviousMonth()
   expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setPreviousYear: year valid', () => {
@@ -182,6 +193,7 @@ test('setPreviousYear: year valid', () => {
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setPreviousYear()
   expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setPreviousYear: year invalid', () => {
@@ -190,9 +202,10 @@ test('setPreviousYear: year invalid', () => {
     max: '10/31/2022'
   }
   selectedDate = dateFromString({ date: '04/15/2021' })
-  expectedDate = dateFromString({ date: '04/01/2020' })
+  expectedDate = undefined
 
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setPreviousYear()
   expect(setSelectedDate.mock.calls.length).toBe(0)
+  expect(setSelectedDate.mock.calls[0]).toEqual(expectedDate)
 })

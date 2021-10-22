@@ -82,7 +82,6 @@ const SelectDate = ({
   }
 
   const submitInputDate = ({e}) => {
-    console.log('enter press')
     if (dateInput.length < 10) {
       onInvalidDate({
         message: 'date input invalid',

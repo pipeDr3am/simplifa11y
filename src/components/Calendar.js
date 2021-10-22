@@ -30,7 +30,18 @@ const ariaDays = [
 ]
 
 const ariaMonths = [
-  'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  'January', 
+  'February', 
+  'March', 
+  'April', 
+  'May', 
+  'June', 
+  'July', 
+  'August', 
+  'September', 
+  'October', 
+  'November', 
+  'December'
 ]
 
 const Calendar = ({
@@ -231,13 +242,31 @@ const Calendar = ({
     return weeks
   }
 
+  const onBlur = e => {
+    //@Recall was trying to close calendar on clicking off of it ... getting there
+    // leaving this as its not needed atm
+    //console.log('blur')
+    // if user is not focusing on a calendar button, they have clicked outside the calendar
+    // const activeFocus = document.activeElement['data-focus']
+    // console.log('activeFocus:', document.activeElement)
+    // if (!activeFocus) {
+    //   console.log('hide ui')
+    // }
+
+  }
+
   return (
-    <S.Calendar id='calendarDisplay' aria-expanded={calendarShown}>
+    <S.Calendar 
+      id='calendarDisplay' 
+      aria-expanded={calendarShown}
+      onBlur={onBlur}
+    >
       <S.Title>
         <S.Icons>
           <S.IconWrap
             type='button'
             id='previousYear'
+            data-focus='cal'
             aria-label='previous year'
             onClick={keyControl.setPreviousYear}
             onKeyDown={(e) => previousYearKeyPress(e)}
@@ -246,6 +275,7 @@ const Calendar = ({
           </S.IconWrap>
           <S.IconWrap
             type='button'
+            data-focus='cal'
             aria-label='previous month'
             onClick={keyControl.setPreviousMonth}
           >
@@ -260,17 +290,19 @@ const Calendar = ({
         <S.Icons>
           <S.IconWrap
             type='button'
+            data-focus='cal'
             aria-label='next month'
             onClick={keyControl.setNextMonth}
-            onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextMonth })}
+            onKeyUp={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextMonth })}
           >
             <FontAwesomeIcon icon={faAngleRight} />
           </S.IconWrap>
           <S.IconWrap
             type='button'
+            data-focus='cal'
             aria-label='next year'
             onClick={keyControl.setNextYear}
-            onKeyPress={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextYear })}
+            onKeyUp={(e) => keyControl.handleKeyPress({ e, callback: keyControl.setNextYear })}
           >
             <FontAwesomeIcon icon={faAngleDoubleRight} />
           </S.IconWrap>
@@ -305,6 +337,7 @@ const Calendar = ({
                   <button
                     type='button'
                     id={fnsFormat(day, format)}
+                    data-focus='cal'
                     aria-label={`${getDate(day)} ${getWrittenDay({ day })}`}
                     onKeyDown={handleDayKeyPress}
                     tabIndex={`${isEqual(selectedDate, day) ? '0' : '-1'}`}

@@ -3,12 +3,15 @@
 - parameterized aria-label for formatHint as `ariaLabelFormatHint`
 - if cur date > max date, cal ui will start on max date not current
 - if cur date < max date, cal ui will start on cur date
-- on entering a full date will submit (enter key) via date input
+- on entering a full date will submit (enter key) via date input and clear errors
 
 ### Fixed
 - updating initialDate after an API call now triggers correctly
 - fixed bug with having multiple datepickers on pages
 - backspace fixed when going back from added slashes i.e. `02/02/` <-- will now give `02/0`
+
+### Changed
+- months for aria-labels are now full i.e. January vs Jan
 
 ## [0.0.6-rc.10] - 2021-10-06
 ### Lost
