@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Core from './Core'
+import { DatePicker } from 'simplifa11y'
 import { defaultTheme as theme } from './theme'
 
 export default {
   title: 'DatePicker',
-  component: Core,
+  component: DatePicker,
   argTypes: {
     inputId: {
       description: 'id for date input text',
@@ -117,7 +117,11 @@ export default {
   }
 }
 
-const Template = (args) => <Core {...args} />
+const Template = (args) => <DatePicker {...args} />
+
+const onSelect = () => {
+  console.log('...')
+}
 
 export const Default = Template.bind({})
 Default.args = {
@@ -126,13 +130,18 @@ Default.args = {
   format: 'MM/dd/yyyy',
   placeholder: 'Enter a Date',
   formatHint: 'MM DD YYYY',
-  onSelect: () => {},
+  onSelect,
   dateRange:{
     min: '08/02/2002',
     max: '08/31/2008'
   },
   onInvalidDate: () => {},
-  initialDate: '03/03/2003'
+  initialDate: '03/03/2003',
+  parameters: {
+    actions: {
+      handles: ['mouseover', 'click .btn'],
+    },
+  },
 }
 const code =
 `
@@ -189,3 +198,4 @@ Default.parameters = {
     }
   }
 }
+

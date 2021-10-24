@@ -15,7 +15,7 @@ export const DatePicker = ({
   format,
   placeholder,
   formatHint,
-  onSelect,
+  onSelect = Function.prototype,
   dateRange,
   onInvalidDate,
   inputId,
