@@ -1,3 +1,7 @@
+## [0.0.7] - 2021-10-23
+### Fixed
+- next and previous year controls now set date && month for min max values
+
 ## [0.0.7-rc.0] - 2021-10-21
 ### Added
 - parameterized aria-label for formatHint as `ariaLabelFormatHint`
