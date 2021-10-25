@@ -1,0 +1,2 @@
+(this["webpackJsonpsimplifa11y-example"]=this["webpackJsonpsimplifa11y-example"]||[]).push([[60],{184:function(t,i,s){"use strict";function a(t){t.languages.ini={comment:/^[ \t]*[;#].*$/m,selector:/^[ \t]*\[.*?\]/m,constant:/^[ \t]*[^\s=]+?(?=[ \t]*=)/m,"attr-value":{pattern:/=.*/,inside:{punctuation:/^[=]/}}}}t.exports=a,a.displayName="ini",a.aliases=[]}}]);
+//# sourceMappingURL=react-syntax-highlighter_languages_refractor_ini.d70d435b.chunk.js.map
