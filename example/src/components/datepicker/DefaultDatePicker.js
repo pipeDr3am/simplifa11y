@@ -1,5 +1,5 @@
-import {useState} from 'react'
-import { 
+import { useState } from 'react'
+import {
   CopyBlock,
   anOldHope
 } from 'react-code-blocks'
@@ -12,10 +12,10 @@ const CodeBlockDefaults = {
   showLineNumbers: false
 }
 
-const installCode = `yarn add @pipedr3am/simplifa11y -s`
-const importCode = `import { DatePicker } from 'simplifa11y'`
+const installCode = 'yarn add @pipedr3am/simplifa11y -s'
+const importCode = 'import { DatePicker } from \'simplifa11y\''
 
-const code = 
+const code =
 `<DatePicker
   format='MM/dd/yyyy'
   placeholder='Enter a Date'
@@ -24,7 +24,7 @@ const code =
 />
 `
 
-const onSelectCodeExample = 
+const onSelectCodeExample =
 `import { useState } from 'react'
 
 const DevComponent = () => {
@@ -37,7 +37,7 @@ const DevComponent = () => {
 />
 `
 
-const onSelectCodeExample2 = 
+const onSelectCodeExample2 =
 `const DevComponent = () => {
   const onSelect = string => {
     console.log(\`date-string selected: \$\{string\}\`)
@@ -50,7 +50,7 @@ const onSelectCodeExample2 =
 />
 `
 
-const dateRangeCodeExample = 
+const dateRangeCodeExample =
 `<DatePicker
   dateRange={{
     min: '08/02/2002',
@@ -60,13 +60,13 @@ const dateRangeCodeExample =
 `
 
 const invalidDateExample = {
-  "message": "date outside of range",
-  "details": {
-    "dateInput": "03/"
+  message: 'date outside of range',
+  details: {
+    dateInput: '03/'
   }
 }
 
-const invalidDateCodeExample = 
+const invalidDateCodeExample =
 `// will fire on all keydowns
 const onInvalidDate = e => {
   console.log(e.message) // 'date outside of range'
@@ -80,7 +80,7 @@ const defaultDateRange = {
   max: '01/01/9999'
 }
 
-const themeExample = 
+const themeExample =
 `
 const primaryDark = '#1E4147'
 const activeBg = '#AAC789'
@@ -149,7 +149,6 @@ const defaultTheme = {
 `
 
 const DefaultDatePicker = () => {
-
   const onInvalidDate = e => {
     console.log('onInvalidDate:', e)
   }
@@ -195,7 +194,7 @@ const DefaultDatePicker = () => {
         text={code}
         {...CodeBlockDefaults}
       />
-      
+
       <hr />
       <h2>parameters [* = required]</h2>
       <hr />
@@ -219,7 +218,7 @@ const DefaultDatePicker = () => {
           <tr>
             <td className='tg-0pky'>format*</td>
             <td className='tg-0pky'>!!! NOT IMPLEMENTED !!! - pass as `MM/dd/yyyy` for now</td>
-            <td className='tg-0pky'></td>
+            <td className='tg-0pky' />
           </tr>
           <tr>
             <td className='tg-0pky'>placeholder</td>
@@ -255,7 +254,7 @@ const DefaultDatePicker = () => {
         </tbody>
       </table>
 
-      <div className = 'indent'>
+      <div className='indent'>
         <p>example using <strong>useState:</strong> (recommended)</p>
         <CopyBlock
           text={onSelectCodeExample}
@@ -263,7 +262,7 @@ const DefaultDatePicker = () => {
         />
       </div>
 
-      <div className = 'indent'>
+      <div className='indent'>
         <p>example using basic override</p>
         <CopyBlock
           text={onSelectCodeExample2}
@@ -292,7 +291,7 @@ const DefaultDatePicker = () => {
         </tbody>
       </table>
 
-      <div className = 'indent'>
+      <div className='indent'>
         <p>example using basic override</p>
         <CopyBlock
           text={invalidDateCodeExample}
@@ -319,7 +318,7 @@ const DefaultDatePicker = () => {
         </tbody>
       </table>
 
-      <div className = 'indent'>
+      <div className='indent'>
         <p>example</p>
         <CopyBlock
           text={dateRangeCodeExample}
@@ -331,14 +330,13 @@ const DefaultDatePicker = () => {
       <h2>theming</h2>
       <hr />
 
-      <div className = 'indent'>
+      <div className='indent'>
         <p>example</p>
         <CopyBlock
           text={themeExample}
           {...CodeBlockDefaults}
         />
       </div>
-
 
     </>
   )
