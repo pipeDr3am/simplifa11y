@@ -2,6 +2,9 @@
 ### Fixed
 - next and previous year controls now set date && month for min max values
 
+### Removed
+- storybook removed in favor of barebones examples with `react-code-blocks` for code examples
+
 ## [0.0.7-rc.0] - 2021-10-21
 ### Added
 - parameterized aria-label for formatHint as `ariaLabelFormatHint`
