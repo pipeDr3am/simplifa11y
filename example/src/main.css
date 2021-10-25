@@ -1,0 +1,56 @@
+/*
+  https://colordesigner.io/#0B2631-18445D-1F7799-04C4D9-79E6F2
+*/
+
+* {
+  font-family: 'Roboto';
+}
+
+body {
+  background: #10394a;
+}
+
+h1, h2, h3 {
+  color: #9dd3e9;
+}
+
+p {
+  color: #cee9f4;
+  font-size: '.9em';
+  letter-spacing: .02em;
+}
+
+h3 {
+  font-weight: normal;
+  letter-spacing: .02em;
+}
+
+.component-demo hr {
+  margin-top: 100px;
+  opacity: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.indent {
+  margin-left: 20.86px;
+}
+.indent p {
+  color: #2c98c4;
+}
+
+/*
+  - table -
+*/
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+
+th, td {
+  color: #cee9f4;
+}
