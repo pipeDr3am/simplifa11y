@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import './app.css'
 
+import './main.css'
 import { DatePicker } from 'simplifa11y'
+import DefaultDatePicker from './components/datepicker/DefaultDatePicker'
 
 const App = () => {
   const [dateString, setDateString] = useState('')
@@ -35,6 +36,7 @@ const App = () => {
 
   return (
     <>
+      <DefaultDatePicker />
       {error && (
         <>
           <p>error: {error.message}</p>
@@ -43,7 +45,7 @@ const App = () => {
           <p>dateRange min: {error.details.dateRange.min}</p>
         </>
       )}
-      <form onSubmit={e => e.preventDefault()}>
+      {/* <form onSubmit={e => e.preventDefault()}>
         <DatePicker
           inputId='test...'
           theme={theme}
@@ -101,7 +103,7 @@ const App = () => {
         />
 
         <p>dateString is: {dateString}</p>
-      </form>
+      </form> */}
 
     </>
   )

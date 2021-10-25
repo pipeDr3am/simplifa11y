@@ -11,6 +11,9 @@ import {
   addDays,
   getYear,
   getMonth,
+  setMonth,
+  setDate,
+  getDate,
   format as fnsFormat
 } from 'date-fns'
 
@@ -29,6 +32,8 @@ const makeKeyControl = ({
   const minYear = parseInt(minRangeArr[2])
   const maxMonth = parseInt(maxRangeArr[0])
   const minMonth = parseInt(minRangeArr[0])
+  const maxDay = parseInt(maxRangeArr[1])
+  const minDay = parseInt(minRangeArr[1])
 
   const getButtonFromDate = ({ dateStr }) => document.getElementById(dateStr)
   const focusSelectedDate = ({ previousDate }) => {
@@ -84,11 +89,16 @@ const makeKeyControl = ({
     const previousYear = subYears(selectedDate, 1)
     const previousYearVal = getYear(previousYear)
     const previousMonth = getMonth(previousYear)
+    const previousDay = getDate(previousYear)
     if (previousYearVal > minYear) {
       setSelectedDate(startOfMonth(previousYear))
     } else if (previousYearVal === minYear) {
       if (previousMonth <= minMonth) {
-        setSelectedDate(new Date(`${minMonth}/01/${minYear}`))
+        if (previousDay > minDay) {
+          setSelectedDate(new Date(`${minMonth}/${minDay}/${minYear}`))
+        } else {
+          setSelectedDate(new Date(`${minMonth}/01/${minYear}`))
+        }
       } else {
         setSelectedDate(startOfMonth(previousYear))
       }
@@ -99,7 +109,10 @@ const makeKeyControl = ({
     const nextYear = addYears(selectedDate, 1)
     const nextYearVal = getYear(nextYear)
     if (nextYearVal <= maxYear) {
-      setSelectedDate(startOfMonth(nextYear))
+      let dateUpdate = startOfMonth(nextYear)
+      dateUpdate = setMonth(dateUpdate, maxMonth - 1)
+      dateUpdate = setDate(dateUpdate, maxDay)
+      setSelectedDate(dateUpdate)
     }
   }
 

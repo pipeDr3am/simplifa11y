@@ -118,7 +118,7 @@ test('setNextYear: year valid', () => {
     max: '10/31/3044'
   }
   selectedDate = dateFromString({ date: '10/15/2022' })
-  expectedDate = dateFromString({ date: '10/01/2023' })
+  expectedDate = dateFromString({ date: '10/31/2023' })
 
   keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
   keyControl.setNextYear()
@@ -138,6 +138,20 @@ test('setNextYear: year invalid', () => {
   keyControl.setNextYear()
   expect(setSelectedDate.mock.calls.length).toBe(0)
   expect(setSelectedDate.mock.calls[0]).toEqual(expectedDate)
+})
+
+test('setNextYear: next date valid when year is 1 less than max year and month is greater than max month', () => {
+  dateRange = {
+    min: '03/02/2021',
+    max: '10/12/2022'
+  }
+  selectedDate = dateFromString({ date: '12/15/2021' })
+  expectedDate = dateFromString({ date: '10/12/2022' })
+
+  keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
+  keyControl.setNextYear()
+  expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
 
 test('setPreviousMonth: year valid && month valid', () => {
@@ -208,4 +222,18 @@ test('setPreviousYear: year invalid', () => {
   keyControl.setPreviousYear()
   expect(setSelectedDate.mock.calls.length).toBe(0)
   expect(setSelectedDate.mock.calls[0]).toEqual(expectedDate)
+})
+
+test('setPreviousYear: selectedDate valid when year is 1 greater than min year and month is before min month', () => {
+  dateRange = {
+    min: '03/02/2021',
+    max: '10/31/2025'
+  }
+  selectedDate = dateFromString({ date: '02/15/2022' })
+  expectedDate = dateFromString({ date: '03/02/2021' })
+
+  keyControl = makeKeyControl({ dateRange, selectedDate, setSelectedDate })
+  keyControl.setPreviousYear()
+  expect(setSelectedDate.mock.calls.length).toBe(1)
+  expect(setSelectedDate.mock.calls[0][0]).toEqual(expectedDate)
 })
